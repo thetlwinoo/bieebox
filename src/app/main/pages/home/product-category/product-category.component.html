@@ -1,0 +1,43 @@
+<div class="product-category-area">
+    <div class="container">
+        <!-- <div class="content">
+            <div class="cards">
+                
+            </div>
+        </div> -->
+        <!-- <mat-toolbar class="p-0">
+            <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
+                <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+                    Categories
+                </div>
+                <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+                    <button mat-raised-button>
+                        <mat-icon aria-label="nav-prev">keyboard_arrow_left</mat-icon>
+                    </button>
+                    <button mat-raised-button>
+                        <mat-icon aria-label="nav-next">keyboard_arrow_right</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-toolbar> -->
+        <div class="section-border mb-10">
+            <h4 class="section-title section-bg-gray2">Categories</h4>
+        </div>
+        <div class="product-category-slider-nav nav-style"></div>
+        <owl-carousel #owlProductCategory class="headphone-slider-active product-slider" [options]="carousel.category.options" [items]="images"
+            [carouselClasses]="['owl-theme']">
+            <div class="card" *ngFor="let category of categories">
+                <a routerLink="/pages/shop" routerLinkActive="active">
+                    <div class="card-preview">
+                        <div class="box-card cag">
+                            <img src="assets/devita/img/cag/cag1.png">
+                            <div class="title p-2 line-height-1.75">
+                                {{category.title}}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </owl-carousel>
+    </div>
+</div>

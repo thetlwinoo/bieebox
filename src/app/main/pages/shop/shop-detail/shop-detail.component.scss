@@ -1,0 +1,9 @@
+:host {
+    background: white;
+
+    .pro-dec-btn {
+        > a:last-child {
+            margin-left: 1px;
+        }
+    }
+}

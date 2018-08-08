@@ -1,0 +1,18 @@
+@import "src/@box/scss/box";
+
+:host {
+    mat-nav-list {
+        display: flex;
+        align-items: right;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+        h4 {
+            font-size: 1.3em !important;
+            margin: 0 !important;
+
+            @include media-breakpoint-down("xs") {
+                font-size: 1em !important;
+            }
+        }
+    }    
+}

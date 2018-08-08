@@ -1,0 +1,58 @@
+<div [ngClass]="{'header-middle header-middle-color-2 ptb-12':route,'header-top pt-10 pb-13 border-bottom-1':!route}">
+    <div class="container">
+        <!-- <div fxLayout="row wrap" fxLayoutAlign="start center">
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <div class="logo logo-mrg">
+                    <a href routerLink="/" routerLinkActive="active">
+                        <img src="assets/devita/img/logo/logo-2.png" alt="" *ngIf="route">
+                        <img src="assets/devita/img/logo/logo.png" alt="" *ngIf="!route">
+                    </a>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <div>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Outline form field</mat-label>
+                            <input matInput placeholder="Placeholder">
+                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                            <mat-hint>Hint</mat-hint>
+                        </mat-form-field>
+                    </p>
+                </div>
+
+            </div>
+        </div> -->
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="logo logo-mrg">
+                    <a href routerLink="/" routerLinkActive="active">
+                        <img src="assets/devita/img/logo/logo-2.png" alt="" *ngIf="route">
+                        <img src="assets/devita/img/logo/logo.png" alt="" *ngIf="!route">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-9">                
+                <div class="header-contact-search-wrapper f-right">
+                    <!-- <div class="header-contact middle-same">
+                        <div class="header-contact-icon">
+                            <i class="pe-7s-headphones"></i>
+                        </div>
+                        <div class="header-contact-content">
+                            <p>Call us
+                                <br>Free Support: (012) 800 456 789</p>
+                        </div>
+                    </div> -->
+                    <div class="header-search middle-same" [ngClass]="{'search-color-elec':route}">
+                        <form class="header-search-form" action="#">
+                            <input type="text" placeholder="Search entire store here ...">
+                            <button>
+                                <i class="ion-ios-search-strong"></i>
+                            </button>
+                        </form>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<div id="main" [ngClass]="{'boxed':boxConfig.layout.width === 'boxed'}">
+    <ng-container *ngIf="boxConfig.layout.notification.position === 'top'">
+        <ng-container *ngTemplateOutlet="notification"></ng-container>
+    </ng-container>
+
+    <!-- TOOLBAR: Above -->
+    <ng-container *ngIf="boxConfig.layout.toolbar.position === 'above'">
+        <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+    </ng-container>
+    <!-- / TOOLBAR: Above -->
+
+    <ng-container *ngIf="boxConfig.layout.header.position === 'top'">
+        <ng-container *ngTemplateOutlet="header"></ng-container>
+    </ng-container>
+
+    <!-- NAVBAR: Top -->
+    <ng-container>
+        <ng-container *ngTemplateOutlet="topNavbar"></ng-container>
+    </ng-container>
+    <!-- / NAVBAR: Top -->
+
+    <!-- TOOLBAR: Below -->
+    <ng-container *ngIf="boxConfig.layout.toolbar.position === 'below'">
+        <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+    </ng-container>
+    <!-- / TOOLBAR: Below -->
+
+    <div id="container-1" class="wrapper">
+
+        <!-- NAVBAR: Left -->
+        <ng-container>
+            <ng-container *ngTemplateOutlet="leftNavbar"></ng-container>
+        </ng-container>
+        <!-- / NAVBAR: Left -->
+
+        <div id="container-2" class="wrapper">
+
+            <div id="container-3" class="wrapper" boxPerfectScrollbar [boxPerfectScrollbarOptions]="{suppressScrollX: true, updateOnRouteChange : true}">
+                    <div class="container">
+                            <mc-breadcrumbs></mc-breadcrumbs>
+                        </div>
+                <content></content>
+
+                <!-- <ng-container *ngIf="boxConfig.layout.brand.position === 'below'">
+                    <ng-container *ngTemplateOutlet="brand"></ng-container>
+                </ng-container> -->
+
+                <ng-container *ngIf="boxConfig.layout.shop.position === 'below'">
+                    <ng-container *ngTemplateOutlet="shop"></ng-container>
+                </ng-container>
+
+                <ng-container *ngIf="boxConfig.layout.footer.position === 'below'">
+                    <ng-container *ngTemplateOutlet="footer"></ng-container>
+                </ng-container>
+
+                <ng-container *ngIf="boxConfig.layout.newsletter.position === 'below'">
+                    <ng-container *ngTemplateOutlet="newsletter"></ng-container>
+                </ng-container>
+            </div>
+
+        </div>
+
+    </div>
+
+    <ng-container *ngIf="boxConfig.layout.newsletter.position === 'above-static'">
+        <ng-container *ngTemplateOutlet="newsletter"></ng-container>
+    </ng-container>
+</div>
+
+<!-- QUICK PANEL -->
+<box-sidebar name="quickPanel" position="right" class="quick-panel">
+    <quick-panel></quick-panel>
+</box-sidebar>
+<!-- / QUICK PANEL -->
+
+<!-- ----------------------------------------------------------------------------------------------------- -->
+<!-- @ PARTIALS
+<!-- ----------------------------------------------------------------------------------------------------- -->
+
+<ng-template #notification>
+    <notification *ngIf="!boxConfig.layout.notification.hidden" [ngClass]="[boxConfig.layout.notification.position, boxConfig.layout.notification.background]"></notification>
+</ng-template>
+
+<ng-template #header>
+    <header *ngIf="!boxConfig.layout.header.hidden" [ngClass]="[boxConfig.layout.header.position, boxConfig.layout.header.custom]"></header>
+</ng-template>
+
+<!-- TOOLBAR -->
+<ng-template #toolbar>
+    <toolbar *ngIf="!boxConfig.layout.toolbar.hidden" [ngClass]="[boxConfig.layout.toolbar.position, boxConfig.layout.toolbar.background]"></toolbar>
+</ng-template>
+<!-- / TOOLBAR -->
+
+<!-- TOP NAVBAR -->
+<ng-template #topNavbar>
+    <navbar layout="horizontal" class="top-navbar" [ngClass]="boxConfig.layout.navbar.background" fxHide fxShow.gt-md *ngIf="!boxConfig.layout.navbar.hidden">
+    </navbar>
+</ng-template>
+<!-- / TOP NAVBAR -->
+
+<!-- LEFT NAVBAR -->
+<ng-template #leftNavbar>
+    <box-sidebar name="navbar" [folded]="boxConfig.layout.navbar.folded" *ngIf="!boxConfig.layout.navbar.hidden">
+        <navbar class="left-navbar" [ngClass]="boxConfig.layout.navbar.background" layout="vertical"></navbar>
+    </box-sidebar>
+</ng-template>
+<!-- / LEFT NAVBAR -->
+
+<!-- <ng-template #brand>
+    <brand *ngIf="!boxConfig.layout.brand.hidden" [ngClass]="[boxConfig.layout.brand.position]"></brand>
+</ng-template> -->
+
+<ng-template #shop>
+    <shop-services *ngIf="!boxConfig.layout.shop.hidden" [ngClass]="boxConfig.layout.shop.position"></shop-services>
+</ng-template>
+
+<!-- FOOTER -->
+<ng-template #footer>
+    <footer *ngIf="!boxConfig.layout.footer.hidden" [ngClass]="[boxConfig.layout.footer.position, boxConfig.layout.footer.style]"></footer>
+</ng-template>
+<!-- / FOOTER -->
+
+<ng-template #newsletter>
+    <newsletter *ngIf="!boxConfig.layout.newsletter.hidden" [ngClass]="boxConfig.layout.newsletter.position"></newsletter>
+</ng-template>

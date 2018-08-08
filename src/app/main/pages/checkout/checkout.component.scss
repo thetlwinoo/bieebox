@@ -1,0 +1,21 @@
+:host {
+    .ps {
+        overflow: hidden !important;
+    }
+
+    .content {
+        position: relative;
+        display: flex;
+        z-index: 1;
+        flex: 1 0 auto;
+    }
+
+    .content.inner-scroll {
+        flex: 1 1 0%;
+        min-height: 0;
+    }
+
+    .left-wrapper{
+        padding-bottom: 20px;
+    }
+}

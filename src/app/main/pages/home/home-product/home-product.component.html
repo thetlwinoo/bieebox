@@ -1,0 +1,61 @@
+<div class="home-product-content">
+    <mat-spinner diameter=30 strokeWidth=2 [class.show]="searching"></mat-spinner>
+    <div class="custom-row">
+        <div class="custom-col-6 mb-4 mt-4" *ngFor="let stockItem of stockItems | slice:0:12;let i = index">
+            <div class="devita-product-2 mrg-inherit">
+                <div class="product-img">
+                    <!-- <ngx-slick-carousel class="product-img-slider" #slickModal="slick-carousel" [config]="carousel.slick.options">
+            <div ngxSlickItem *ngFor="let slide of carousel.slick.slides">
+              <a routerLink="/pages/shop" routerLinkActive="active">
+                <img src="{{ stockItem.gravatar }}" alt="">
+              </a>
+            </div>
+          </ngx-slick-carousel> -->
+                    <a routerLink="/pages/shop" routerLinkActive="active">
+                        <img src="{{ stockItem.gravatar }}" alt="" *ngIf="stockItem.gravatar else noimage">
+                        <ng-template #noimage>
+                            <img src="assets/devita/img/no_photo.jpg" alt="no image preview">
+                        </ng-template>
+                    </a>
+                    <span>-29%</span>
+                </div>
+                <div class="list-col">
+                    <div class="gridview">
+                        <div class="product-content text-center">
+                            <span>Remote, Accessories</span>
+                            <h4>
+                                <a routerLink="/pages/shop" routerLinkActive="active">Phantom Remote Control Ver 2018</a>
+                            </h4>
+                            <div class="product-price-wrapper">
+                                <span>$260.00</span>
+                                <span class="product-price-old">$162.00 </span>
+                            </div>
+                        </div>
+                        <div class="product-action-wrapper-2 text-center">
+                            <div class="product-rating">
+                                <i class="ion-android-star-outline theme-star"></i>
+                                <i class="ion-android-star-outline theme-star"></i>
+                                <i class="ion-android-star-outline theme-star"></i>
+                                <i class="ion-android-star-outline theme-star"></i>
+                                <i class="ion-android-star-outline"></i>
+                            </div>
+                            <p> Quam elit phasellus nibh sed eget, sed nunc in ultricies sodales sapien, non velit scelerisque...
+                            </p>
+                            <div class="product-action">
+                                <a class="same-action" title="Wishlist" href="#">
+                                    <i class="fa fa-heart-o"></i>
+                                </a>
+                                <a class="action-cart" title="Add To Cart" href="#">
+                                    Add to Cart
+                                </a>
+                                <a class="same-action compare-mrg" data-target="#exampleCompare" data-toggle="modal" title="Compare" href="#">
+                                    <i class="fa fa-sliders fa-rotate-90"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

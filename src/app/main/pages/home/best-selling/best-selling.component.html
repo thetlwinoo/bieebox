@@ -1,0 +1,53 @@
+<div class="best-selling-area pt-60 pb-45 gray-bg">
+  <div class="container">
+    <div class="top-bar section-border mb-20">
+      <div class="section-title-wrapper section-bg-gray">
+        <h4 class="section-title">Best Selling Products</h4>
+      </div>
+      <div class="product-tab-list-2 nav section-bg-gray">
+        <a class="active" href="#home4" data-toggle="tab">
+          <h4>Smart Phones & Tablets </h4>
+        </a>
+        <a href="#home5" data-toggle="tab">
+          <h4>Laptops & Computers </h4>
+        </a>
+        <a href="#home6" data-toggle="tab">
+          <h4> Video Cameras</h4>
+        </a>
+      </div>
+    </div>
+    <div id="home4">
+      <owl-carousel  *ngIf="stockItems?.length > 0" #owlElement class="best-selling-active nav-style" [options]="carousel.best_selling.options" [items]="images"
+        [carouselClasses]="['owl-theme']">
+        <div class="best-selling-bundle" *ngFor="let _bundle of carousel.best_selling.slides[0].bundle;let i = index">
+          <div class="best-selling-pro-wrapper mb-20" *ngFor="let _stockItem of _bundle.images;let i = index">
+            <div class="product-img">
+              <a routerLink="/pages/shop" routerLinkActive="active">
+                <img alt="" src="{{_stockItem.img}}">
+              </a>
+              <span>-10%</span>
+            </div>
+            <div class="product-content best-pro-content">
+              <span>Joy Stick, Accessories</span>
+              <h4>
+                <a routerLink="/pages/shop" routerLinkActive="active">Phantom Remote Control Ver 2018</a>
+              </h4>
+              <div class="product-price-wrapper">
+                <span>$260.00</span>
+                <span class="product-price-old">$162.00 </span>
+              </div>
+              <div class="product-action best-pro-action">
+                <a class="same-action" title="Wishlist" href="#">
+                  <i class="fa fa-heart-o"></i>
+                </a>
+                <a class="action-cart" title="Add To Cart" href="#">
+                  Add to Cart
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </owl-carousel>
+    </div>
+  </div>
+</div>

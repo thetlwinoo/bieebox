@@ -1,0 +1,37 @@
+<div class="page-layout blank">
+    <slider-banner [carousel]="carousel"></slider-banner>
+    <product-category [categories]="categories" [carousel]="carousel"></product-category>
+    <div class="product-area pb-30">
+        <div class="container">
+            <mat-nav-list fxLayout="row" fxLayoutAlign="end center">
+                <a mat-list-item href (click)="onSelectedProductTab(tab);" *ngFor="let tab of tabs" [class.active]="tab === selectedTab">
+                    <h4>{{ tab.title }}</h4>
+                </a>
+            </mat-nav-list>
+
+            <home-product [stockItems]="stockItems" [carousel]="carousel"></home-product>
+        </div>
+    </div>
+    <div class="coffee-discount-area">
+        <div class="container">
+            <div class="bg-img pt-55 pb-55" style="background-image:url(assets/devita/img/banner/banner-26.jpg);">
+                <div class="row">
+                    <div class="col-lg-8 col-md-7 col-12">
+                        <div class="coffee-discount-content pl-60">
+                            <img alt="" src="assets/devita/img/icon-img/coffee-text.png">
+                            <h3>Creamer Coffee Protein Meal</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-5 col-12">
+                        <div class="coffee-discount-btn mt-10 pr-70">
+                            <a class="btn-style" href="#">Discover now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <best-selling [stockItems]="stockItems" [carousel]="carousel"></best-selling>
+    <top-selling [stockItems]="stockItems" [carousel]="carousel"></top-selling>
+    <brand [carousel]="carousel"></brand>
+</div>

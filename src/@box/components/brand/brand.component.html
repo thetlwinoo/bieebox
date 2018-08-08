@@ -1,0 +1,11 @@
+<div class="brand-logo-area">
+    <div class="container">
+        <div class="brand-logo-active owl border-top-2 ptb-60">
+            <owl-carousel #owlBrand [options]="carousel.brand.options" [items]="images" [carouselClasses]="['owl-theme']">
+                <div class="single-brand-logo" *ngFor="let _brand of carousel.brand.slides;let i = index">
+                    <img alt="" src="{{_brand.image}}">
+                </div>
+            </owl-carousel>
+        </div>
+    </div>
+</div>

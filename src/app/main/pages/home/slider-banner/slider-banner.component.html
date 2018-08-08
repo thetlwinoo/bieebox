@@ -1,0 +1,48 @@
+<div class="slider-banner-area pt-9 pb-10" fxHide fxShow.gt-md>
+    <div class="container">
+        <mat-grid-list cols="6" rowHeight="2:1">
+            <mat-grid-tile [colspan]="4" [rowspan]="2">
+                <div class="main-carousel">
+                    <owl-carousel #owlElement class="owl-dot-style-2" [options]="carousel.banner2.options" [items]="images" [carouselClasses]="['owl-theme']">
+                        <div class="main-slider" *ngFor="let banner of carousel.banner2.slides;let i = index">
+                            <div class="item-banner">
+                                <div class="banner-thumb">
+                                    <a href="#">
+                                        <img [ngStyle]="banner.style" class="img-fluid" src="{{ banner.image }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </owl-carousel>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <div class="banner-img banner-hover">
+                    <a href="#">
+                        <img alt="" src="assets/devita/img/banner/banner7.jpg">
+                    </a>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <div class="banner-img banner-hover">
+                    <a href="#">
+                        <img alt="" src="assets/devita/img/banner/banner6.jpg">
+                    </a>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
+<div class="slider-area pb-10" fxHide fxShow.lt-md>
+    <owl-carousel #owlElement class="owl-dot-style-2" [options]="carousel.banner2.options" [items]="images" [carouselClasses]="['owl-theme']">
+        <div class="main-slider" *ngFor="let banner of carousel.banner2.slides;let i = index">
+            <div class="item-banner">
+                <div class="banner-thumb">
+                    <a href="#">
+                        <img [ngStyle]="banner.style" class="img-fluid" src="{{ banner.image }}" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </owl-carousel>
+</div>
