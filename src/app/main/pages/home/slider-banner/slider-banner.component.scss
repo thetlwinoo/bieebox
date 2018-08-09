@@ -1,23 +1,87 @@
 
-.owl-carouse img {
-    width: 100%;
+@import "src/@box/scss/box";
+
+:host {
+    .owl-carouse img {
+        width: 100%;
+    }
+    
+    .banner2 {
+        width: 100%;
+    }
+    
+    .main-carousel {
+        width: 100%;
+    }
+    
+    .main-slider {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: bottom;
+        width: 100%;
+    }
+    
+    .banner-thumb img {
+        height: 100%;
+    }
+
+    
+    .content {
+        position: relative;
+        z-index: 2;
+        .cards {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .card {
+                display: flex;
+                align-items: flex-start;
+
+                // padding: 2px 2px 4px 2px;
+                // padding: 1px;
+
+                // margin-bottom: 2px;
+                background-color: transparent;
+                border: none;
+
+                .card-source {
+                    display: none;
+                }
+
+                > a {
+                    .card-preview {
+                        display: flex;
+                        min-width: 146.25px;
+
+                        .box-card {
+                            box-shadow: none;
+                            min-width: 146.25px !important;
+                            max-width: 146.25px !important;
+
+                            &.cag {
+                                img{
+                                    padding: 30px 30px 15px 30px;
+                                }
+                                .title {
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // > a:hover {
+                //     .card-preview {
+                //         .box-card {
+                //             box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+                //         }
+                //     }
+                // }
+            }
+        }
+    }
 }
 
-.banner2 {
-    width: 100%;
-}
-
-.main-carousel {
-    width: 100%;
-}
-
-.main-slider {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
-    width: 100%;
-}
-
-.banner-thumb img {
-    height: 100%;
-}

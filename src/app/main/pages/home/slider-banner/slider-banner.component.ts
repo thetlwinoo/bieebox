@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'slider-banner',
@@ -7,10 +7,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SliderBannerComponent implements OnInit {
   @Input('carousel') carousel;
-  
+  @Input('bannerCategories') bannerCategories;
+  @ViewChild('boxcag') boxcag: ElementRef;
+
+  selectedCategory;
   constructor() { }
 
   ngOnInit() {
   }
 
+  mouseEnter(event){
+    this.selectedCategory = event;
+  }
+
+  mouseLeave(event){
+    this.selectedCategory = {};
+  }
 }

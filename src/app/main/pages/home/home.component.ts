@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   
   stockItems: any;
   categories: any;
+  bannerCategories: any;
   carousel: any;
   tabs: any[] = [
     { title: 'New Arrivals' },
@@ -64,6 +65,7 @@ export class HomeComponent implements OnInit {
     // });
     this.stockItems = this._homeService.stockItems;
     this.categories = this._homeService.categories;
+    this.bannerCategories = this._homeService.bannerCategories;
   }
 
   ngOnInit() {

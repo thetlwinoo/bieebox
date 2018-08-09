@@ -19,6 +19,8 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { SampleModule } from 'app/main/sample/sample.module';
 import { environment } from '../environments/environment';
 
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FakeDbService } from 'app/fake-db/fake-db.service';
 //ngrx
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -60,7 +62,10 @@ const appRoutes: Routes = [
         }),
         EffectsModule.forRoot([]),
         TranslateModule.forRoot(),
-
+        InMemoryWebApiModule.forRoot(FakeDbService, {
+            delay: 0,
+            passThruUnknownUrl: true
+        }),
         // Material moment date module
         MatMomentDateModule,
 

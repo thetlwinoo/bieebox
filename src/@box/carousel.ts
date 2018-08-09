@@ -3,7 +3,7 @@ export const carousel = {
         options: {
             animateOut: 'fadeOut',
             animateIn: 'fadeIn',
-            autoplay: false,
+            autoplay: true,
             autoplayTimeout: 5000,
             nav: false,
             loop: true,
@@ -46,7 +46,7 @@ export const carousel = {
         options: {
             animateOut: 'fadeOut',
             animateIn: 'fadeIn',
-            autoplay: false,
+            autoplay: true,
             autoplayTimeout: 5000,
             nav: false,
             loop: true,
@@ -104,9 +104,9 @@ export const carousel = {
             nav: true,
             autoplay: false,
             autoplayTimeout: 5000,
-            responsiveClass:true,
-            autoWidth:true,
-            navText: ['<i class="material-icons">keyboard_arrow_left</i>', '<i class="material-icons">keyboard_arrow_right</i>'],
+            responsiveClass: true,
+            autoWidth: true,
+            navText: ['<i class="ion-ios-arrow-back"></i>', '<i class="ion-ios-arrow-forward"></i>'],
             animateOut: 'fadeOut',
             animateIn: 'fadeIn',
             item: 10,
@@ -114,11 +114,11 @@ export const carousel = {
             responsive: {
                 0: {
                     items: 2,
-                    nav:false
+                    nav: false
                 },
                 480: {
                     items: 3,
-                    nav:false
+                    nav: false
                 },
                 768: {
                     items: 3
@@ -128,6 +128,79 @@ export const carousel = {
                 },
                 1200: {
                     items: 10
+                }
+            }
+        },
+        slides: [
+            {
+                image: 'assets/devita/img/cag/cag1.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag2.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag3.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag4.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag5.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag6.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag7.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag8.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag9.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag10.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag11.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag12.png'
+            },
+            {
+                image: 'assets/devita/img/cag/cag13.png'
+            }
+        ]
+    },
+    bannerCategory: {
+        options: {
+            loop: true,
+            nav: false,
+            autoplay: false,
+            autoplayTimeout: 5000,
+            responsiveClass: true,
+            autoWidth: true,
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            item: 8,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: false
+                },
+                480: {
+                    items: 3,
+                    nav: false
+                },
+                768: {
+                    items: 3
+                },
+                992: {
+                    items: 5
+                },
+                1200: {
+                    items: 8
                 }
             }
         },

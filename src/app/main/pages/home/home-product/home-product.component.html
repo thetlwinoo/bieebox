@@ -1,7 +1,7 @@
 <div class="home-product-content">
     <mat-spinner diameter=30 strokeWidth=2 [class.show]="searching"></mat-spinner>
     <div class="custom-row">
-        <div class="custom-col-6 mb-4 mt-4" *ngFor="let stockItem of stockItems | slice:0:12;let i = index">
+        <div class="custom-col-6" *ngFor="let stockItem of stockItems | slice:0:12;let i = index">
             <div class="devita-product-2 mrg-inherit">
                 <div class="product-img">
                     <!-- <ngx-slick-carousel class="product-img-slider" #slickModal="slick-carousel" [config]="carousel.slick.options">

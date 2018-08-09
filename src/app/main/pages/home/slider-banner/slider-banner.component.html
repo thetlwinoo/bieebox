@@ -1,4 +1,4 @@
-<div class="slider-banner-area pt-9 pb-10" fxHide fxShow.gt-md>
+<div class="slider-banner-area pt-9 pb-30" fxHide fxShow.gt-md>
     <div class="container">
         <mat-grid-list cols="6" rowHeight="2:1">
             <mat-grid-tile [colspan]="4" [rowspan]="2">
@@ -29,8 +29,24 @@
                         <img alt="" src="assets/devita/img/banner/banner6.jpg">
                     </a>
                 </div>
-            </mat-grid-tile>
-        </mat-grid-list>
+            </mat-grid-tile>    
+        </mat-grid-list>    
+        <div class="content">
+            <div class="cards">
+                <div class="card" *ngFor="let category of bannerCategories">
+                    <a routerLink="/pages/shop" routerLinkActive="active">
+                        <div #boxcag class="card-preview">
+                            <div class="box-card cag">
+                                <img src="assets/devita/img/bc/{{category.icon}}" class="animated" (mouseenter) ="mouseEnter(category)"  (mouseleave) ="mouseLeave(category)" [class.shake]="selectedCategory == category">
+                                <div class="title p-2 line-height-1.75">
+                                    {{category.title}}  
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="slider-area pb-10" fxHide fxShow.lt-md>

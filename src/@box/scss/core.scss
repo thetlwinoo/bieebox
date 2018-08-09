@@ -9,6 +9,8 @@
 
 @import '~bootstrap/scss/bootstrap';
 
+@import '~animate.css/animate';
+
 // Box
 @import "box";
 
@@ -28,7 +30,7 @@
 @import "partials/scrollbars";
 @import "partials/helpers";
 @import "partials/global";
-@import "partials/icons";
+// @import "partials/icons";
 @import "partials/colors";
 @import "partials/material";
 @import "partials/angular-material-fix";

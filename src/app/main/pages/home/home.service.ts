@@ -15,6 +15,7 @@ export class HomeService implements Resolve<any> {
 
   stockItems: any[];
   categories: any[];
+  bannerCategories: any[];
   onStockItemsChanged: BehaviorSubject<any> = new BehaviorSubject({});
 
   constructor(
@@ -32,11 +33,12 @@ export class HomeService implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     return new Promise((resolve, reject) => {
       Promise.all([
-        // this.getStockItems({
-        //   $limit: 20,
-        //   $skip: 0
-        // }),
-        this.getCategories({ $limit: 15 })
+        this.getStockItems({
+          $limit: 20,
+          $skip: 0
+        }),
+        this.getCategories({ $limit: 15 }),
+        this.getBannerCategories({ $limit: 15 })
       ]).then(
         () => {
           resolve();
@@ -59,11 +61,28 @@ export class HomeService implements Resolve<any> {
   }
 
   getCategories(query): Promise<any> {
+    // return new Promise((resolve, reject) => {
+    //   this.categories$(query)
+    //     .subscribe((response: any) => {
+    //       console.log(response)
+    //       this.categories = response;
+    //       resolve(response);
+    //     }, reject);
+    // });
     return new Promise((resolve, reject) => {
-      this.categories$(query)
+      this.http.get('api/categories')
         .subscribe((response: any) => {
-          console.log(response)
           this.categories = response;
+          resolve(response);
+        }, reject);
+    });
+  }
+
+  getBannerCategories(query): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get('api/banner_categories')
+        .subscribe((response: any) => {
+          this.bannerCategories = response;
           resolve(response);
         }, reject);
     });
@@ -84,9 +103,7 @@ export class HomeService implements Resolve<any> {
     return (<any>this.feathers
       .service('general/categories'))
       .watch()
-      .find({
-        query: query
-      })
+      .find()
       .map(d => d.data);
   }
 }
