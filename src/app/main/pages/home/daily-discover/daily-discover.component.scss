@@ -1,0 +1,103 @@
+:host {
+    .viwer-area {
+        position: relative;
+        z-index: 2;
+
+        .viwer-title {
+            align-content: center;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            padding: 8px;
+            border-bottom: 2px solid #ff5722;
+
+            .viwer-title-spacer {
+                flex: 1 1 auto;
+
+                &.title {
+                    text-transform: uppercase;
+                    font-weight: 500;
+                }
+            }
+
+            a {
+                color: #f44336;
+                font-weight: 400;
+
+                i {
+                    color: #f44336;
+                    margin-left: 2px;
+                }
+            }
+        }
+
+        .viwer-body {
+            .content {
+                .cards {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+
+                    .card {
+                        border: none;
+                        display: flex;
+                        align-items: flex-start;
+                        background: transparent;
+
+                        // padding: 24px 24px 48px 24px;
+                        padding: 5px;
+
+                        // margin-bottom: 5px;
+
+                        .card-preview {
+                            display: flex;
+                            min-width: 185px;
+
+                            .right-nav-wrapper {
+                                position: absolute;
+                                right: 0;
+                                top: 30px;
+                                padding: 5px 5px 0 0;
+                                // display: none;
+
+                                &.active {
+                                    display: block;
+                                }
+
+                                .right-nav {
+                                    float: right;
+                                    margin-left: .5rem;
+                                    position: relative;
+                                    padding: 4px 2px 3px;
+
+                                    &.right-nav-fixed-width {
+                                        width: 38px;
+                                        height: 35px;
+
+                                        .mat-list {
+                                            .mat-list-item {                                                
+                                                .mat-list-item-content {
+                                                    padding: 0 !important;
+                                                    background: steelblue;
+                                                    > i {
+                                                        margin: auto;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .card-source {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

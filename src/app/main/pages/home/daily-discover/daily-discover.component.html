@@ -1,0 +1,43 @@
+<div class="viwer-area">
+    <div class="container">
+        <div class="viwer-title">
+            <div class="viwer-title-spacer title">
+                daily discover
+            </div>
+            <a routerLink="/pages/shop" routerLinkActive="active">see all
+                <i class="ion-ios-arrow-forward"></i>
+            </a>
+        </div>
+        <div class="viwer-body">
+            <div class="content">
+                <div class="cards">
+                    <div class="card" *ngFor="let item of stockItems | slice:0:18">
+                        <a routerLink="/pages/shop" routerLinkActive="active">
+                            <div #productcard class="card-preview">
+                                <product-card [stockItem]="item"></product-card>
+
+                                <div class="right-nav-wrapper animated">
+                                    <div class="right-nav right-nav-fixed-width">
+                                        <mat-list role="list">
+                                            <mat-list-item role="listitem" matTooltip="Cart" matTooltipPosition="after">
+                                                <i class="ion-bag s-16 amber-fg"></i>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item role="listitem" matTooltip="Wishlist" matTooltipPosition="after">
+                                                <i class="ion-heart s-16 amber-fg"></i>
+                                            </mat-list-item>
+                                            <mat-divider></mat-divider>
+                                            <mat-list-item role="listitem" matTooltip="Compare" matTooltipPosition="after">
+                                                <i class="ion-android-options s-16 amber-fg"></i>
+                                            </mat-list-item>
+                                        </mat-list>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

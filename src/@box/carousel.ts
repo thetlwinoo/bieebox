@@ -101,16 +101,14 @@ export const carousel = {
     category: {
         options: {
             loop: true,
-            nav: true,
+            nav: false,
             autoplay: false,
             autoplayTimeout: 5000,
             responsiveClass: true,
-            autoWidth: true,
-            navText: ['<i class="ion-ios-arrow-back"></i>', '<i class="ion-ios-arrow-forward"></i>'],
+            autoWidth: true,            
             animateOut: 'fadeOut',
             animateIn: 'fadeIn',
             item: 10,
-            navContainer: '.product-category-slider-nav',
             responsive: {
                 0: {
                     items: 2,
@@ -130,48 +128,7 @@ export const carousel = {
                     items: 10
                 }
             }
-        },
-        slides: [
-            {
-                image: 'assets/devita/img/cag/cag1.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag2.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag3.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag4.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag5.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag6.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag7.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag8.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag9.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag10.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag11.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag12.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag13.png'
-            }
-        ]
+        }
     },
     bannerCategory: {
         options: {

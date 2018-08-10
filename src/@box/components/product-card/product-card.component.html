@@ -1,0 +1,57 @@
+<div class="product-card">
+    <div class="product-left-badge-wrapper">
+        <div class="product-left-badge horizontal-badge">
+            <svg class="product-svg-icon icon-tick" enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0">
+                <g>
+                    <path d="m6.5 13.6c-.2 0-.5-.1-.7-.2l-5.5-4.8c-.4-.4-.5-1-.1-1.4s1-.5 1.4-.1l4.7 4 6.8-9.4c.3-.4.9-.5 1.4-.2.4.3.5 1 .2 1.4l-7.4 10.3c-.2.2-.4.4-.7.4 0 0 0 0-.1 0z"></path>
+                </g>
+            </svg>
+            Preferred
+        </div>
+    </div>
+    <div class="product-badge-wrapper">
+        <div class="product-badge product-badge-fixed-width product-badge-promotion">
+            <div class="product-badge-promotion-label-wrapper">
+                <span class="percent">14%</span>
+                <span class="product-badge-promotion-label-wrapper-off">off</span>
+            </div>
+        </div>
+    </div>
+        
+    <img src="assets/devita/img/lowest.png" class="product-lowest-guaranteed">
+    <img src="{{ stockItem.gravatar }}" alt="" *ngIf="stockItem.gravatar else noimage">
+    <ng-template #noimage>
+        <img src="assets/devita/img/no_photo.jpg" alt="no image preview">
+    </ng-template>
+    <div class="p-8 pt-0">
+        <div class="rating-love">
+            <div class="love-spacer">
+                <i class="ion-ios-heart-outline s-16 amber-fg"></i>
+                <span class="ml-4 secondary-text">(51)</span>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" class="rating-star">
+                <i class="ion-ios-star s-16 amber-fg"></i>
+                <i class="ion-ios-star s-16 amber-fg"></i>
+                <i class="ion-ios-star s-16 amber-fg"></i>
+                <i class="ion-ios-star s-16 amber-fg"></i>
+                <i class="ion-ios-star-half s-16 amber-fg"></i>
+                <span class="ml-4 secondary-text">(4.7)</span>
+            </div>
+        </div>
+    </div>
+    <div class="px-8 line-height-1.75 product-name">
+        {{stockItem.stockItemName | ellipsis:46}}
+    </div>
+    <div class="card-divider"></div>
+    <div class="p-8 pt-0 line-height-1.75">
+        <div class="price-wrapper">
+            <div class="price-spacer">
+                <div class="product-price-wrapper">
+                    <span class="product-price-old">$162.00 </span>
+                    <span class="product-current-price">$260.00</span>
+                </div>
+            </div>
+            <i class="ion-android-bicycle"></i>
+        </div>
+    </div>
+</div>

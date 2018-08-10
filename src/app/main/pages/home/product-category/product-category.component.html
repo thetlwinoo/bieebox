@@ -1,43 +1,36 @@
-<div class="product-category-area">
+<div class="viwer-area">
     <div class="container">
-        <!-- <div class="content">
-            <div class="cards">
-                
+        <div class="viwer-title">
+            <div class="viwer-title-spacer title">
+                categories
             </div>
-        </div> -->
-        <!-- <mat-toolbar class="p-0">
-            <div fxFlex fxFill fxLayout="row" fxLayoutAlign="start center">
-                <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
-                    Categories
-                </div>
-                <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
-                    <button mat-raised-button>
-                        <mat-icon aria-label="nav-prev">keyboard_arrow_left</mat-icon>
-                    </button>
-                    <button mat-raised-button>
-                        <mat-icon aria-label="nav-next">keyboard_arrow_right</mat-icon>
-                    </button>
-                </div>
-            </div>
-        </mat-toolbar> -->
-        <div class="section-border mb-10">
-            <h4 class="section-title section-bg-gray2">Categories</h4>
+            <button mat-icon-button color="warn" (click)="onPrevClick($event);">
+                <mat-icon aria-label="nav left">arrow_left</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="onNextClick($event);">
+                <mat-icon aria-label="nav right">arrow_right</mat-icon>
+            </button>
         </div>
-        <div class="product-category-slider-nav nav-style"></div>
-        <owl-carousel #owlProductCategory class="headphone-slider-active product-slider" [options]="carousel.category.options" [items]="images"
-            [carouselClasses]="['owl-theme']">
-            <div class="card" *ngFor="let category of categories">
-                <a routerLink="/pages/shop" routerLinkActive="active">
-                    <div class="card-preview">
-                        <div class="box-card cag">
-                            <img src="assets/devita/img/cag/{{category.icon}}.png">
-                            <div class="title p-2 line-height-1.75">
-                                {{category.title}}
-                            </div>
+        <div class="viwer-body">
+            <div class="content">
+                <div class="cards">
+                    <owl-carousel #owlProductCategory class="headphone-slider-active product-slider" [options]="carousel.category.options" [items]="images"
+                        [carouselClasses]="['owl-theme']">
+                        <div class="card" *ngFor="let category of categories">
+                            <a routerLink="/pages/shop" routerLinkActive="active">
+                                <div class="card-preview">
+                                    <div class="box-card cag">
+                                        <img src="assets/devita/img/cag/{{category.icon}}.png">
+                                        <div class="title p-2 line-height-1.75">
+                                            {{category.title}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </a>
+                    </owl-carousel>
+                </div>
             </div>
-        </owl-carousel>
+        </div>
     </div>
 </div>

@@ -14,5 +14,10 @@
                 font-size: 1em !important;
             }
         }
-    }    
+    }
+    
+    .product-area{
+        position: relative;
+        z-index: 2;
+    }
 }
