@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BoxSharedModule } from '@box/shared.module';
 import { BrandModule } from '@box/components/brand/brand.module';
-import { MatGridListModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, MatToolbarModule, MatIconModule, MatButtonModule , MatTooltipModule } from '@angular/material';
+import { BoxCountdownModule } from '@box/components/countdown/countdown.module';
+import { MatGridListModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/material';
 
 import { StockItemsModule } from '@store/stock-items/stock-items.module';
 import { HomeComponent } from './home.component';
@@ -17,6 +18,9 @@ import { BestSellingComponent } from './best-selling/best-selling.component';
 import { TopSellingComponent } from './top-selling/top-selling.component';
 import { ProductCategoryComponent } from './product-category/product-category.component';
 import { DailyDiscoverComponent } from './daily-discover/daily-discover.component';
+import { PopularProductsComponent } from './popular-products/popular-products.component';
+import { FlashDealsComponent } from './flash-deals/flash-deals.component';
+import { BrandZoneComponent } from './brand-zone/brand-zone.component';
 
 const routes = [
   {
@@ -37,6 +41,9 @@ const routes = [
     TopSellingComponent,
     ProductCategoryComponent,
     DailyDiscoverComponent,
+    PopularProductsComponent,
+    FlashDealsComponent,
+    BrandZoneComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -44,6 +51,7 @@ const routes = [
     BrandModule,
     ProductCardModule,
     StockItemsModule,
+    BoxCountdownModule,
     MatGridListModule,
     MatTabsModule,
     MatListModule,
@@ -51,7 +59,6 @@ const routes = [
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatTooltipModule,
     SlickCarouselModule,
     BoxSharedModule
   ],

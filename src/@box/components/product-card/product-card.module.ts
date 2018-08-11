@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatIconModule, MatButtonModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatListModule, MatTooltipModule } from '@angular/material';
 import { ProductCardComponent } from './product-card.component';
 import { ProductCardDirective } from './product-card.directive';
 import { BoxPipesModule } from '@box/pipes/pipes.module';
@@ -14,8 +14,10 @@ import { BoxPipesModule } from '@box/pipes/pipes.module';
         CommonModule,
         MatIconModule,
         MatButtonModule,
+        MatListModule,
+        MatTooltipModule,
         BoxPipesModule
-    ],   
+    ],
     exports: [
         ProductCardComponent,
         ProductCardDirective

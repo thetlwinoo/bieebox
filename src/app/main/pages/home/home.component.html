@@ -1,8 +1,11 @@
 <div class="page-layout blank">
     <slider-banner [bannerCategories]="bannerCategories" [carousel]="carousel"></slider-banner>
     <product-category [categories]="categories" [carousel]="carousel"></product-category>
+    <flash-deals [stockItems]="stockItems" [carousel]="carousel" eventDate="2019-07-28"></flash-deals>
+    <brand-zone [brands]="brands"></brand-zone>
+    <popular-products [stockItems]="stockItems" [carousel]="carousel"></popular-products>
     <daily-discover [stockItems]="stockItems"></daily-discover>
-    <div class="product-area pb-30">
+    <!-- <div class="product-area pb-30">
         <div class="container">
             <mat-nav-list fxLayout="row" fxLayoutAlign="end center">
                 <a mat-list-item href (click)="onSelectedProductTab(tab);" *ngFor="let tab of tabs" [class.active]="tab === selectedTab">
@@ -12,7 +15,7 @@
 
             <home-product [stockItems]="stockItems" [carousel]="carousel"></home-product>
         </div>
-    </div>
+    </div> -->
     <div class="coffee-discount-area">
         <div class="container">
             <div class="bg-img pt-55 pb-55" style="background-image:url(assets/devita/img/banner/banner-26.jpg);">

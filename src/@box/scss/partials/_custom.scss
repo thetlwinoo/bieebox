@@ -280,16 +280,16 @@ textarea {
     Input
 *************************/
 
-input {
-    background: #eceff8;
-    border: 2px solid #eceff8;
-    height: 45px;
-    box-shadow: none;
-    padding-left: 10px;
-    font-size: 14px;
-    color: #626262;
-    width: 100%;
-}
+// input {
+//     background: #eceff8;
+//     border: 2px solid #eceff8;
+//     height: 45px;
+//     box-shadow: none;
+//     padding-left: 10px;
+//     font-size: 14px;
+//     color: #626262;
+//     width: 100%;
+// }
 
 select {
     width: 100%;
@@ -307,10 +307,10 @@ option {
     font-size: 14px;
 }
 
-input:focus {
-    background: transparent;
-    border: 2px solid #4FC1F0;
-}
+// input:focus {
+//     background: transparent;
+//     border: 2px solid #4FC1F0;
+// }
 
 textarea {
     resize: vertical;
@@ -3979,7 +3979,7 @@ button.icon-cart span.count-style {
 
 .owl-dot-style-2 .owl-dots {
     // bottom: 25px;
-    bottom: 120px;
+    bottom: 12px;
     left: 0px;
     position: absolute;
     right: 0;

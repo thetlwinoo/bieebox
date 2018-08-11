@@ -11,13 +11,20 @@ export class ProductCategoryComponent implements OnInit {
   @Input() categories;
   @ViewChild('owlProductCategory') owlElement: OwlCarousel;
 
-  numbers;
-
+  bundles: any[] = [];
+  
   constructor() {
-    this.numbers = Array(20).fill(5);
   }
 
   ngOnInit() {
+    if (this.categories.length >= 8) {
+      for (let i = 1; i <= 4; i++) {
+        let _category = [];
+        _category.push(this.categories[(i * 2) - 2]);
+        _category.push(this.categories[(i * 2) - 1]);
+        this.bundles.push(_category);
+      }
+    }
   }
 
   onPrevClick(event) {

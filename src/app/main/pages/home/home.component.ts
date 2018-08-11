@@ -28,11 +28,12 @@ export class HomeComponent implements OnInit {
   stockItems$: Observable<StockItem[]>;
   loading$: Observable<boolean>;
   error$: Observable<string>;
-  
+
   stockItems: any;
   categories: any;
   bannerCategories: any;
   carousel: any;
+  brands: any;
   tabs: any[] = [
     { title: 'New Arrivals' },
     { title: 'Featured' },
@@ -45,12 +46,12 @@ export class HomeComponent implements OnInit {
     { text: 'Two', cols: 2, rows: 1, color: 'lightgreen' },
     { text: 'Three', cols: 2, rows: 1, color: 'lightpink' }
   ];
-  
+
   constructor(
     private store: Store<fromStockItems.State>,
-    private _homeService:HomeService,
+    private _homeService: HomeService,
   ) {
-    this.carousel = carousel;    
+    this.carousel = carousel;
     // this.searchQuery$ = store.pipe(
     //   select(fromStockItems.getSearchQuery),
     //   take(1)
@@ -66,6 +67,7 @@ export class HomeComponent implements OnInit {
     this.stockItems = this._homeService.stockItems;
     this.categories = this._homeService.categories;
     this.bannerCategories = this._homeService.bannerCategories;
+    this.brands = this._homeService.brands;
   }
 
   ngOnInit() {

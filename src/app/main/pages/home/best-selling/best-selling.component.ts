@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { OwlCarousel } from 'ngx-owl-carousel';
 
 @Component({
   selector: 'best-selling',
@@ -10,11 +11,12 @@ export class BestSellingComponent implements OnInit {
   @Input() carousel;
   @Input() searching = false;
   @Input() error = '';
-  bundles;
+  @ViewChild('owlBestSellingProducts') owlElement: OwlCarousel;
+  bundles: any[] = [];
 
   // get bundles1() {
   //   let _bundles = [];
-  //   if (this.stockItems.length >= 8) {      
+  //   if (this.stockItems.length >= 8) {
   //     for (let i = 1; i <= 4; i++) {
   //       let _stockItem = [];
   //       _stockItem.push(this.stockItems[(i * 2) - 2]);
@@ -28,37 +30,52 @@ export class BestSellingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.bundles = [
-      {
-        images: [
-          { img: 'assets/devita/img/product/best-selling-1.jpg' },
-          { img: 'assets/devita/img/product/best-selling-4.jpg' }
-        ],
-        slice: { start: 0, count: 2 }
-      },
-      {
-        images: [
-          { img: 'assets/devita/img/product/best-selling-2.jpg' },
-          { img: 'assets/devita/img/product/best-selling-5.jpg' }
-        ],
-        slice: { start: 2, count: 2 }
-      },
-      {
-        images: [
-          { img: 'assets/devita/img/product/best-selling-3.jpg' },
-          { img: 'assets/devita/img/product/best-selling-6.jpg' }
-        ],
-        slice: { start: 4, count: 2 }
-      },
-      {
-        images: [
-          { img: 'assets/devita/img/product/best-selling-2.jpg' },
-          { img: 'assets/devita/img/product/best-selling-5.jpg' }
-        ],
-        slice: { start: 4, count: 2 }
+    if (this.stockItems.length >= 8) {
+      for (let i = 1; i <= 4; i++) {
+        let _stockItem = [];
+        _stockItem.push(this.stockItems[(i * 2) - 2]);
+        _stockItem.push(this.stockItems[(i * 2) - 1]);
+        this.bundles.push(_stockItem);
       }
+    }
+    // this.bundles = [
+    //   {
+    //     images: [
+    //       { img: 'assets/devita/img/product/best-selling-1.jpg' },
+    //       { img: 'assets/devita/img/product/best-selling-4.jpg' }
+    //     ],
+    //     slice: { start: 0, count: 2 }
+    //   },
+    //   {
+    //     images: [
+    //       { img: 'assets/devita/img/product/best-selling-2.jpg' },
+    //       { img: 'assets/devita/img/product/best-selling-5.jpg' }
+    //     ],
+    //     slice: { start: 2, count: 2 }
+    //   },
+    //   {
+    //     images: [
+    //       { img: 'assets/devita/img/product/best-selling-3.jpg' },
+    //       { img: 'assets/devita/img/product/best-selling-6.jpg' }
+    //     ],
+    //     slice: { start: 4, count: 2 }
+    //   },
+    //   {
+    //     images: [
+    //       { img: 'assets/devita/img/product/best-selling-2.jpg' },
+    //       { img: 'assets/devita/img/product/best-selling-5.jpg' }
+    //     ],
+    //     slice: { start: 4, count: 2 }
+    //   }
 
-    ];
+    // ];
   }
 
+  onPrevClick(event) {
+    this.owlElement.trigger('prev.owl.carousel');
+  }
+
+  onNextClick(event) {
+    this.owlElement.trigger('next.owl.carousel');
+  }
 }

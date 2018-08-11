@@ -25,10 +25,33 @@
         height: 100%;
     }
 
-    
+    .main-banner{
+        .right-nav-wrapper {
+            position: absolute;
+            // right: 0;
+            top: 10px;
+            padding: 5px 5px 0 0;
+            z-index: 6;
+            opacity: 0.9;
+
+            .right-nav {
+                float: right;
+                margin-left: .5rem;
+                position: relative;
+
+                &.right-nav-fixed-width {
+                    width: 312px;        
+                    
+                    .banner-img{
+                        padding-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
     .content {
         position: relative;
-        z-index: 2;
+        z-index: 4;
         .cards {
             display: flex;
             flex-direction: row;
@@ -54,19 +77,20 @@
                 > a {
                     .card-preview {
                         display: flex;
-                        min-width: 146.25px;
+                        min-width: 130px;
 
                         .box-card {
                             box-shadow: none;
-                            min-width: 146.25px !important;
-                            max-width: 146.25px !important;
+                            min-width: 130px !important;
+                            max-width: 130px !important;
 
                             &.cag {
                                 img{
-                                    padding: 30px 30px 15px 30px;
+                                    padding: 35px 35px 15px 35px;
                                 }
                                 .title {
                                     text-align: center;
+                                    font-size: 0.85em;
                                 }
                             }
                         }

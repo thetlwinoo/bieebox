@@ -1,52 +1,31 @@
-<div class="product-area pt-60 pb-45">
+<div class="viwer-area">
   <div class="container">
-    <div class="section-border mb-10">
-      <h4 class="section-title section-bg-white">Top Selling Products</h4>
+    <div class="viwer-title">
+      <div class="viwer-title-spacer title">
+        top selling products
+      </div>
+      <button mat-icon-button color="warn" (click)="onPrevClick($event);">
+        <mat-icon aria-label="nav left">arrow_left</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="onNextClick($event);">
+        <mat-icon aria-label="nav right">arrow_right</mat-icon>
+      </button>
     </div>
-    <div class="product-slider-nav nav-style"></div>
-    <owl-carousel *ngIf="stockItems?.length > 0" #owlElement class="headphone-slider-active product-slider" [options]="carousel.headphone.options" [items]="images"
-      [carouselClasses]="['owl-theme']">
-      <div class="devita-product-2" *ngFor="let _slide of stockItems | slice:0:10;let i = index">
-        <div class="product-img">
-          <a routerLink="/pages/shop" routerLinkActive="active">
-            <img src="{{_slide.gravatar}}" alt="">
-          </a>
-        </div>
-        <div class="list-col">
-          <div class="gridview">
-            <div class="product-content text-center">
-              <span>Headphone, Accessories</span>
-              <h4>
-                <a routerLink="/pages/shop" routerLinkActive="active">Matrior white Headphone Ver 2018 </a>
-              </h4>
-              <div class="product-price-wrapper">
-                <span>$260.00</span>
-              </div>
+    <div class="viwer-body">
+      <div class="content">
+        <div class="cards">
+          <owl-carousel #owlTopSellingProducts class="top-selling-slider" [options]="carousel.popular.options" [items]="images"
+            [carouselClasses]="['owl-theme']">
+            <div class="card" *ngFor="let item of stockItems | slice:0:10">
+              <a routerLink="/pages/shop" routerLinkActive="active">
+                <div #productcard class="card-preview">
+                  <product-card [stockItem]="item"></product-card>
+                </div>
+              </a>
             </div>
-            <div class="product-action-wrapper-2 text-center">
-              <div class="product-rating">
-                <i class="ion-android-star-outline theme-star"></i>
-                <i class="ion-android-star-outline theme-star"></i>
-                <i class="ion-android-star-outline theme-star"></i>
-                <i class="ion-android-star-outline theme-star"></i>
-                <i class="ion-android-star-outline"></i>
-              </div>
-              <p> Quam elit phasellus nibh sed eget, sed nunc in ultricies sodales sapien, non velit scelerisque...</p>
-              <div class="product-action">
-                <a class="same-action" title="Wishlist" href="#">
-                  <i class="fa fa-heart-o"></i>
-                </a>
-                <a class="action-cart" title="Add To Cart" href="#">
-                  Add to Cart
-                </a>
-                <a class="same-action compare-mrg" data-target="#exampleCompare" data-toggle="modal" title="Compare" href="#">
-                  <i class="fa fa-sliders fa-rotate-90"></i>
-                </a>
-              </div>
-            </div>
-          </div>
+          </owl-carousel>
         </div>
       </div>
-    </owl-carousel>
+    </div>
   </div>
 </div>

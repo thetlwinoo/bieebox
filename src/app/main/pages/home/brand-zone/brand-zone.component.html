@@ -1,0 +1,30 @@
+<div class="viwer-area">
+  <div class="container">
+    <div class="viwer-title">
+      <div class="viwer-title-spacer title">
+          Featured Brand
+      </div>
+      <a routerLink="/pages/shop" routerLinkActive="active">see all
+        <i class="ion-ios-arrow-forward"></i>
+      </a>
+    </div>
+    <div class="viwer-body">
+      <div class="content">
+        <div class="cards">
+          <div class="card" *ngFor="let brand of brands">
+            <a routerLink="/pages/shop" routerLinkActive="active">
+              <div class="card-preview">
+                <div class="box-card cag">
+                  <img src="assets/devita/img/brands/{{brand.icon}}.png">
+                  <!-- <div class="title p-2 line-height-1.75">
+                    {{brand.title}}
+                  </div> -->
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="viwer-title">
             <div class="viwer-title-spacer title">
-                categories
+                trending search
             </div>
             <button mat-icon-button color="warn" (click)="onPrevClick($event);">
                 <mat-icon aria-label="nav left">arrow_left</mat-icon>
@@ -14,19 +14,22 @@
         <div class="viwer-body">
             <div class="content">
                 <div class="cards">
-                    <owl-carousel #owlProductCategory class="headphone-slider-active product-slider" [options]="carousel.category.options" [items]="images"
+                    <owl-carousel #owlProductCategory class="product-category-slider" [options]="carousel.category.options" [items]="images"
                         [carouselClasses]="['owl-theme']">
-                        <div class="card" *ngFor="let category of categories">
-                            <a routerLink="/pages/shop" routerLinkActive="active">
-                                <div class="card-preview">
-                                    <div class="box-card cag">
-                                        <img src="assets/devita/img/cag/{{category.icon}}.png">
-                                        <div class="title p-2 line-height-1.75">
-                                            {{category.title}}
+                        <div class="card" *ngFor="let bundle of bundles">
+                            <div class="bundle-list" *ngFor="let category of bundle">
+                                <a routerLink="/pages/shop" routerLinkActive="active">
+                                    <div class="card-preview">
+                                        <div class="box-card cag">
+                                            <img src="assets/devita/img/cag/{{category.icon}}.png">
+                                            <div class="title p-2 line-height-1.75">
+                                                {{category.title}}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
+
                         </div>
                     </owl-carousel>
                 </div>

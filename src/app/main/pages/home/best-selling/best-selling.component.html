@@ -1,4 +1,56 @@
-<div class="best-selling-area pt-60 pb-45 gray-bg">
+<div class="viwer-area">
+  <div class="container">
+    <div class="viwer-title">
+      <div class="viwer-title-spacer title">
+        bieebox choice
+      </div>
+      <button mat-icon-button color="warn" (click)="onPrevClick($event);">
+        <mat-icon aria-label="nav left">arrow_left</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="onNextClick($event);">
+        <mat-icon aria-label="nav right">arrow_right</mat-icon>
+      </button>
+    </div>
+    <div class="viwer-body">
+      <div class="content">
+        <div class="cards">
+          <owl-carousel *ngIf="stockItems?.length > 0" #owlBestSellingProducts class="best-selling-active nav-style" [options]="carousel.best_selling.options"
+            [items]="images" [carouselClasses]="['owl-theme']">
+            <div class="best-selling-bundle" *ngFor="let _bundle of bundles;let i = index">
+              <div class="best-selling-pro-wrapper mb-20" *ngFor="let _stockItem of _bundle;let i = index">
+                <div class="product-img">
+                  <a routerLink="/pages/shop" routerLinkActive="active">
+                    <img alt="" src="{{_stockItem.gravatar}}">
+                  </a>
+                  <span>-10%</span>
+                </div>
+                <div class="product-content best-pro-content">
+                  <span>Joy Stick, Accessories</span>
+                  <h4>
+                    <a routerLink="/pages/shop" routerLinkActive="active">Phantom Remote Control Ver 2018</a>
+                  </h4>
+                  <div class="product-price-wrapper">
+                    <span>$260.00</span>
+                    <span class="product-price-old">$162.00 </span>
+                  </div>
+                  <div class="product-action best-pro-action">
+                    <a class="same-action" title="Wishlist" href="#">
+                      <i class="fa fa-heart-o"></i>
+                    </a>
+                    <a class="action-cart" title="Add To Cart" href="#">
+                      Add to Cart
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="best-selling-area pt-60 pb-45 gray-bg">
   <div class="container">
     <div class="top-bar section-border mb-20">
       <div class="section-title-wrapper section-bg-gray">
@@ -17,37 +69,7 @@
       </div>
     </div>
     <div id="home4">
-      <owl-carousel  *ngIf="stockItems?.length > 0" #owlElement class="best-selling-active nav-style" [options]="carousel.best_selling.options" [items]="images"
-        [carouselClasses]="['owl-theme']">
-        <div class="best-selling-bundle" *ngFor="let _bundle of carousel.best_selling.slides[0].bundle;let i = index">
-          <div class="best-selling-pro-wrapper mb-20" *ngFor="let _stockItem of _bundle.images;let i = index">
-            <div class="product-img">
-              <a routerLink="/pages/shop" routerLinkActive="active">
-                <img alt="" src="{{_stockItem.img}}">
-              </a>
-              <span>-10%</span>
-            </div>
-            <div class="product-content best-pro-content">
-              <span>Joy Stick, Accessories</span>
-              <h4>
-                <a routerLink="/pages/shop" routerLinkActive="active">Phantom Remote Control Ver 2018</a>
-              </h4>
-              <div class="product-price-wrapper">
-                <span>$260.00</span>
-                <span class="product-price-old">$162.00 </span>
-              </div>
-              <div class="product-action best-pro-action">
-                <a class="same-action" title="Wishlist" href="#">
-                  <i class="fa fa-heart-o"></i>
-                </a>
-                <a class="action-cart" title="Add To Cart" href="#">
-                  Add to Cart
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </owl-carousel>
+      
     </div>
   </div>
-</div>
+</div> -->

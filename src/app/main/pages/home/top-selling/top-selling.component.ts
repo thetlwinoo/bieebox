@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { OwlCarousel } from 'ngx-owl-carousel';
 
 @Component({
   selector: 'top-selling',
@@ -10,10 +11,18 @@ export class TopSellingComponent implements OnInit {
   @Input() carousel;
   @Input() searching = false;
   @Input() error = '';
+  @ViewChild('owlTopSellingProducts') owlElement: OwlCarousel;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onPrevClick(event) {
+    this.owlElement.trigger('prev.owl.carousel');
+  }
+
+  onNextClick(event) {
+    this.owlElement.trigger('next.owl.carousel');
+  }
 }

@@ -17,7 +17,23 @@
             </div>
         </div>
     </div>
-        
+    <div class="right-nav-wrapper animated">
+        <div class="right-nav right-nav-fixed-width">
+            <mat-list role="list">
+                <mat-list-item role="listitem" matTooltip="Add To Cart" matTooltipPosition="after">
+                    <i class="ion-bag s-16 amber-fg"></i>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem" matTooltip="Wishlist" matTooltipPosition="after">
+                    <i class="ion-heart s-16 amber-fg"></i>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item role="listitem" matTooltip="Compare" matTooltipPosition="after">
+                    <i class="ion-android-options s-16 amber-fg"></i>
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
     <img src="assets/devita/img/lowest.png" class="product-lowest-guaranteed">
     <img src="{{ stockItem.gravatar }}" alt="" *ngIf="stockItem.gravatar else noimage">
     <ng-template #noimage>

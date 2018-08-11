@@ -1,4 +1,4 @@
-<div class="slider-banner-area pt-9 pb-30" fxHide fxShow.gt-md>
+<!-- <div class="slider-banner-area pt-9 pb-30" fxHide fxShow.gt-md>
     <div class="container">
         <mat-grid-list cols="6" rowHeight="2:1">
             <mat-grid-tile [colspan]="4" [rowspan]="2">
@@ -48,17 +48,55 @@
             </div>
         </div>
     </div>
-</div>
-<div class="slider-area pb-10" fxHide fxShow.lt-md>
-    <owl-carousel #owlElement class="owl-dot-style-2" [options]="carousel.banner2.options" [items]="images" [carouselClasses]="['owl-theme']">
-        <div class="main-slider" *ngFor="let banner of carousel.banner2.slides;let i = index">
-            <div class="item-banner">
-                <div class="banner-thumb">
-                    <a href="#">
-                        <img [ngStyle]="banner.style" class="img-fluid" src="{{ banner.image }}" alt="">
+</div> -->
+<div class="slider-area pb-10 pt-10">
+    <div class="container">
+        <div class="main-banner">
+            <div class="main-banner-slider">
+                <owl-carousel #owlElement class="owl-dot-style-2" [options]="carousel.banner2.options" [items]="images" [carouselClasses]="['owl-theme']">
+                    <div class="main-slider" *ngFor="let banner of carousel.banner2.slides;let i = index">
+                        <div class="item-banner">
+                            <div class="banner-thumb">
+                                <a href="#">
+                                    <img [ngStyle]="banner.style" class="img-fluid" src="{{ banner.image }}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </owl-carousel>
+            </div>
+            <div class="right-nav-wrapper" fxHide fxShow.gt-md>
+                <div class="right-nav right-nav-fixed-width">
+                    <div class="banner-img banner-hover">
+                        <a href="#">
+                            <img alt="" src="assets/devita/img/banner/banner7.jpg">
+                        </a>
+                    </div>
+                    <div class="banner-img banner-hover">
+                        <a href="#">
+                            <img alt="" src="assets/devita/img/banner/banner6.jpg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="cards">
+                <div class="card" *ngFor="let category of bannerCategories">
+                    <a routerLink="/pages/shop" routerLinkActive="active">
+                        <div #boxcag class="card-preview">
+                            <div class="box-card cag">
+                                <img src="assets/devita/img/bc/{{category.icon}}" class="animated" (mouseenter)="mouseEnter(category)" (mouseleave)="mouseLeave(category)"
+                                    [class.shake]="selectedCategory == category">
+                                <div class="title p-2 line-height-1.75">
+                                    {{category.title}}
+                                </div>
+                            </div>
+                        </div>
                     </a>
                 </div>
             </div>
         </div>
-    </owl-carousel>
+    </div>
 </div>

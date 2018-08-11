@@ -1,0 +1,35 @@
+<div class="viwer-area">
+  <div class="container">
+    <div class="viwer-title">
+      <div class="viwer-title-spacer">
+        <span class="title">flash deals<i class="ion-flash"></i></span>
+        <span class="countdown">{{countdown.days}}</span>
+        <span class="countdown">{{countdown.hours}}</span>
+        <span class="countdown">{{countdown.minutes}}</span>
+        <span class="countdown">{{countdown.seconds}}</span>
+      </div>
+      <button mat-icon-button color="warn" (click)="onPrevClick($event);">
+        <mat-icon aria-label="nav left">arrow_left</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="onNextClick($event);">
+        <mat-icon aria-label="nav right">arrow_right</mat-icon>
+      </button>
+    </div>
+    <div class="viwer-body">
+      <div class="content">
+        <div class="cards">
+          <owl-carousel #owlFlashDeals class="flash-deals-slider" [options]="carousel.popular.options" [items]="images"
+            [carouselClasses]="['owl-theme']">
+            <div class="card" *ngFor="let item of stockItems | slice:0:10">
+              <a routerLink="/pages/shop" routerLinkActive="active">
+                <div #productcard class="card-preview">
+                  <product-card [stockItem]="item"></product-card>
+                </div>
+              </a>
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

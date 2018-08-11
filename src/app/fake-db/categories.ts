@@ -52,39 +52,71 @@ export class CategoryFakeDb {
             'title': 'Women’s Clothing',
             'icon': 'cag13'
         },
+        {
+            'title': 'Home & Garden, Furniture',
+            'icon': 'cag7'
+        },
+        {
+            'title': 'Jewelry & Watches',
+            'icon': 'cag8'
+        },
+        {
+            'title': 'Consumer Electronics',
+            'icon': 'cag9'
+        },
+        {
+            'title': 'Computer & Office',
+            'icon': 'cag10'
+        },
+        {
+            'title': 'Phones & Accessories',
+            'icon': 'cag11'
+        },
+        {
+            'title': 'Men’s Clothing',
+            'icon': 'cag12'
+        },
+        {
+            'title': 'Women’s Clothing',
+            'icon': 'cag13'
+        },
     ]
 
     public static bannerCategories = [
         {
-            'title': 'China Marketplace',
+            'title': 'Sales',
             'icon': 'bc1.png'
         },
         {
-            'title': 'City Mark',
+            'title': 'Brand Collection',
             'icon': 'bc2.png'
         },
         {
-            'title': 'Thailand Collection',
+            'title': 'BieeBox Special',
             'icon': 'bc3.png'
         },
         {
-            'title': 'US Collection',
+            'title': 'Seller Vouchers',
             'icon': 'bc4.png'
         },
         {
-            'title': 'ABC Mart',
+            'title': 'Discount Coupons',
             'icon': 'bc5.png'
         },
         {
-            'title': 'Seller Vouchers',
+            'title': 'Coin Rewards',
             'icon': 'bc6.jpg'
         },
         {
-            'title': 'Coin Rewards',
+            'title': 'Gold Seller',
             'icon': 'bc7.png'
         },
         {
-            'title': 'All Promotions',
+            'title': 'Express Shop',
+            'icon': 'bc8.png'
+        },
+        {
+            'title': 'Daily Promotion',
             'icon': 'bc8.png'
         }
     ]

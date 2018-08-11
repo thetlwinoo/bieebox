@@ -67,33 +67,33 @@ export const carousel = {
         },
         slides: [
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner5.jpg')" },
-                image: 'assets/devita/img/banner/banner5.jpg',
+                style: { "background-image": "url('assets/devita/img/banner/banner-a.jpg')" },
+                image: 'assets/devita/img/banner/banner-a.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner5.jpg')" },
-                image: 'assets/devita/img/banner/banner5.jpg',
+                style: { "background-image": "url('assets/devita/img/banner/banner-b.jpg')" },
+                image: 'assets/devita/img/banner/banner-b.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner5.jpg')" },
-                image: 'assets/devita/img/banner/banner5.jpg',
+                style: { "background-image": "url('assets/devita/img/banner/banner-c.jpg')" },
+                image: 'assets/devita/img/banner/banner-c.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner5.jpg')" },
-                image: 'assets/devita/img/banner/banner5.jpg',
+                style: { "background-image": "url('assets/devita/img/banner/banner-d.jpg')" },
+                image: 'assets/devita/img/banner/banner-d.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner5.jpg')" },
-                image: 'assets/devita/img/banner/banner5.jpg',
+                style: { "background-image": "url('assets/devita/img/banner/banner-e.jpg')" },
+                image: 'assets/devita/img/banner/banner-e.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             },
             {
-                style: { "background-image": "url('assets/devita/img/banner/banner5.jpg')" },
-                image: 'assets/devita/img/banner/banner5.jpg',
+                style: { "background-image": "url('assets/devita/img/banner/banner-f.jpg')" },
+                image: 'assets/devita/img/banner/banner-f.jpg',
                 description: '<h5 class="animated">Exclusive Offer -20% Off This Week</h5><h2 class="animated">Top Bestselling <br>Apple Watch Edition</h2><h3 class="animated"><span>Starting at </span> $120.99</h3><div class="slider-btn slider-btn-2 mt-70"><a class="animated" href="product-details.html">shopping Now</a></div>'
             }
         ]
@@ -130,6 +130,37 @@ export const carousel = {
             }
         }
     },
+    popular: {
+        options: {
+            loop: true,
+            nav: false,
+            autoplay: false,
+            autoplayTimeout: 5000,
+            autoWidth: true,            
+            animateOut: 'fadeOut',
+            animateIn: 'fadeIn',
+            item: 6,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: false
+                },
+                480: {
+                    items: 3,
+                    nav: false
+                },
+                768: {
+                    items: 3
+                },
+                992: {
+                    items: 5
+                },
+                1200: {
+                    items: 6
+                }
+            }
+        }
+    },
     bannerCategory: {
         options: {
             loop: true,
@@ -160,48 +191,7 @@ export const carousel = {
                     items: 8
                 }
             }
-        },
-        slides: [
-            {
-                image: 'assets/devita/img/cag/cag1.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag2.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag3.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag4.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag5.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag6.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag7.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag8.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag9.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag10.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag11.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag12.png'
-            },
-            {
-                image: 'assets/devita/img/cag/cag13.png'
-            }
-        ]
+        }
     },
     deal: {
         options: {
@@ -248,10 +238,9 @@ export const carousel = {
     best_selling: {
         options: {
             loop: true,
-            nav: true,
+            nav: false,
             autoplay: false,
-            autoplayTimeout: 5000,
-            navText: ['<i class="ion-ios-arrow-back"></i>', '<i class="ion-ios-arrow-forward"></i>'],
+            autoplayTimeout: 5000,            
             item: 3,
             margin: 20,
             responsive: {
@@ -271,99 +260,7 @@ export const carousel = {
                     items: 3
                 }
             }
-        },
-        slides: [
-            {
-                id: 'home4',
-                bundle: [
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-1.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-4.jpg' }
-                        ]
-                    },
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-2.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-5.jpg' }
-                        ]
-                    },
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-3.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-6.jpg' }
-                        ]
-                    },
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-2.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-5.jpg' }
-                        ]
-                    }
-
-                ]
-            },
-            {
-                id: 'home5',
-                bundle: [
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-1.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-4.jpg' }
-                        ]
-                    },
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-2.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-5.jpg' }
-                        ]
-                    },
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-3.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-6.jpg' }
-                        ]
-                    },
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-2.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-5.jpg' }
-                        ]
-                    }
-
-                ]
-            },
-            {
-                id: 'home6',
-                bundle: [
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-1.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-4.jpg' }
-                        ]
-                    },
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-2.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-5.jpg' }
-                        ]
-                    },
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-3.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-6.jpg' }
-                        ]
-                    },
-                    {
-                        images: [
-                            { img: 'assets/devita/img/product/best-selling-2.jpg' },
-                            { img: 'assets/devita/img/product/best-selling-5.jpg' }
-                        ]
-                    }
-
-                ]
-            },
-        ]
+        }
     },
     headphone: {
         options: {
@@ -393,27 +290,7 @@ export const carousel = {
                     items: 6
                 }
             }
-        },
-        slides: [
-            {
-                image: 'assets/devita/img/product/headphone-1.jpg'
-            },
-            {
-                image: 'assets/devita/img/product/headphone-2.jpg'
-            },
-            {
-                image: 'assets/devita/img/product/headphone-3.jpg'
-            },
-            {
-                image: 'assets/devita/img/product/headphone-4.jpg'
-            },
-            {
-                image: 'assets/devita/img/product/headphone-5.jpg'
-            },
-            {
-                image: 'assets/devita/img/product/headphone-2.jpg'
-            }
-        ]
+        }
     },
     brand: {
         options: {

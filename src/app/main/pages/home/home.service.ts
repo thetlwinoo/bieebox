@@ -16,6 +16,7 @@ export class HomeService implements Resolve<any> {
   stockItems: any[];
   categories: any[];
   bannerCategories: any[];
+  brands: any[];
   onStockItemsChanged: BehaviorSubject<any> = new BehaviorSubject({});
 
   constructor(
@@ -38,7 +39,8 @@ export class HomeService implements Resolve<any> {
           $skip: 0
         }),
         this.getCategories({ $limit: 15 }),
-        this.getBannerCategories({ $limit: 15 })
+        this.getBannerCategories({ $limit: 15 }),
+        this.getBrands({ $limit: 15 })
       ]).then(
         () => {
           resolve();
@@ -83,6 +85,16 @@ export class HomeService implements Resolve<any> {
       this.http.get('api/banner_categories')
         .subscribe((response: any) => {
           this.bannerCategories = response;
+          resolve(response);
+        }, reject);
+    });
+  }
+
+  getBrands(query): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get('api/brands')
+        .subscribe((response: any) => {
+          this.brands = response;
           resolve(response);
         }, reject);
     });

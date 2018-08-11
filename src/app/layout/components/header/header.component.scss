@@ -13,5 +13,21 @@ header {
         input {
             width: 100%;
         }
+    }    
+}
+
+p{
+    margin: 0;
+    width:100%;
+
+    .mat-form-field{
+        width: 100%;
     }
 }
+
+.mat-hint{
+    width: 100%;
+}
+// .search-hint>a{
+//     margin: 0 5px;
+// }

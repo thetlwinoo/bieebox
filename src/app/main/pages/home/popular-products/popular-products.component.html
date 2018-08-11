@@ -1,0 +1,31 @@
+<div class="viwer-area">
+  <div class="container">
+    <div class="viwer-title">
+      <div class="viwer-title-spacer title">
+        popular products
+      </div>
+      <button mat-icon-button color="warn" (click)="onPrevClick($event);">
+          <mat-icon aria-label="nav left">arrow_left</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="onNextClick($event);">
+          <mat-icon aria-label="nav right">arrow_right</mat-icon>
+      </button>
+    </div>
+    <div class="viwer-body">
+      <div class="content">
+        <div class="cards">
+          <owl-carousel #owlPopularProducts class="headphone-slider-active product-slider" [options]="carousel.popular.options" [items]="images"
+            [carouselClasses]="['owl-theme']">
+            <div class="card" *ngFor="let item of stockItems | slice:0:10">
+              <a routerLink="/pages/shop" routerLinkActive="active">
+                <div #productcard class="card-preview">
+                  <product-card [stockItem]="item"></product-card>
+                </div>
+              </a>
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

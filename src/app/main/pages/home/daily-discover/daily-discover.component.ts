@@ -10,11 +10,7 @@ export class DailyDiscoverComponent implements OnInit {
   @Input() searching = false;
   @Input() error = '';
 
-  numbers;
-
-  constructor() { 
-    this.numbers = Array(18).fill(5);
-  }
+  constructor() {}
 
   ngOnInit() {
   }
