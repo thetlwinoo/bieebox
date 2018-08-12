@@ -1,13 +1,15 @@
 @import "src/@box/scss/box";
 
 :host {
-    .container {
+    background-image: linear-gradient(-180deg, #ff5722, #ff531d);    
+    .container {        
+
         @include media-breakpoint-down("xs") {
             padding: 0;
         }
     }
 
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #f74d18;
     position: relative;
     display: flex;
     flex: 0 0 auto;
@@ -48,33 +50,34 @@
     .quick-panel-toggle-button {
         // min-width: 64px;
         // height: 64px;
-        min-width: 40px;
-        height: 40px;
-
+        min-width: 26px;
+        height: 26px;
+        line-height: initial;
+        
         @include media-breakpoint-down("xs") {
             height: 56px;
         }
     }
 
     .navbar-toggle-button {
-        min-width: 56px;
-        height: 56px;
+        min-width: 26px;
+        height: 26px;
     }
 
     .toolbar-separator {
         // height: 64px;
-        height: 40px;
+        height: 17px;
         width: 1px;
         background: rgba(0, 0, 0, 0.12);
 
         @include media-breakpoint-down("xs") {
             // height: 56px;
-            height: 40px;
+            height: 12px;
         }
     }
 
     .mat-toolbar-row, .mat-toolbar-single-row {
-        height: 40px;
+        height: 26px;
     }
 }
 

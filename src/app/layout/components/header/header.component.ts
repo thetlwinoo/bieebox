@@ -11,6 +11,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class HeaderComponent implements OnDestroy {
     route: any;
+    onfocus: boolean = false;
     private _unsubscribeAll: Subject<any>;
 
     constructor(
@@ -27,5 +28,13 @@ export class HeaderComponent implements OnDestroy {
     ngOnDestroy(): void {
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+    }
+
+    onFocus(event){
+        this.onfocus = true;
+    }
+
+    onFocusOut(event){
+        this.onfocus = false;
     }
 }

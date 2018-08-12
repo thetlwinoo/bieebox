@@ -9,6 +9,10 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
 import { ShopListComponent } from './shop-list/shop-list.component';
 import { ShopService } from './shop.service';
 import { BrandModule } from '@box/components/brand/brand.module';
+import { BoxSidebarModule } from '@box/components/sidebar/sidebar.module';
+import { BoxDemoModule } from '@box/components/demo/demo.module';
+import { MatListModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { BoxSharedModule } from '@box/shared.module';
 
 const routes = [
   {
@@ -37,7 +41,13 @@ const routes = [
     CommonModule,
     OwlModule,
     SlickCarouselModule,
-    BrandModule
+    BoxSidebarModule,
+    BrandModule,
+    BoxDemoModule,
+    MatListModule, 
+    MatIconModule, 
+    MatButtonModule,
+    BoxSharedModule
   ],
   declarations: [ShopComponent, ShopDetailComponent, ShopListComponent],
   providers:[

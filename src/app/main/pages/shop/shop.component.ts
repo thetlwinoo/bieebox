@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { carousel } from '@box/carousel';
+import { BoxSidebarService } from '@box/components/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-shop',
@@ -11,7 +12,9 @@ export class ShopComponent implements OnInit {
   numbers;
   grid: boolean = true;
 
-  constructor() {
+  constructor(
+    private _boxSidebarService: BoxSidebarService
+  ) {
     this.carousel = carousel;
     this.numbers = Array(20).fill(5);
   }
@@ -22,4 +25,9 @@ export class ShopComponent implements OnInit {
   onToggleGrid(event){
     this.grid = event;
   }
+
+  toggleSidebar(name): void
+    {
+        this._boxSidebarService.getSidebar(name).toggleOpen();
+    }
 }

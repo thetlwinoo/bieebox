@@ -116,7 +116,7 @@ export class CategoryFakeDb {
             'icon': 'bc8.png'
         },
         {
-            'title': 'Daily Promotion',
+            'title': 'Free Delivery',
             'icon': 'bc8.png'
         }
     ]

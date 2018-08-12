@@ -1,3 +1,5 @@
+@import "src/@box/scss/box";
+
 header {
     .header-middle {
         background: white;
@@ -31,3 +33,233 @@ p{
 // .search-hint>a{
 //     margin: 0 5px;
 // }
+
+.header-with-search-wrapper{
+    background-image: linear-gradient(-180deg,#ff5722,#ff531d);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+    background-color: #fff; 
+    z-index: 300;
+}
+
+.container-wrapper{
+    min-width: 1200px;
+
+    @include media-breakpoint-down("xs") {
+        min-width: auto;
+    }
+}
+
+.header-with-search{
+    display: flex;
+    height: 8.5rem;
+    justify-content: space-between;
+    padding: 1.6rem 15px 1rem;
+
+    @include media-breakpoint-down("xs") {
+        height: 7.25rem;
+    }    
+}
+
+.header-with-search__logo-section{
+    position: relative;
+    top: -.3rem;
+    padding-right: 4rem;
+}
+
+.header-with-search__search-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 840px;
+    position: relative;
+}
+
+.header-with-search__search-section>.box-searchbar{
+    width: 100%;
+    box-shadow: 0 0.2rem 0.4rem rgba(0,0,0,.09);
+}
+
+.box-searchbar{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 4rem;
+    padding: .3rem;
+    border-radius: 2px;
+    background: #fff;
+}
+.box-searchbar-input, .box-searchbar__main{
+    display: flex;
+    flex: 1;
+}
+
+.header-with-search-wrapper .box-searchbar-input{
+    background-color: #fff;
+    border-color: #fff;
+    padding-left: 1rem;
+    display: flex;
+    flex: 1;
+}
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+.box-searchbar-input__input{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    outline: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+input {
+    line-height: normal;
+}
+.btn-solid-primary {
+    background: #ff5722;
+    color: #fff;
+}
+.btn--s {
+    height: 34px;
+    padding: 0 15px;
+    min-width: 60px;
+    max-width: 190px;
+}
+.btn--inline {
+    display: inline-flex;
+}
+.btn {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-direction: column;
+    font-size: 14px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.09);
+    border-radius: 2px;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+    outline: 0;
+}   
+
+.hot-words{
+    display: flex;
+    width: 100%;
+    flex: 1;
+}
+
+.hot-words__list{
+    display: flex;
+    margin-top: 5px;
+    height: 1.4rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.4rem;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+.hot-words__item:first-child {
+    margin-left: 0;
+}
+
+.hot-words__item{
+    text-decoration: none;
+    white-space: nowrap;
+    margin-left: 13px;
+    color: hsla(0,0%,100%,.9);
+}
+
+.header-with-search__cart-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding-bottom: 5px;
+}
+
+.box-popover{
+    display: none;
+    &.active{
+        display: block;
+        position: absolute;
+        top: 34px;
+        left: 0px;
+        width: 764px;
+        z-index: 600;     
+        
+        @include media-breakpoint-down("xs") {
+            width: 100%;
+        }
+    }    
+}
+
+.box-searchbar-hints{
+    margin-top: .8rem;
+    // margin-left: -.3rem;
+    background-color: #fff;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.26);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.box-searchbar-hints__header{
+    color: rgba(0,0,0,.26);
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    padding: 1rem;
+}
+
+.box-searchbar-hints__header__text{
+    color: rgba(0,0,0,.26);
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+}
+
+.box-searchbar-hints__history-entry{
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    color: rgba(0,0,0,.8);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.box-searchbar-hints__history-entry:hover {
+    background-color: #fafafa;
+}
+
+.box-searchbar-hints__history-entry__typed-text{
+    color: rgba(0,0,0,.54);
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    white-space: nowrap;
+}
+
+.shopee-drawer {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-drawer {
+    cursor: pointer;
+    margin: 0 0 15px 5px;
+
+    @include media-breakpoint-down("xs") {
+        margin: 0 0 0 5px;
+    }
+}
+
+.v-center {
+    display: flex;
+    align-items: center;
+}
+
+.cart-drawer .mat-icon{
+    color: rgba(255, 255, 255, 0.9);
+}

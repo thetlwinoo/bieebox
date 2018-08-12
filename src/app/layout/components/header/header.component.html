@@ -1,81 +1,89 @@
-<div [ngClass]="{'header-middle header-middle-color-2 ptb-12':route,'header-top pt-10 pb-13 border-bottom-1':!route}">
-    <div class="container">
-        <!-- <div fxLayout="row wrap" fxLayoutAlign="start center">
-            <div fxLayout="column" fxLayoutAlign="start start">
-                <div class="logo logo-mrg">
-                    <a href routerLink="/" routerLinkActive="active">
-                        <img src="assets/devita/img/logo/logo-2.png" alt="" *ngIf="route">
-                        <img src="assets/devita/img/logo/logo.png" alt="" *ngIf="!route">
-                    </a>
-                </div>
-            </div>
-            <div fxLayout="column" fxLayoutAlign="start start">
-                <div>
-                    <p>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Outline form field</mat-label>
-                            <input matInput placeholder="Placeholder">
-                            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                            <mat-hint>Hint</mat-hint>
-                        </mat-form-field>
-                    </p>
-                </div>
-
-            </div>
-        </div> -->
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="logo logo-mrg">
-                    <a href routerLink="/" routerLinkActive="active">
-                        <img src="assets/devita/img/logo/logo-2.png" alt="" *ngIf="route">
-                        <img src="assets/devita/img/logo/logo.png" alt="" *ngIf="!route">
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-9">
-                <div class="header-contact-search-wrapper f-right">
-                    <!-- <div class="header-contact middle-same">
-                        <div class="header-contact-icon">
-                            <i class="pe-7s-headphones"></i>
-                        </div>
-                        <div class="header-contact-content">
-                            <p>Call us
-                                <br>Free Support: (012) 800 456 789</p>
-                        </div>
-                    </div> -->
-                    <div class="header-search middle-same" [ngClass]="{'search-color-elec':route}">
-                        <form class="header-search-form" action="#">
-                            <input type="text" placeholder="Search entire store here ...">
-                            <button>
-                                <i class="ion-ios-search-strong"></i>
-                            </button>
-                        </form>
-                    </div>                    
-                </div>
-                <!-- <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>search entire store here</mat-label>
-                        <input matInput placeholder="Placeholder">
-                        <mat-icon matSuffix>search</mat-icon>
-                        <mat-hint>
-                            <div class="search-hint" fxLayout="row" fxLayoutAlign="space-between center">
-                                <a href>car sticker</a>
-                                <a href>school bag</a>
-                                <a href>men bag</a>
-                                <a href>floral dress</a>
-                                <a href>mini bag</a>
-                                <a href>tempered glass</a>
-                                <a href>winter cap</a>
-                                <a href>portable fan</a>
-                                <a href>baby doll</a>
-                                <a href>girl dress</a>
-                                <a href>wall sticker</a>
-                                <a href>plus dress</a>
+<div class="container-wrapper header-with-search-wrapper">
+    <div class="container header-with-search">
+        <a class="header-with-search__logo-section" fxHide fxShow.gt-xs>
+            <img src="assets/devita/img/logo/logo.png" alt="">
+        </a>
+        <div class="header-with-search__search-section">
+            <div class="box-searchbar">
+                <div class="box-searchbar__main">
+                    <form class="box-searchbar-input">
+                        <input class="box-searchbar-input__input" maxlength="128" placeholder="Search for products, brands and shops" autocomplete="off"
+                            value="" (focus)="onFocus($event)" (focusout)="onFocusOut($event)">
+                    </form>
+                    <div class="box-popover" [class.active]="onfocus">
+                        <div class="box-searchbar-hints">
+                            <div class="box-searchbar-hints__header">
+                                <span class="box-searchbar-hints__header__text">Search History</span>
                             </div>
-                        </mat-hint>
-                    </mat-form-field>
-                </p> -->
+                            <a href class="box-searchbar-hints__history-entry">
+                                <div class="box-searchbar-hints__history-entry__text">
+                                    <span>prom dress</span>
+                                </div>
+                            </a>
+                            <a href class="box-searchbar-hints__history-entry">
+                                <div class="box-searchbar-hints__history-entry__text">
+                                    <span>men bag</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-solid-primary btn--s btn--inline">
+                    <mat-icon>search</mat-icon>
+                </button>
             </div>
+            <div class="hot-words" fxHide fxShow.gt-xs>
+                <div class="hot-words__list">
+                    <a href class="hot-words__item">
+                        <span>car sticker</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>school bag</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>men bag</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>floral dress</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>mini bag</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>tempered glass</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>winter cap</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>portable fan</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>baby doll</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>girl dress</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>wall sticker</span>
+                    </a>
+                    <a href class="hot-words__item">
+                        <span>plus dress</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="header-with-search__cart-wrapper" fxHide fxShow.gt-xs>
+            <div class="shopee-drawer">
+                <div class="cart-drawer-container">
+                    <div class="cart-drawer flex v-center">
+                        <button mat-icon-button>
+                            <mat-icon>shopping_cart</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

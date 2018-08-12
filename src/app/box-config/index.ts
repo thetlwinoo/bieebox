@@ -18,10 +18,10 @@ export const boxConfig: BoxConfig = {
             background: 'mat-box-dark-700-bg',
         },
         header: {
-            hidden: false,
+            hidden: false,  
             position: 'top',
             background: 'mat-box-dark-700-bg',
-            custom: 'header-area'
+            custom: 'header-area theme-bg'
         },
         navbar: {
             hidden: false,
@@ -32,7 +32,7 @@ export const boxConfig: BoxConfig = {
         toolbar: {
             hidden: false,
             position: 'above',
-            background: 'mat-white-500-bg'
+            background: 'mat-black-500-bg'
         },
         brand: {
             background: 'mat-box-dark-900-bg',
