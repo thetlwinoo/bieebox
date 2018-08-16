@@ -1,0 +1,48 @@
+:host {
+    .tree-view > ul {
+        border-top: 1px solid #ebebeb;
+        margin: 10px 0 0;
+        padding: 10px 0 0;
+    }
+
+    .tree-view ul > li {
+        display: block;
+        list-style: outside none none;
+        padding: 0 0 13px;
+    }
+
+    .tree-view ul > li:last-child {
+        padding: 0 0 0px;
+    }
+
+    .tree-view ul > li ul li:last-child {
+        padding: 7px 0 0 15px;
+    }
+
+    .tree-view ul > li a {
+        color: #242424;
+        display: block;
+    }
+
+    .tree-view ul li:hover > a {
+        color: #047afe !important;
+    }
+
+    .tree-view ul li:hover > a i {
+        color: #047afe  !important;
+    }
+
+    .tree-view ul > li a i {
+        float: right;
+        color: #7a7a7a;
+        font-size: 14px;
+    }
+
+    .tree-view ul > li > ul li {
+        padding: 7px 0 0 15px;
+    }
+
+    .tree-view ul > li ul li a {
+        color: #666;
+    }
+}

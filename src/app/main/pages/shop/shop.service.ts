@@ -12,28 +12,23 @@ import { Feathers } from '@store/services/feathers.service';
 @Injectable()
 export class ShopService implements Resolve<any> {
 
-  stockItems: any[];
-  onStockItemsChanged: BehaviorSubject<any> = new BehaviorSubject({});
+  categories: any[];
+  tags: any[];
+  servicesandpromotions: any[];
+  condition: any[];
 
   constructor(
-    private http: HttpClient,
-    private feathers: Feathers
+    private http: HttpClient
   ) {
   }
 
-  /**
-     * Resolve
-     * @param {ActivatedRouteSnapshot} route
-     * @param {RouterStateSnapshot} state
-     * @returns {Observable<any> | Promise<any> | any}
-     */
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {   
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
     return new Promise((resolve, reject) => {
-      Promise.all([        
-        this.getStockItems({
-          $limit: 10,
-          $skip: 0
-        })
+      Promise.all([
+        this.getCategories({ $limit: 20 }),
+        this.getServicesAndPromotionsCag({ $limit: 20 }),
+        this.getConditionCag({ $limit: 20 }),
+        this.getTagsCag({ $limit: 20 })
       ]).then(
         () => {
           resolve();
@@ -43,27 +38,43 @@ export class ShopService implements Resolve<any> {
     });
   }
 
-  getStockItems(query): Promise<any> {
+  getCategories(query): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.stockItems$(query)
+      this.http.get('api/categories')
         .subscribe((response: any) => {
-          this.stockItems = response;
-          console.log(response)
-          this.onStockItemsChanged.next(this.stockItems);
+          this.categories = response;
           resolve(response);
         }, reject);
     });
   }
 
-  //feathers API
-  stockItems$(query): Observable<any[]> {
-    return (<any>this.feathers
-      .service('warehouse/stock-items'))
-      .watch()
-      .find({
-        query: {
-          $limit: 10
-        }
-      });
+  getServicesAndPromotionsCag(query): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get('api/servicesandpromotions')
+        .subscribe((response: any) => {
+          this.servicesandpromotions = response;
+          resolve(response);
+        }, reject);
+    });
+  }
+
+  getConditionCag(query): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get('api/condition')
+        .subscribe((response: any) => {
+          this.condition = response;
+          resolve(response);
+        }, reject);
+    });
+  }
+
+  getTagsCag(query): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get('api/tags')
+        .subscribe((response: any) => {
+          this.tags = response;
+          resolve(response);
+        }, reject);
+    });
   }
 }

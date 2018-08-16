@@ -11,9 +11,10 @@ import { ShopService } from './shop.service';
 import { BrandModule } from '@box/components/brand/brand.module';
 import { BoxSidebarModule } from '@box/components/sidebar/sidebar.module';
 import { BoxDemoModule } from '@box/components/demo/demo.module';
-import { MatListModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { MatListModule, MatIconModule, MatButtonModule, MatTooltipModule, MatSliderModule, MatCheckboxModule, MatChipsModule } from '@angular/material';
 import { BoxSharedModule } from '@box/shared.module';
-
+import { ProductCardModule } from '@box/components/product-card/product-card.module';
+import { BoxTreeViewModule } from '@box/components/tree-view/tree-view.module';
 const routes = [
   {
     path: 'shop',
@@ -47,6 +48,12 @@ const routes = [
     MatListModule, 
     MatIconModule, 
     MatButtonModule,
+    MatTooltipModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    ProductCardModule,
+    BoxTreeViewModule,
     BoxSharedModule
   ],
   declarations: [ShopComponent, ShopDetailComponent, ShopListComponent],

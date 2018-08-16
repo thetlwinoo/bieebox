@@ -1,0 +1,43 @@
+<div class="box-searchbar">
+    <div class="box-searchbar__main">
+        <form class="box-searchbar-input">
+            <input #boxsearch class="box-searchbar-input__input" maxlength="128" placeholder="Search for products, brands and shops" autocomplete="off"
+                (focus)="onFocus($event)" (focusout)="onFocusOut($event)" [value]="query" (keyup)="search.emit($event.target.value)">
+        </form>
+        <div class="box-popover" [class.active]="onfocus && url !== '/pages/shop'">
+            <div class="box-searchbar-hints">
+                <div class="box-searchbar-hints__header">
+                  <div class="box-searchbar-hints_wrapper">
+                    <span class="box-searchbar-hints__header__text">Keywords Search</span>
+                    <mat-spinner [class.show]="searching" [diameter]="20" [strokeWidth]="2"></mat-spinner>
+                  </div>                    
+                </div>
+                <a href class="box-searchbar-hints__history-entry" *ngFor="let keyword of keywords;let i=index" (click)="onClick($event,keyword)">
+                    <div class="box-searchbar-hints__history-entry__text">
+                        <span>{{keyword}}</span>
+                    </div>
+                </a>
+                <a href class="box-searchbar-hints__history-entry" *ngIf="keywords?.length<=0" (click)="onClick($event,'prom dress')">
+                    <div class="box-searchbar-hints__history-entry__text">
+                        <span>prom dress</span>
+                    </div>
+                </a>
+                <a href class="box-searchbar-hints__history-entry" *ngIf="keywords?.length<=0" (click)="onClick($event,'men bag')">
+                    <div class="box-searchbar-hints__history-entry__text">
+                        <span>men bag</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-solid-primary btn--s btn--inline" (click)="summit.emit(boxsearch.value);">
+        <mat-icon>search</mat-icon>
+    </button>
+</div>
+<div class="hot-words" fxHide fxShow.gt-xs>
+    <div class="hot-words__list">
+        <a href class="hot-words__item" *ngFor="let item of defaultKeywords;let i=index" (click)="onClick($event,item.keyword)">
+            <span>{{item.keyword}}</span>
+        </a>        
+    </div>
+</div>

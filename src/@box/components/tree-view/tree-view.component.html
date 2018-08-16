@@ -1,0 +1,14 @@
+<div class="tree-view">
+    <ul #treeview id="faq">
+        <li *ngFor="let navitem of navigation;let i = index">
+            <a data-toggle="collapse" data-parent="#faq" href="#{{navitem.id}}">{{navitem.short_title | ellipsis:25 }}
+                <i *ngIf="navitem.children?.length>0" class="ion-ios-arrow-down"></i>
+            </a>
+            <ul *ngIf="navitem.children?.length>0" id="{{navitem.id}}" class="panel-collapse collapse show">
+                <li *ngFor="let child of navitem.children;let j = index">
+                        <mat-checkbox>{{child.title}}</mat-checkbox>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

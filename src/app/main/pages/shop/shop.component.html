@@ -1,260 +1,114 @@
 <div class="page-layout blank">
     <div class="container">
-        <div class="page-layout simple left-sidebar inner-scroll">
+        <div class="page-layout simple left-sidebar">
             <box-sidebar class="sidebar" name="simple-left-sidebar-2" position="left" lockedOpen="gt-md">
-                <div class="content" boxPerfectScrollbar>
+                <div class="content">
                     <div class="shop-sidebar-wrapper gray-bg-7">
                         <div class="shop-widget">
-                            <h4 class="shop-sidebar-title">Shop By Categories</h4>
+                            <h4>Shop By Categories</h4>
                             <div class="shop-catigory">
-                                <ul id="faq">
-                                    <li>
-                                        <a data-toggle="collapse" data-parent="#faq" href="#shop-catigory-1">Laptop & Computer
-                                            <i class="ion-ios-arrow-down"></i>
-                                        </a>
-                                        <ul id="shop-catigory-1" class="panel-collapse collapse show">
-                                            <li>
-                                                <a href="#">Accessories</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Bags & Cases</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Binoculars & Scopes</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Digital Cameras</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Film Photography</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a data-toggle="collapse" data-parent="#faq" href="#shop-catigory-2">Living room
-                                            <i class="ion-ios-arrow-down"></i>
-                                        </a>
-                                        <ul id="shop-catigory-2" class="panel-collapse collapse">
-                                            <li>
-                                                <a href="#">Accessories</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Bags & Cases</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Binoculars & Scopes</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Digital Cameras</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Film Photography</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a data-toggle="collapse" data-parent="#faq" href="#shop-catigory-3">Lighting Furniture
-                                            <i class="ion-ios-arrow-down"></i>
-                                        </a>
-                                        <ul id="shop-catigory-3" class="panel-collapse collapse">
-                                            <li>
-                                                <a href="#">Accessories</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Bags & Cases</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Binoculars & Scopes</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Digital Cameras</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Film Photography</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Outdoor</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tablets</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Accessories</a>
-                                    </li>
-                                </ul>
+                                <!-- <tree-node [treenodes]="categories"></tree-node> -->
+                                <tree-view [navigation]="categories | slice:0:1"></tree-view>
                             </div>
                         </div>
-                        <div class="shop-price-filter mt-40 shop-sidebar-border pt-35">
-                            <h4 class="shop-sidebar-title">Price Filter</h4>
-                            <div class="price_filter mt-25">
-                                <span>Range: $100.00 - 1.300.00 </span>
-                                <div id="slider-range"></div>
-                                <div class="price_slider_amount">
-                                    <div class="label-input">
-                                        <input type="text" id="amount" name="price" placeholder="Add Your Price" />
+                        <div class="shop-price-filter mt-10 shop-sidebar-border pt-10">
+                            <h4>Price Filter</h4>
+                            <div class="price_filter mt-10">
+                                <div class="horizontal-wrapper">
+                                    <div class="horizontal-spacer">
+                                        <span>min</span>
                                     </div>
-                                    <button type="button">Filter</button>
+                                    <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" min="1" max="1000"></mat-slider>
+                                    <span>$1000</span>
+                                </div>
+                                <div class="horizontal-wrapper">
+                                    <div class="horizontal-spacer">
+                                        <span>max</span>
+                                    </div>
+                                    <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" min="1" max="1000"></mat-slider>
+                                    <span>$1000</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="shop-widget mt-40 shop-sidebar-border pt-35">
-                            <h4 class="shop-sidebar-title">By Brand</h4>
+                        <div class="shop-widget mt-10 shop-sidebar-border pt-10">
+                            <h4>Services and Promotions</h4>
                             <div class="sidebar-list-style mt-20">
                                 <ul>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Samsung </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Panasonic </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Electrolux </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">LG </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Calvin Klein </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Diesel </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Polo </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Tommy Hilfiger </a>
+                                    <li *ngFor="let item of servicesandpromotions;let i = index">
+                                        <mat-checkbox>{{item.title}}</mat-checkbox>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="shop-widget mt-40 shop-sidebar-border pt-35">
-                            <h4 class="shop-sidebar-title">By Color</h4>
+                        <div class="shop-widget mt-10 shop-sidebar-border pt-10">
+                            <h4>condition</h4>
                             <div class="sidebar-list-style mt-20">
                                 <ul>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Black </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Blue </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Green </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Grey </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Red</a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">White </a>
-                                    </li>
-                                    <li>
-                                        <input type="checkbox">
-                                        <a href="#">Yellow </a>
+                                    <li *ngFor="let item of condition;let i = index">
+                                        <mat-checkbox>{{item.title}}</mat-checkbox>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="shop-widget mt-40 shop-sidebar-border pt-35">
-                            <h4 class="shop-sidebar-title">Compare Products</h4>
-                            <div class="compare-product">
-                                <p>You have no item to compare. </p>
-                                <div class="compare-product-btn">
-                                    <span>Clear all </span>
-                                    <a href="#">Compare
-                                        <i class="fa fa-check"></i>
-                                    </a>
+                        <div class="shop-widget mt-10 shop-sidebar-border pt-10">
+                            <h4>Popular Tags</h4>
+                            <div class="mt-25">
+                                <div class="button-row">
+                                    <button mat-stroked-button color="primary" *ngFor="let item of tags;let i = index">{{item.title}}</button>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="shop-widget mt-40 shop-sidebar-border pt-35">
-                            <h4 class="shop-sidebar-title">Popular Tags</h4>
-                            <div class="shop-tags mt-25">
-                                <ul>
-                                    <li>
-                                        <a href="#">Computer</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Cameras</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Accessories</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Big Sale</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Sony</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Devita</a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </box-sidebar>
             <div class="center" boxPerfectScrollbar>
-                <div class="header mat-accent-bg p-24" fxLayout="row" fxLayoutAlign="start center">
+                <div class="header header-light-grey p-12" fxLayout="row" fxLayoutAlign="start center">
 
                     <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('simple-left-sidebar-2')">
                         <mat-icon>menu</mat-icon>
                     </button>
 
-                    <div class="shop-topbar-wrapper">
-                        <div class="shop-topbar-left">
-                            <div class="grid-list-options nav view-mode">
-                                <a [ngClass]="{'active':grid}" (click)="onToggleGrid(true)">
-                                    <i class="fa fa-th"></i>
-                                </a>
-                                <a [ngClass]="{'active':!grid}" (click)="onToggleGrid(false)">
-                                    <i class="fa fa-list-ul"></i>
-                                </a>
-                            </div>
-                            <p>Showing 1 - 20 of 30 results </p>
-                        </div>
-                        <div class="product-sorting-wrapper">
-                            <div class="product-shorting shorting-style">
-                                <label>View:</label>
+                    <div class="horizontal-wrapper">
+                        <div class="horizontal-spacer">
+                            <span fxHide.lt-md>Sort By:</span>
+
+                            <button mat-stroked-button color="primary" fxHide.lt-md>Popular</button>
+                            <button mat-stroked-button color="primary" fxHide.lt-md>Latest</button>
+                            <button mat-stroked-button color="primary" fxHide.lt-md>Top Sales</button>
+
+                            <div class="product-show shorting-style" fxHide.lt-md>
                                 <select>
-                                    <option value=""> 20</option>
-                                    <option value=""> 23</option>
-                                    <option value=""> 30</option>
-                                </select>
-                            </div>
-                            <div class="product-show shorting-style">
-                                <label>Sort by:</label>
-                                <select>
-                                    <option value="">Default</option>
+                                    <option value="">Price</option>
                                     <option value=""> Name</option>
                                     <option value=""> price</option>
                                 </select>
                             </div>
                         </div>
+                        <div class="page-number">
+                            <span>1</span>/
+                            <span>100</span>
+                        </div>
+                        <button mat-icon-button color="warn" (click)="onPrevClick($event);" matTooltip="Previous">
+                            <mat-icon aria-label="nav left">arrow_left</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="onNextClick($event);" matTooltip="Next">
+                            <mat-icon aria-label="nav right">arrow_right</mat-icon>
+                        </button>
                     </div>
 
                 </div>
-                <div class="content mat-white-bg p-24">
-                    <box-demo-content></box-demo-content>
+                <div class="content">
+                    <shop-list [stockItems]="stockItems$ | async"></shop-list>
+                    <div class="box-page-controller">
+                        <button class="box-icon-button box-button-left"><mat-icon>chevron_left</mat-icon></button>
+                        <button class="box-button-solid active">1</button>
+                        <button class="box-button-no-outline">2</button>
+                        <button class="box-button-no-outline">3</button>
+                        <button class="box-button-no-outline">4</button>
+                        <button class="box-button-no-outline">5</button>
+                        <button class="box-button-no-outline box-button-non-click">...</button>
+                        <button class="box-icon-button box-button-right "><mat-icon>chevron_right</mat-icon></button>
+                    </div>
                 </div>
             </div>
         </div>

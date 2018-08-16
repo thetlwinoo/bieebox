@@ -13,6 +13,10 @@ i {
     color: rgba(0, 0, 0, 0.12);
 }
 
+.header-light-grey{
+    background-color: #e4e4e4 !important;
+    color: rgba(0, 0, 0, 0.50) !important;
+}
 // Material colors map
 $matColorsMap: (
     primary: $primary,

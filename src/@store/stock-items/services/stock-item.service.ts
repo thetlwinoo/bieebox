@@ -58,8 +58,9 @@ export class StockItemsService implements Resolve<any> {
 
   //feathers API
   stockItems$(query): Observable<any[]> {
+    console.log(query)
     return (<any>this.feathers
-      .service('warehouse/stock-items'))
+      .service('search'))
       .watch()
       .find({
         query: query
@@ -68,7 +69,7 @@ export class StockItemsService implements Resolve<any> {
         d.data.forEach(element => {
           element.id = element._id;
         });
-
+console.log(d)
         return d.data;
       });
   }

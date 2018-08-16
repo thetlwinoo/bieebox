@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { StockItemActionsUnion } from '@store/stock-items/actions/stock-item.actions';
+import { StockItem } from '@store/models/stock-item.model';
 
 @Component({
   selector: 'shop-list',
@@ -8,10 +10,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ShopListComponent implements OnInit {
   @Input('carousel') carousel;
   @Input('grid') grid;
+  @Input() stockItems: StockItem[];
 
   numbers;
 
-  constructor() { 
+  constructor() {
     this.numbers = Array(16).fill(5);
   }
 

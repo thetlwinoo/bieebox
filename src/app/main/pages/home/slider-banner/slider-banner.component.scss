@@ -79,10 +79,18 @@
                         display: flex;
                         min-width: 130px;
 
+                        @include media-breakpoint-down("xs") {
+                            min-width: 125px;
+                        }
                         .box-card {
                             box-shadow: none;
                             min-width: 130px !important;
                             max-width: 130px !important;
+
+                            @include media-breakpoint-down("xs") {
+                                min-width: 125px !important;
+                                max-width: 125px !important;
+                            }
 
                             &.cag {
                                 img{

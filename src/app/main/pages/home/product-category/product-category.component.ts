@@ -16,12 +16,13 @@ export class ProductCategoryComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit() {    
     if (this.categories.length >= 8) {
-      for (let i = 1; i <= 4; i++) {
+      let _cag = this.categories.slice(0,20);
+      for (let i = 1; i <= 10; i++) {
         let _category = [];
-        _category.push(this.categories[(i * 2) - 2]);
-        _category.push(this.categories[(i * 2) - 1]);
+        _category.push(_cag[(i * 2) - 2]);
+        _category.push(_cag[(i * 2) - 1]);
         this.bundles.push(_category);
       }
     }

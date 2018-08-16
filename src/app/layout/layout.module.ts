@@ -8,7 +8,8 @@ import { HorizontalLayout1Module } from 'app/layout/horizontal/layout-1/layout-1
     ],
     exports: [
         HorizontalLayout1Module
-    ]
+    ],
+    declarations: []
 })
 export class LayoutModule {
 }

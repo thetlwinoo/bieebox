@@ -1,0 +1,48 @@
+@import "src/@box/scss/box";
+
+:host {
+    .content {
+        .cards {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .card {
+                border: none;
+                display: flex;
+                align-items: flex-start;
+                background: transparent;
+                padding: 5px;
+
+                @include media-breakpoint-down("xs") {
+                   padding: 3px;
+                }
+
+                .card-preview {
+                    display: flex;
+                    min-width: 174px;
+
+                    @include media-breakpoint-down("xs") {
+                        min-width: 160px;
+                    }
+
+                    product-card {
+                        max-width: 174px !important;
+                        min-width: 174px !important;
+
+                        @include media-breakpoint-down("xs") {
+                            max-width: 160px !important;
+                            min-width: 160px !important;
+                        }
+                    }
+                }
+
+                .card-source {
+                    display: none;
+                }
+            }
+        }
+    }
+}

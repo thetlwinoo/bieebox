@@ -11,8 +11,7 @@ import { BoxConfigService } from '@box/services/config.service';
 @Directive({
     selector: '[boxPerfectScrollbar]'
 })
-export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
-{
+export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy {
     isInitialized: boolean;
     isMobile: boolean;
     ps: PerfectScrollbar;
@@ -36,8 +35,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
         private _boxConfigService: BoxConfigService,
         private _platform: Platform,
         private _router: Router
-    )
-    {
+    ) {
         // Set the defaults
         this.isInitialized = false;
         this.isMobile = false;
@@ -61,14 +59,12 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param value
      */
     @Input()
-    set boxPerfectScrollbarOptions(value)
-    {
+    set boxPerfectScrollbarOptions(value) {
         // Merge the options
         this._options = _.merge({}, this._options, value);
     }
 
-    get boxPerfectScrollbarOptions(): any
-    {
+    get boxPerfectScrollbarOptions(): any {
         // Return the options
         return this._options;
     }
@@ -79,18 +75,15 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param {boolean | ""} value
      */
     @Input('boxPerfectScrollbar')
-    set enabled(value: boolean | '')
-    {
+    set enabled(value: boolean | '') {
         // If nothing is provided with the directive (empty string),
         // we will take that as a true
-        if ( value === '' )
-        {
+        if (value === '') {
             value = true;
         }
 
         // Return, if both values are the same
-        if ( this.enabled === value )
-        {
+        if (this.enabled === value) {
             return;
         }
 
@@ -98,20 +91,17 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
         this._enabled = value;
 
         // If enabled...
-        if ( this.enabled )
-        {
+        if (this.enabled) {
             // Init the directive
             this._init();
         }
-        else
-        {
+        else {
             // Otherwise destroy it
             this._destroy();
         }
     }
 
-    get enabled(): boolean | ''
-    {
+    get enabled(): boolean | '' {
         // Return the enabled status
         return this._enabled;
     }
@@ -123,8 +113,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
     /**
      * After view init
      */
-    ngAfterViewInit(): void
-    {
+    ngAfterViewInit(): void {
         // Check if scrollbars enabled or not from the main config
         this._boxConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -135,8 +124,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
             );
 
         // Scroll to the top on every route change
-        if ( this.boxPerfectScrollbarOptions.updateOnRouteChange )
-        {
+        if (this.boxPerfectScrollbarOptions.updateOnRouteChange) {
             this._router.events
                 .pipe(
                     takeUntil(this._unsubscribeAll),
@@ -154,8 +142,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         this._destroy();
 
         // Unsubscribe from all subscriptions
@@ -172,23 +159,19 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      *
      * @private
      */
-    _init(): void
-    {
+    _init(): void {
         // Return, if already initialized
-        if ( this.isInitialized )
-        {
+        if (this.isInitialized) {
             return;
         }
 
         // Check if is mobile
-        if ( this._platform.ANDROID || this._platform.IOS )
-        {
+        if (this._platform.ANDROID || this._platform.IOS) {
             this.isMobile = true;
         }
 
         // Return if it's mobile
-        if ( this.isMobile )
-        {
+        if (this.isMobile) {
             // Return...
             return;
         }
@@ -207,10 +190,8 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      *
      * @private
      */
-    _destroy(): void
-    {
-        if ( !this.isInitialized || !this.ps )
-        {
+    _destroy(): void {
+        if (!this.isInitialized || !this.ps) {
             return;
         }
 
@@ -228,8 +209,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @private
      */
     @HostListener('window:resize')
-    _updateOnResize(): void
-    {
+    _updateOnResize(): void {
         this._debouncedUpdate();
     }
 
@@ -243,10 +223,8 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param {Event} event
      */
     @HostListener('document:click', ['$event'])
-    documentClick(event: Event): void
-    {
-        if ( !this.isInitialized || !this.ps )
-        {
+    documentClick(event: Event): void {
+        if (!this.isInitialized || !this.ps) {
             return;
         }
 
@@ -260,10 +238,8 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
     /**
      * Update the scrollbar
      */
-    update(): void
-    {
-        if ( !this.isInitialized )
-        {
+    update(): void {
+        if (!this.isInitialized) {
             return;
         }
 
@@ -274,8 +250,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
     /**
      * Destroy the scrollbar
      */
-    destroy(): void
-    {
+    destroy(): void {
         this.ngOnDestroy();
     }
 
@@ -285,8 +260,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param {number} x
      * @param {number} speed
      */
-    scrollToX(x: number, speed?: number): void
-    {
+    scrollToX(x: number, speed?: number): void {
         this.animateScrolling('scrollLeft', x, speed);
     }
 
@@ -296,8 +270,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param {number} y
      * @param {number} speed
      */
-    scrollToY(y: number, speed?: number): void
-    {
+    scrollToY(y: number, speed?: number): void {
         this.animateScrolling('scrollTop', y, speed);
     }
 
@@ -307,8 +280,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param {number} offset
      * @param {number} speed
      */
-    scrollToTop(offset?: number, speed?: number): void
-    {
+    scrollToTop(offset?: number, speed?: number): void {
         this.animateScrolling('scrollTop', (offset || 0), speed);
     }
 
@@ -318,8 +290,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param {number} offset
      * @param {number} speed
      */
-    scrollToLeft(offset?: number, speed?: number): void
-    {
+    scrollToLeft(offset?: number, speed?: number): void {
         this.animateScrolling('scrollLeft', (offset || 0), speed);
     }
 
@@ -329,8 +300,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param {number} offset
      * @param {number} speed
      */
-    scrollToRight(offset?: number, speed?: number): void
-    {
+    scrollToRight(offset?: number, speed?: number): void {
         const width = this.elementRef.nativeElement.scrollWidth;
 
         this.animateScrolling('scrollLeft', width - (offset || 0), speed);
@@ -342,8 +312,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param {number} offset
      * @param {number} speed
      */
-    scrollToBottom(offset?: number, speed?: number): void
-    {
+    scrollToBottom(offset?: number, speed?: number): void {
         const height = this.elementRef.nativeElement.scrollHeight;
 
         this.animateScrolling('scrollTop', height - (offset || 0), speed);
@@ -356,18 +325,15 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
      * @param {number} value
      * @param {number} speed
      */
-    animateScrolling(target: string, value: number, speed?: number): void
-    {
-        if ( !speed )
-        {
+    animateScrolling(target: string, value: number, speed?: number): void {
+        if (!speed) {
             this.elementRef.nativeElement[target] = value;
 
             // PS has weird event sending order, this is a workaround for that
             this.update();
             this.update();
         }
-        else if ( value !== this.elementRef.nativeElement[target] )
-        {
+        else if (value !== this.elementRef.nativeElement[target]) {
             let newValue = 0;
             let scrollCount = 0;
 
@@ -382,10 +348,8 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
                 newValue = Math.round(value + cosParameter + cosParameter * Math.cos(scrollCount));
 
                 // Only continue animation if scroll position has not changed
-                if ( this.elementRef.nativeElement[target] === oldValue )
-                {
-                    if ( scrollCount >= Math.PI )
-                    {
+                if (this.elementRef.nativeElement[target] === oldValue) {
+                    if (scrollCount >= Math.PI) {
                         this.elementRef.nativeElement[target] = value;
 
                         // PS has weird event sending order, this is a workaround for that
@@ -393,8 +357,7 @@ export class BoxPerfectScrollbarDirective implements AfterViewInit, OnDestroy
 
                         this.update();
                     }
-                    else
-                    {
+                    else {
                         this.elementRef.nativeElement[target] = oldValue = newValue;
 
                         oldTimestamp = newTimestamp;

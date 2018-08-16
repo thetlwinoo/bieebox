@@ -74,7 +74,6 @@ export const getSearchResults = createSelector(
     getStockItemEntities,
     getSearchStockItemIds,
     (stockItems, searchIds) => {
-        console.log('SearchIDs',searchIds)
         return searchIds.map(id => stockItems[id]);
     }
 );
