@@ -1,3 +1,13 @@
-:host{
+@import "src/@box/scss/box";
 
+:host {
+    .notification-section {
+        .container {
+            .notification-wrapper {
+                @include media-breakpoint-down("xs") {
+                    padding: 0 25px;
+                 }
+            }
+        }
+    }
 }

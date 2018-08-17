@@ -10,41 +10,31 @@
     .page-layout {
         &.simple {
             &.left-sidebar {
-                // > .sidebar {
-                //     width: 205px !important;
-                //     min-width: 205px !important;
-                //     max-width: 205px !important;
-                // }
+                > .sidebar {
+                    // width: 205px !important;
+                    // min-width: 205px !important;
+                    // max-width: 205px !important;
+                    > .content{
+                        >.shop-sidebar-wrapper{
+                            >.shop-price-filter{
+                                >.price_filter{
+                                    >.horizontal-wrapper{
+                                        >span{
+                                            min-width: 40.66px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 
                 > .center {
                     box-shadow: none;
 
                     > .header {
                         height: auto !important;
-                        min-height: auto !important;
-
-                        > .horizontal-wrapper {
-                            > .horizontal-spacer {
-                                &.title {
-                                    text-transform: uppercase;
-                                    font-weight: 500;
-                                }
-
-                                button, span {
-                                    margin-right: 8px !important;
-
-                                    &.mat-stroked-button {
-                                        line-height: 29px !important;
-                                    }
-                                }
-                            }
-
-                            > .page-number {
-                                > span:first-child {
-                                    color: #ff4500;
-                                }
-                            }
-                        }
+                        min-height: auto !important;                        
                     }
 
                     > .content {
@@ -54,62 +44,19 @@
                             padding: 0;
                         }
 
-                        > .box-page-controller {
-                            margin: 2rem 0 6rem;
-                            display: flex;
-                            justify-content: center;                            
-                            
-                            > button {
-                                text-transform: none;
-                                font: inherit;
-                                &.box-icon-button {
-                                    color: rgba(0, 0, 0, 0.4);
-                                    min-width: 4rem;
-                                    height: 3rem;
-                                    border: none;
 
-                                    &.box-button-left {
-                                        text-align: right;
-                                        margin-right: 1.5rem;
+                        > .horizontal-wrapper {
+                            > .horizontal-spacer {
+                                > h4 {
+                                    >span{
+                                        color: #ff5722;
                                     }
-
-                                    &.box-button-right {
-                                        text-align: left;
-                                        margin-left: 1.5rem;
-                                    }
-                                }
-
-                                &.box-button-solid {
-                                    color: #fff;
-                                    padding: 0;
-                                    min-width: 4rem;
-                                    text-align: center;
-                                    height: 3rem;
-                                    font-size: 2rem;
-                                    margin-left: 1.5rem;
-                                    margin-right: 1.5rem;
-
-                                    &.active {
-                                        background: #ff5722;
-                                    }
-                                }
-
-                                &.box-button-no-outline {
-                                    background-color: transparent;
-                                    border: none;
-                                    color: rgba(0, 0, 0, 0.4);
-                                    padding: 0;
-                                    min-width: 4rem;
-                                    text-align: center;
-                                    height: 3rem;
-                                    font-size: 2rem;
-                                    margin-left: 1.5rem;
-                                    margin-right: 1.5rem;
                                 }
                             }
-                        }
+                        }                        
                     }
                 }
+
             }
         }
     }

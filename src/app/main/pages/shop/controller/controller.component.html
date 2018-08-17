@@ -1,0 +1,27 @@
+<div class="horizontal-wrapper">
+    <div class="horizontal-spacer">
+        <span fxHide.lt-md>Sort By:</span>
+
+        <button mat-stroked-button color="primary" fxHide.lt-md>Popular</button>
+        <button mat-stroked-button color="primary" fxHide.lt-md>Latest</button>
+        <button mat-stroked-button color="primary" fxHide.lt-md>Top Sales</button>
+
+        <div class="product-show shorting-style" fxHide.lt-md>
+            <select>
+                <option value="">Price</option>
+                <option value="">Name</option>
+                <option value="">price</option>
+            </select>
+        </div>
+    </div>
+    <div class="page-number" *ngIf="getCeil(total/limit) > 0">
+        <span #cpage>{{skip+1}}</span>/
+        <span>{{getCeil(total/limit)}}</span>
+    </div>
+    <button mat-icon-button color="warn" (click)="setPage.emit(skip-1);" matTooltip="Previous" [disabled]="getCeil(total/limit) <= 0 || skip <= 0">
+        <mat-icon aria-label="nav left">arrow_left</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="setPage.emit(skip+1);" matTooltip="Next" [disabled]="getCeil(total/limit) <= 0 || (skip+1) >= getCeil(total/limit)">
+        <mat-icon aria-label="nav right">arrow_right</mat-icon>
+    </button>
+</div>

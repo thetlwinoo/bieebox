@@ -18,7 +18,7 @@ export class Search implements Action {
 export class SearchComplete implements Action {
     readonly type = StockItemActionTypes.SearchComplete;
 
-    constructor(public payload: StockItem[]) { }
+    constructor(public payload: any) { }
 }
 
 export class SearchError implements Action {

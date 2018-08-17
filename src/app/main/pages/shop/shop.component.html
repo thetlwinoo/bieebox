@@ -19,7 +19,7 @@
                                         <span>min</span>
                                     </div>
                                     <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" min="1" max="1000"></mat-slider>
-                                    <span>$1000</span>
+                                    <span>$1</span>
                                 </div>
                                 <div class="horizontal-wrapper">
                                     <div class="horizontal-spacer">
@@ -67,48 +67,18 @@
                     <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('simple-left-sidebar-2')">
                         <mat-icon>menu</mat-icon>
                     </button>
-
-                    <div class="horizontal-wrapper">
-                        <div class="horizontal-spacer">
-                            <span fxHide.lt-md>Sort By:</span>
-
-                            <button mat-stroked-button color="primary" fxHide.lt-md>Popular</button>
-                            <button mat-stroked-button color="primary" fxHide.lt-md>Latest</button>
-                            <button mat-stroked-button color="primary" fxHide.lt-md>Top Sales</button>
-
-                            <div class="product-show shorting-style" fxHide.lt-md>
-                                <select>
-                                    <option value="">Price</option>
-                                    <option value=""> Name</option>
-                                    <option value=""> price</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="page-number">
-                            <span>1</span>/
-                            <span>100</span>
-                        </div>
-                        <button mat-icon-button color="warn" (click)="onPrevClick($event);" matTooltip="Previous">
-                            <mat-icon aria-label="nav left">arrow_left</mat-icon>
-                        </button>
-                        <button mat-icon-button color="warn" (click)="onNextClick($event);" matTooltip="Next">
-                            <mat-icon aria-label="nav right">arrow_right</mat-icon>
-                        </button>
-                    </div>
-
+                    <controller [total]="total$ | async" [limit]="limit$ | async" [skip]="skip$ | async" (setPage)="onSetPage($event)"></controller>
                 </div>
                 <div class="content">
-                    <shop-list [stockItems]="stockItems$ | async"></shop-list>
-                    <div class="box-page-controller">
-                        <button class="box-icon-button box-button-left"><mat-icon>chevron_left</mat-icon></button>
-                        <button class="box-button-solid active">1</button>
-                        <button class="box-button-no-outline">2</button>
-                        <button class="box-button-no-outline">3</button>
-                        <button class="box-button-no-outline">4</button>
-                        <button class="box-button-no-outline">5</button>
-                        <button class="box-button-no-outline box-button-non-click">...</button>
-                        <button class="box-icon-button box-button-right "><mat-icon>chevron_right</mat-icon></button>
+                    <div class="horizontal-wrapper" *ngIf="key?.length>0">
+                        <div class="horizontal-spacer">
+                            <h4>Search related to &#34;
+                                <span>{{key}}</span>&#34;</h4>
+                        </div>
                     </div>
+                    <shop-list [stockItems]="stockItems$ | async"></shop-list>
+                    <paging [total]="total$ | async" [limit]="limit$ | async" [skip]="skip$ | async" [last]="last$ | async" [numbers]="numbers"
+                        (setPage)="onSetPage($event)" fxHide fxShow.gt-md></paging>
                 </div>
             </div>
         </div>

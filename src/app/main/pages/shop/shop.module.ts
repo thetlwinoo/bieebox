@@ -15,6 +15,12 @@ import { MatListModule, MatIconModule, MatButtonModule, MatTooltipModule, MatSli
 import { BoxSharedModule } from '@box/shared.module';
 import { ProductCardModule } from '@box/components/product-card/product-card.module';
 import { BoxTreeViewModule } from '@box/components/tree-view/tree-view.module';
+import { ControllerComponent } from './controller/controller.component';
+import { PagingComponent } from './paging/paging.component';
+import { RelatedProductsComponent } from './shop-detail/related-products/related-products.component';
+import { SelectedProductComponent } from './shop-detail/selected-product/selected-product.component';
+import { ProductDetailComponent } from './shop-detail/product-detail/product-detail.component';
+
 const routes = [
   {
     path: 'shop',
@@ -22,7 +28,7 @@ const routes = [
     resolve: {
       data: ShopService
     },
-    data: {      
+    data: {
       breadcrumbs: 'Home / Shop'
     }
   },
@@ -37,7 +43,7 @@ const routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes),    
+    RouterModule.forChild(routes),
     NgxImageZoomModule.forRoot(),
     CommonModule,
     OwlModule,
@@ -45,8 +51,8 @@ const routes = [
     BoxSidebarModule,
     BrandModule,
     BoxDemoModule,
-    MatListModule, 
-    MatIconModule, 
+    MatListModule,
+    MatIconModule,
     MatButtonModule,
     MatTooltipModule,
     MatSliderModule,
@@ -56,8 +62,17 @@ const routes = [
     BoxTreeViewModule,
     BoxSharedModule
   ],
-  declarations: [ShopComponent, ShopDetailComponent, ShopListComponent],
-  providers:[
+  declarations: [
+    ShopComponent,
+    ShopDetailComponent,
+    ShopListComponent,
+    ControllerComponent,
+    PagingComponent,
+    RelatedProductsComponent,
+    SelectedProductComponent,
+    ProductDetailComponent
+  ],
+  providers: [
     ShopService
   ]
 })

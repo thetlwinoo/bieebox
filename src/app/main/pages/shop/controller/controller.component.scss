@@ -1,0 +1,27 @@
+:host{
+    width: 100%;
+    
+    .horizontal-wrapper {
+    > .horizontal-spacer {
+        &.title {
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        button, span {
+            margin-right: 8px !important;
+
+            &.mat-stroked-button {
+                line-height: 29px !important;
+            }
+        }
+    }
+
+    > .page-number {
+        > span:first-child {
+            color: #ff4500;
+        }
+    }
+}
+}
+

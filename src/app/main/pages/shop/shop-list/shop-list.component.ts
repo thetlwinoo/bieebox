@@ -11,6 +11,9 @@ export class ShopListComponent implements OnInit {
   @Input('carousel') carousel;
   @Input('grid') grid;
   @Input() stockItems: StockItem[];
+  @Input() total: number;
+  @Input() limit: number;
+  @Input() skip: number;
 
   numbers;
 

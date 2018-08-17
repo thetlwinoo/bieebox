@@ -23,10 +23,16 @@ export class ShopComponent implements OnInit {
   servicesandpromotions: any;
   condition: any;
   tags: any;
-  numbers;
+  numbers: number[];
   grid: boolean = true;
+  key: string;
+  last: number;
 
   searchQuery$: Observable<string>;
+  total$: Observable<number>;
+  limit$: Observable<number>;
+  skip$: Observable<number>;
+  last$: Observable<number>;
   stockItems$: Observable<StockItem[]>;
   loading$: Observable<boolean>;
   error$: Observable<string>;
@@ -43,7 +49,6 @@ export class ShopComponent implements OnInit {
     private _route: ActivatedRoute
   ) {
     this.carousel = carousel;
-    this.numbers = Array(20).fill(5);
 
     this.searchQuery$ = store.pipe(
       select(fromStockItems.getSearchQuery),
@@ -55,8 +60,43 @@ export class ShopComponent implements OnInit {
     this.condition = this._shopService.condition;
     this.tags = this._shopService.tags;
     this.stockItems$ = store.pipe(select(fromStockItems.getSearchResults));
+    this.total$ = store.pipe(select(fromStockItems.getSearchTotal));
+    this.limit$ = store.pipe(select(fromStockItems.getSearchLimit));
+    this.skip$ = store.pipe(select(fromStockItems.getSearchSkip));
+    this.last$ = store.pipe(select(fromStockItems.getSearchLast));
     this.loading$ = store.pipe(select(fromStockItems.getSearchLoading));
     this.error$ = store.pipe(select(fromStockItems.getSearchError));
+
+    this.last$.subscribe(last => {      
+      this.skip$.subscribe(skip => {
+        this.numbers = [];
+        if (last > 5 && skip < 5)
+          switch (skip) {
+            case 0:
+            case 1:
+              this.numbers = [3, 4, 5];
+              break;
+            case 2:
+            case 3:
+              this.numbers = [3, 4, 5, 6];
+              break;
+            case 4:
+              this.numbers = [3, 4, 5, 6, 7];
+              break;
+            default:
+              this.numbers = [3, 4, 5];
+              break;
+          }
+        else if (last > 5 && skip + 3 <= last) {
+          this.numbers = [];
+          for (var i = skip - 2; i <= skip + 2; i++) {
+            this.numbers.push(i + 1);
+          }
+        }
+      });
+
+      console.log(this.numbers)
+    })
   }
 
   ngOnInit() {
@@ -71,13 +111,12 @@ export class ShopComponent implements OnInit {
 
     this.keysearch.subscribe(key => {
       const _key = (key === 'None') ? '' : key;
-      console.log('Key',_key)
+      this.key = _key;
+
       this.search({
         $limit: 20,
         $skip: 0,
-        query: {
-          key: _key
-        }
+        key: _key
       });
     });
   }
@@ -92,5 +131,13 @@ export class ShopComponent implements OnInit {
 
   search(query: any) {
     this.store.dispatch(new StockItemActions.Search(query));
+  }
+
+  onSetPage(event) {
+    this.search({
+      $limit: 20,
+      $skip: event,
+      key: this.key
+    });
   }
 }

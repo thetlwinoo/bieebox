@@ -5,6 +5,10 @@ export interface State {
   loading: boolean;
   error: string;
   query: string;
+  total: number;
+  limit: number;
+  skip: number;
+  last: number;
 }
 
 const initialState: State = {
@@ -12,6 +16,10 @@ const initialState: State = {
   loading: false,
   error: '',
   query: '',
+  total: 0,
+  limit: 10,
+  skip: 0,
+  last: 0
 };
 
 export function reducer(state = initialState, action: StockItemActionsUnion): State {
@@ -25,6 +33,10 @@ export function reducer(state = initialState, action: StockItemActionsUnion): St
           loading: false,
           error: '',
           query,
+          total: 0,
+          limit: 10,
+          skip: 0,
+          last: 0
         };
       }
 
@@ -32,16 +44,20 @@ export function reducer(state = initialState, action: StockItemActionsUnion): St
         ...state,
         loading: true,
         error: '',
-        query,
+        query
       };
     }
 
     case StockItemActionTypes.SearchComplete: {
       return {
-        ids: action.payload.map(stockItem => stockItem.id),
+        ids: action.payload.data.map(stockItem => stockItem.id),
         loading: false,
         error: '',
         query: state.query,
+        total: action.payload.total,
+        limit: action.payload.limit,
+        skip: action.payload.skip,
+        last: Math.ceil( action.payload.total/action.payload.limit)
       };
     }
 
@@ -66,3 +82,11 @@ export const getQuery = (state: State) => state.query;
 export const getLoading = (state: State) => state.loading;
 
 export const getError = (state: State) => state.error;
+
+export const getTotal = (state: State) => state.total;
+
+export const getLimit = (state: State) => state.limit;
+
+export const getSkip = (state: State) => state.skip;
+
+export const getLast = (state: State) => state.last;

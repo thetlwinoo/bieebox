@@ -1,24 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { carousel } from '@box/carousel';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import * as fromStockItem from '@store/stock-items/reducers';
+import * as StockItemActions from '@store/stock-items/actions/stock-item.actions';
 
 @Component({
   selector: 'app-shop-detail',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './shop-detail.component.html',
   styleUrls: ['./shop-detail.component.scss']
 })
-export class ShopDetailComponent implements OnInit {
-  carousel: any;
-  selectedGalleryImage: any;
-
-  constructor() { 
-    this.carousel = carousel;
-    this.selectedGalleryImage = this.carousel.gallery.slides[0];
+export class ShopDetailComponent implements OnInit, OnDestroy {
+  actionsSubscription: Subscription;
+  constructor(
+    store: Store<fromStockItem.State>,
+    route: ActivatedRoute
+  ) {
+    this.actionsSubscription = route.params
+      .pipe(map(params => new StockItemActions.Select(params.id)))
+      .subscribe(store);
   }
 
   ngOnInit() {
   }
-  
-  onSelectGalleryImage(event){
-    this.selectedGalleryImage = event;
+
+  ngOnDestroy() {
+    this.actionsSubscription.unsubscribe();
   }
 }

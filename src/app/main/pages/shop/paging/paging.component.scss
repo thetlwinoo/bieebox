@@ -1,0 +1,57 @@
+:host {
+    .box-page-controller {
+        margin: 2rem 0 6rem;
+        display: flex;
+        justify-content: center;
+
+        > button {
+            text-transform: none;
+            font: inherit;
+
+            &.box-icon-button {
+                color: rgba(0, 0, 0, 0.4);
+                min-width: 4rem;
+                height: 3rem;
+                border: none;
+
+                &.box-button-left {
+                    text-align: right;
+                    margin-right: 1.5rem;
+                }
+
+                &.box-button-right {
+                    text-align: left;
+                    margin-left: 1.5rem;
+                }
+            }
+
+            &.box-button-solid {
+                color: #fff;
+                padding: 0;
+                min-width: 4rem;
+                text-align: center;
+                height: 3rem;
+                font-size: 2rem;
+                margin-left: 1.5rem;
+                margin-right: 1.5rem;
+
+                &.active {
+                    background: #ff5722;
+                }
+            }
+
+            &.box-button-no-outline {
+                background-color: transparent;
+                border: none;
+                color: rgba(0, 0, 0, 0.4);
+                padding: 0;
+                min-width: 4rem;
+                text-align: center;
+                height: 3rem;
+                font-size: 2rem;
+                margin-left: 1.5rem;
+                margin-right: 1.5rem;
+            }
+        }
+    }
+}

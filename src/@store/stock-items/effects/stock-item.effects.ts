@@ -45,7 +45,7 @@ export class StockItemEffects {
 
             return this.stockItemService.stockItems$(query).pipe(
                 takeUntil(nextSearch$),
-                map((stockItems: StockItem[]) => new SearchComplete(stockItems)),
+                map((paged: any) => new SearchComplete(paged)),
                 catchError(err => of(new SearchError(err)))
             );
         })

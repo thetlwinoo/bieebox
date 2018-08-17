@@ -1,0 +1,15 @@
+<div class="box-page-controller" *ngIf="last>0">
+    <button class="box-icon-button box-button-left" (click)="setPage.emit(skip-1);" [disabled]="last <= 0 || skip <= 0">
+        <mat-icon>chevron_left</mat-icon>
+    </button>
+    <button [ngClass]="(skip+1) == 1?'box-button-solid':'box-button-no-outline'" [class.active]="(skip+1) == 1" (click)="setPage.emit(0);">1</button>
+    <button [ngClass]="(skip+1) == 2?'box-button-solid':'box-button-no-outline'" [class.active]="(skip+1) == 2" (click)="setPage.emit(1);"
+        *ngIf="last>1">2</button>
+    <button class="box-button-no-outline box-button-non-click" disabled *ngIf="skip>=5">...</button>
+    <button [ngClass]="(skip+1) == x?'box-button-solid':'box-button-no-outline'" [class.active]="(skip+1) == x" (click)="setPage.emit(x-1);"
+        *ngFor="let x of numbers">{{x}}</button>
+    <button class="box-button-no-outline box-button-non-click" disabled *ngIf="skip+3 < last ">...</button>
+    <button class="box-icon-button box-button-right" (click)="setPage.emit(skip+1);" [disabled]="last <= 0 || (skip+1) >= last">
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+</div>

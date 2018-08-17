@@ -21,7 +21,7 @@ export function reducer(
 ): State {
     switch (action.type) {
         case StockItemActionTypes.SearchComplete: {
-            return adapter.addMany(action.payload, {
+            return adapter.addMany(action.payload.data, {
                 ...state,
                 selectedStockItemId: state.selectedStockItemId,
             });

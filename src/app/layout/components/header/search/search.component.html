@@ -4,7 +4,8 @@
             <input #boxsearch class="box-searchbar-input__input" maxlength="128" placeholder="Search for products, brands and shops" autocomplete="off"
                 (focus)="onFocus($event)" (focusout)="onFocusOut($event)" [value]="query" (keyup)="search.emit($event.target.value)">
         </form>
-        <div class="box-popover" [class.active]="onfocus && url !== '/pages/shop'">
+        <!-- && url !== '/pages/shop' -->
+        <div class="box-popover" [class.active]="onfocus"> 
             <div class="box-searchbar-hints">
                 <div class="box-searchbar-hints__header">
                   <div class="box-searchbar-hints_wrapper">

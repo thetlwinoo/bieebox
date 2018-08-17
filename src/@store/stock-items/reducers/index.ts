@@ -77,3 +77,23 @@ export const getSearchResults = createSelector(
         return searchIds.map(id => stockItems[id]);
     }
 );
+
+export const getSearchTotal = createSelector(
+    getSearchState,
+    fromSearch.getTotal
+);
+
+export const getSearchLimit = createSelector(
+    getSearchState,
+    fromSearch.getLimit
+);
+
+export const getSearchSkip = createSelector(
+    getSearchState,
+    fromSearch.getSkip
+);
+
+export const getSearchLast = createSelector(
+    getSearchState,
+    fromSearch.getLast
+);
