@@ -6,6 +6,7 @@ import { HtmlToPlaintextPipe } from './htmlToPlaintext.pipe';
 import { FilterPipe } from './filter.pipe';
 import { CamelCaseToDashPipe } from './camelCaseToDash.pipe';
 import { EllipsisPipe } from './ellipsis.pipe';
+import { AddCommasPipe } from './add-commas.pipe';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { EllipsisPipe } from './ellipsis.pipe';
         HtmlToPlaintextPipe,
         FilterPipe,
         CamelCaseToDashPipe,
-        EllipsisPipe
+        EllipsisPipe,
+        AddCommasPipe
     ],
     imports     : [],
     exports     : [
@@ -23,7 +25,8 @@ import { EllipsisPipe } from './ellipsis.pipe';
         HtmlToPlaintextPipe,
         FilterPipe,
         CamelCaseToDashPipe,
-        EllipsisPipe
+        EllipsisPipe,
+        AddCommasPipe
     ]
 })
 export class BoxPipesModule

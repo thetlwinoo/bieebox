@@ -7,7 +7,7 @@ import { OwlCarousel } from 'ngx-owl-carousel';
   styleUrls: ['./related-products.component.scss']
 })
 export class RelatedProductsComponent implements OnInit {
-  @Input() products;
+  @Input() relatedItems;
   @Input() carousel;
   @Input() searching = false;
   @Input() error = '';

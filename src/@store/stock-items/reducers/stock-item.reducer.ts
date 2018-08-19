@@ -7,7 +7,7 @@ export interface State extends EntityState<StockItem> {
 }
 
 export const adapter: EntityAdapter<StockItem> = createEntityAdapter<StockItem>({
-    selectId: (stockItem: StockItem) => stockItem.id,
+    selectId: (stockItem: any) => stockItem._id,
     sortComparer: false,
 });
 

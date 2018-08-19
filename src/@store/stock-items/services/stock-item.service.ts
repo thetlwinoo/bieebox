@@ -72,6 +72,13 @@ export class StockItemsService implements Resolve<any> {
       });
   }
 
+  stockItem$(id): Observable<any> {
+    return (<any>this.feathers
+      .service('warehouse/stock-items'))
+      .watch()
+      .get(id);
+  }
+
   deleteStockItem$(id) {
     if (id === '') {
       return;

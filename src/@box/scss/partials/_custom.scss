@@ -20,6 +20,11 @@
     }
 }
 
+// .ngxImageZoomContainer ,.ngxImageZoomContainer > img{
+//     max-width: 570px !important;
+//     max-height: 570px !important;
+// }
+
 .box-icon-button, .box-button-no-outline{
     outline: none;
     cursor: pointer;
@@ -8867,7 +8872,8 @@ h4.shop-sidebar-title {
     background-color: #0363cd;
     border-radius: 3px;
     color: #fff;
-    left: 30px;
+    // left: 30px;
+    left: 57px;
     line-height: 1;
     padding: 6px 14px 5px;
     position: absolute;

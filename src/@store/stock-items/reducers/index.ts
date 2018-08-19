@@ -97,3 +97,13 @@ export const getSearchLast = createSelector(
     getSearchState,
     fromSearch.getLast
 );
+
+
+export const getSelectedId = createSelector(
+    getSelectedStockItemId,
+    (selectedId) => {
+       console.log('GetS',selectedId)
+
+       return selectedId;
+    }
+);

@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
   onFocusOut(event) {
     setTimeout(() => {
       this.onfocus = false;
-    }, 100);
+    }, 150);
 
   }
 

@@ -11,7 +11,7 @@
               </a>
             </div>
           </ngx-slick-carousel> -->
-                    <a routerLink="/pages/shop" routerLinkActive="active">
+                    <a [routerLink]="['/pages/shop',stockItem._id]" routerLinkActive="active">
                         <img src="{{ stockItem.gravatar }}" alt="" *ngIf="stockItem.gravatar else noimage">
                         <ng-template #noimage>
                             <img src="assets/devita/img/no_photo.jpg" alt="no image preview">
@@ -24,7 +24,7 @@
                         <div class="product-content text-center">
                             <span>Remote, Accessories</span>
                             <h4>
-                                <a routerLink="/pages/shop" routerLinkActive="active">Phantom Remote Control Ver 2018</a>
+                                <a [routerLink]="['/pages/shop',stockItem._id]" routerLinkActive="active">Phantom Remote Control Ver 2018</a>
                             </h4>
                             <div class="product-price-wrapper">
                                 <span>$260.00</span>

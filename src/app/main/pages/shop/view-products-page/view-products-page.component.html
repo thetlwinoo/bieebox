@@ -1,0 +1,87 @@
+<div class="page-layout blank">
+    <div class="container">
+      <div class="page-layout simple left-sidebar">
+        <box-sidebar class="sidebar" name="simple-left-sidebar-2" position="left" lockedOpen="gt-md">
+          <div class="content">
+            <div class="shop-sidebar-wrapper gray-bg-7">
+              <div class="shop-widget">
+                <h4>Shop By Categories</h4>
+                <div class="shop-catigory">
+                  <!-- <tree-node [treenodes]="categories"></tree-node> -->
+                  <tree-view [navigation]="categories | slice:0:1"></tree-view>
+                </div>
+              </div>
+              <div class="shop-price-filter mt-10 shop-sidebar-border pt-10">
+                <h4>Price Filter</h4>
+                <div class="price_filter mt-10">
+                  <div class="horizontal-wrapper">
+                    <div class="horizontal-spacer">
+                      <span>min</span>
+                    </div>
+                    <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" min="1" max="1000"></mat-slider>
+                    <span>$1</span>
+                  </div>
+                  <div class="horizontal-wrapper">
+                    <div class="horizontal-spacer">
+                      <span>max</span>
+                    </div>
+                    <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1000" min="1" max="1000"></mat-slider>
+                    <span>$1000</span>
+                  </div>
+                </div>
+              </div>
+              <div class="shop-widget mt-10 shop-sidebar-border pt-10">
+                <h4>Services and Promotions</h4>
+                <div class="sidebar-list-style mt-20">
+                  <ul>
+                    <li *ngFor="let item of servicesandpromotions;let i = index">
+                      <mat-checkbox>{{item.title}}</mat-checkbox>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="shop-widget mt-10 shop-sidebar-border pt-10">
+                <h4>condition</h4>
+                <div class="sidebar-list-style mt-20">
+                  <ul>
+                    <li *ngFor="let item of condition;let i = index">
+                      <mat-checkbox>{{item.title}}</mat-checkbox>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="shop-widget mt-10 shop-sidebar-border pt-10">
+                <h4>Popular Tags</h4>
+                <div class="mt-25">
+                  <div class="button-row">
+                    <button mat-stroked-button color="primary" *ngFor="let item of tags;let i = index">{{item.title}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </box-sidebar>
+        <div class="center" boxPerfectScrollbar>
+          <div class="header header-light-grey p-12" fxLayout="row" fxLayoutAlign="start center">
+  
+            <button mat-icon-button class="sidebar-toggle mr-8" fxHide.gt-md (click)="toggleSidebar('simple-left-sidebar-2')">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <controller [total]="total$ | async" [limit]="limit$ | async" [skip]="skip$ | async" (setPage)="onSetPage($event)"></controller>
+          </div>
+          <div class="content">
+            <div class="horizontal-wrapper" *ngIf="key?.length>0">
+              <div class="horizontal-spacer">
+                <h4>Search related to &#34;
+                  <span>{{key}}</span>&#34;</h4>
+              </div>
+            </div>
+            <product-list [stockItems]="stockItems$ | async"></product-list>
+            <paging [total]="total$ | async" [limit]="limit$ | async" [skip]="skip$ | async" [last]="last$ | async" [numbers]="numbers"
+              (setPage)="onSetPage($event)" fxHide fxShow.gt-md></paging>
+          </div>
+        </div>
+      </div>
+    </div>
+    <brand [carousel]="carousel"></brand>
+  </div>

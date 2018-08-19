@@ -3,11 +3,12 @@ import { StockItemActionsUnion } from '@store/stock-items/actions/stock-item.act
 import { StockItem } from '@store/models/stock-item.model';
 
 @Component({
-  selector: 'shop-list',
-  templateUrl: './shop-list.component.html',
-  styleUrls: ['./shop-list.component.scss']
+  selector: 'product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss']
 })
-export class ShopListComponent implements OnInit {
+export class ProductListComponent implements OnInit {
+
   @Input('carousel') carousel;
   @Input('grid') grid;
   @Input() stockItems: StockItem[];
