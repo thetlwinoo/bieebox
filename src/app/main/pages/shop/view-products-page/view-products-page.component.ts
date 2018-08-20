@@ -8,7 +8,7 @@ import { take } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import * as StockItemActions from '@store/stock-items/actions/stock-item.actions';
-import { StockItem } from '@store/models/stock-item.model';
+import { StockItem } from '@box/models';
 import * as fromStockItems from '@store/stock-items/reducers';
 
 import { ShopService } from '../shop.service';

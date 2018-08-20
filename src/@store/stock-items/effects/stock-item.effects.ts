@@ -18,7 +18,7 @@ import {
     SearchComplete,
     SearchError,
 } from '../actions/stock-item.actions';
-import { StockItem } from '@store/models/stock-item.model';
+import { StockItem } from '@box/models';
 import { Scheduler } from 'rxjs/internal/Scheduler';
 
 export const SEARCH_DEBOUNCE = new InjectionToken<number>('Search Debounce');

@@ -6,10 +6,13 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import * as StockItemActions from '@store/stock-items/actions/stock-item.actions';
-import { StockItem } from '@store/models/stock-item.model';
+import { StockItem } from '@box/models';
 import * as fromStockItems from '@store/stock-items/reducers';
 
 import { HomeService } from './home.service';
+
+import { SnackBarService } from '@box/services/snackbar.service';
+// import { ToastOptions, ToastyService, ToastyConfig } from "ng2-toasty";
 
 export interface Tile {
   color: string;
@@ -50,6 +53,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private store: Store<fromStockItems.State>,
     private _homeService: HomeService,
+    private snack: SnackBarService
+    // private toastyService: ToastyService,
   ) {
     this.carousel = carousel;
     // this.searchQuery$ = store.pipe(
@@ -80,5 +85,28 @@ export class HomeComponent implements OnInit {
 
   search(query: any) {
     this.store.dispatch(new StockItemActions.Search(query));
+  }
+
+  // test(){
+  //   const toastOption: ToastOptions = {
+  //     title: "Adding Product to Cart",
+  //     msg: "Product Adding to the cart",
+  //     showClose: true,
+  //     timeout: 1000,
+  //     theme: "material"
+  // };
+  // this.toastyService.wait(toastOption);
+
+  // setTimeout(() => {
+
+  // }, 500);
+  // }  
+
+  sendMessage(message: string): void {
+    this.snack.sendMessage(message);
+  }
+
+  clearMessage(): void {
+    this.snack.clearMessage();
   }
 }

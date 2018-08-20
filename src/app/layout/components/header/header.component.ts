@@ -1,17 +1,23 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
-import { Router, NavigationEnd, ActivatedRouteSnapshot, CanActivate , NavigationExtras} from '@angular/router';
+import { Router, NavigationEnd, ActivatedRouteSnapshot, CanActivate, NavigationExtras } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import * as KeywordActions from '@store/keywords/actions/keyword.actions';
 import * as fromKeywords from '@store/keywords/reducers';
 
+import * as fromRoot from '../../../reducers';
+import * as fromCheckout from '@store/checkout/reducers';
+import * as cart from '@store/checkout/actions/cart';
+import { StockItem, ShoppingCart, ICartItemWithProduct } from '@box/models';
+
 import { HeaderService } from './header.service';
 
 @Component({
     selector: 'header',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
     encapsulation: ViewEncapsulation.None
@@ -25,10 +31,14 @@ export class HeaderComponent implements OnDestroy {
     loading$: Observable<boolean>;
     error$: Observable<string>;
 
+    cart$: Observable<ShoppingCart>;
+    itemCount$: Observable<number>;
+
     private _unsubscribeAll: Subject<any>;
 
     constructor(
-        private store: Store<fromKeywords.State>,
+        // private keywordStore: Store<fromKeywords.State>,
+        private store: Store<fromRoot.State>,
         private _headerService: HeaderService,
         private _router: Router
     ) {
@@ -41,6 +51,9 @@ export class HeaderComponent implements OnDestroy {
         this.keywords$ = store.pipe(select(fromKeywords.getSearchResults));
         this.loading$ = store.pipe(select(fromKeywords.getSearchLoading));
         this.error$ = store.pipe(select(fromKeywords.getSearchError));
+
+        this.cart$ = store.pipe(select(fromCheckout.getCart));
+        this.itemCount$ = store.pipe(select(fromCheckout.getCartItemCount));
 
         this._unsubscribeAll = new Subject();
 

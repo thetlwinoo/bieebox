@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { StockItem } from '@store/models/stock-item.model';
+import { StockItem } from '@box/models';
 import { carousel } from '@box/carousel';
 import { PhotoService } from '@store/services/photo.service';
 

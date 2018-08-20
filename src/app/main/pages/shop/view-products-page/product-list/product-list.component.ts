@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StockItemActionsUnion } from '@store/stock-items/actions/stock-item.actions';
-import { StockItem } from '@store/models/stock-item.model';
+import { StockItem } from '@box/models';
 
 @Component({
   selector: 'product-list',

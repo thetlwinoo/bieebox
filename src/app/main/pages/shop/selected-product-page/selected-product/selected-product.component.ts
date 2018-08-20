@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { StockItem } from '@store/models/stock-item.model';
+import { StockItem } from '@box/models';
 import * as fromStockItem from '@store/stock-items/reducers';
 import * as StockItemActions from '@store/stock-items/actions/stock-item.actions';
 

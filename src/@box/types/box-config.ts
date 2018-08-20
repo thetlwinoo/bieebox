@@ -52,4 +52,8 @@ export interface BoxConfig
         }
     };
     customScrollbars: boolean;
+    distributorId: string;
+    paypalId: string;
+    googleWalletId: string;
+    stripeId: string;
 }

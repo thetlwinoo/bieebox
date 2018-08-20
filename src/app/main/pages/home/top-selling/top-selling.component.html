@@ -17,7 +17,7 @@
           <owl-carousel #owlTopSellingProducts class="top-selling-slider" [options]="carousel.popular.options" [items]="images"
             [carouselClasses]="['owl-theme']">
             <div class="card" *ngFor="let item of stockItems | slice:0:10">
-              <a [routerLink]="['/pages/shop',item._id]" routerLinkActive="active">
+              <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
                 <div #productcard class="card-preview">
                   <product-card [stockItem]="item"></product-card>
                 </div>

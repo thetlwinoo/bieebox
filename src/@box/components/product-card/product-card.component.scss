@@ -170,6 +170,7 @@ product-card {
             }
 
             .mat-list {
+                z-index: 100;
                 .mat-list-item, .mat-divider {
                     -webkit-transition: all 0.5s ease 0s;
                     -o-transition: all 0.5s ease 0s;
@@ -186,6 +187,13 @@ product-card {
                         > i {
                             margin: auto;
                         }
+                    }
+                }
+
+                .mat-list-item {
+                    &.disabled {
+                        pointer-events: none;
+                        cursor: default;
                     }
                 }
             }

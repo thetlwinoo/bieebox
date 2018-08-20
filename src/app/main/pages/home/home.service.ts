@@ -9,11 +9,12 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from 'environments/environment';
 import { Feathers } from '@store/services/feathers.service';
+import { StockItem } from '@box/models';
 
 @Injectable()
 export class HomeService implements Resolve<any> {
 
-  stockItems: any[];
+  stockItems: StockItem[];
   categories: any[];
   bannerCategories: any[];
   brands: any[];
@@ -51,11 +52,15 @@ export class HomeService implements Resolve<any> {
   }
 
   getStockItems(query): Promise<any> {
+    // this.stockItems = [];
     return new Promise((resolve, reject) => {
       this.stockItems$(query)
         .subscribe((response: any) => {
+          // response.forEach(element => {
+          //   const _stockItem = new StockItem(element);
+          //   this.stockItems.push(_stockItem);
+          // });
           this.stockItems = response;
-          console.log(response)
           this.onStockItemsChanged.next(this.stockItems);
           resolve(response);
         }, reject);
@@ -63,14 +68,6 @@ export class HomeService implements Resolve<any> {
   }
 
   getCategories(query): Promise<any> {
-    // return new Promise((resolve, reject) => {
-    //   this.categories$(query)
-    //     .subscribe((response: any) => {
-    //       console.log(response)
-    //       this.categories = response;
-    //       resolve(response);
-    //     }, reject);
-    // });
     return new Promise((resolve, reject) => {
       this.http.get('api/categories')
         .subscribe((response: any) => {
@@ -108,7 +105,14 @@ export class HomeService implements Resolve<any> {
       .find({
         query: query
       })
-      .map(d => d.data);
+      .map(d => {
+        const _list: StockItem[] = [];    
+        d.data.forEach(element => {
+          const _stockItem = new StockItem(element);
+          _list.push(_stockItem);
+        });
+        return _list;
+      });
   }
 
   categories$(query): Observable<any[]> {
@@ -117,5 +121,5 @@ export class HomeService implements Resolve<any> {
       .watch()
       .find()
       .map(d => d.data);
-  }  
+  }
 }

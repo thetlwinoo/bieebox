@@ -4,6 +4,10 @@ import { MatIconModule, MatButtonModule, MatListModule, MatTooltipModule } from 
 import { ProductCardComponent } from './product-card.component';
 import { ProductCardDirective } from './product-card.directive';
 import { BoxPipesModule } from '@box/pipes/pipes.module';
+// import { ShoppingCartService } from "@box/services/cart.service";
+// import { StorageService, LocalStorageService } from "@box/services/storage.service";
+import { CheckoutModule } from '@store/checkout/checkout.module';
+
 
 @NgModule({
     declarations: [
@@ -12,16 +16,17 @@ import { BoxPipesModule } from '@box/pipes/pipes.module';
     ],
     imports: [
         CommonModule,
+        CheckoutModule,
         MatIconModule,
         MatButtonModule,
         MatListModule,
         MatTooltipModule,
-        BoxPipesModule
+        BoxPipesModule,        
     ],
     exports: [
         ProductCardComponent,
         ProductCardDirective
-    ],
+    ]
 })
 export class ProductCardModule {
 }

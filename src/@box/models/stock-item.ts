@@ -72,5 +72,7 @@ export class StockItem {
         this.lastEditedBy = stockItem.lastEditedBy || '';
         this.validFrom = stockItem.validFrom || new Date('2018-01-01 00:00:00.0000000');
         this.validTo = stockItem.validTo || new Date('9999-12-31 23:59:59.9999999');
+
+        delete stockItem._id;
     }
 }

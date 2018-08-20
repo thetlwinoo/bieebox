@@ -60,5 +60,9 @@ export const boxConfig: BoxConfig = {
             position: 'right'
         }
     },
-    customScrollbars: true
+    customScrollbars: true,
+    distributorId: 'bieebox',
+    paypalId: 'bieebox@gmail.com',
+    googleWalletId: 'GOOGLE_WALLET_ID',
+    stripeId: 'STRIPE_ID'
 };

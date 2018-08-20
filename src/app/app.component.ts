@@ -13,16 +13,23 @@ import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
 
+import * as fromRoot from './reducers';
+import * as cart from '@store/checkout/actions/cart';
+import { Store } from '@ngrx/store';
+
+import { SnackBarService } from '@box/services/snackbar.service';
+import { Subscription } from 'rxjs/Subscription';
+import { MatSnackBar } from '@angular/material';
+
 @Component({
-    selector   : 'app',
+    selector: 'app',
     templateUrl: './app.component.html',
-    styleUrls  : ['./app.component.scss']
+    styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy
-{
+export class AppComponent implements OnInit, OnDestroy {
     navigation: any;
     boxConfig: any;
-
+    snackSub: Subscription;
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -42,9 +49,17 @@ export class AppComponent implements OnInit, OnDestroy
         private _boxSidebarService: BoxSidebarService,
         private _boxSplashScreenService: BoxSplashScreenService,
         private _boxTranslationLoaderService: BoxTranslationLoaderService,
-        private _translateService: TranslateService
-    )
-    {
+        private _translateService: TranslateService,
+        public store: Store<fromRoot.State>,
+        private snack: SnackBarService,
+        private snackBar: MatSnackBar,
+    ) {
+        this.snackSub = this.snack.getMessage().subscribe(message => {
+            this.snackBar.open(message.text, "close", {
+                duration: 5000,
+            });
+        });
+
         // Get default navigation
         this.navigation = navigation;
 
@@ -66,6 +81,8 @@ export class AppComponent implements OnInit, OnDestroy
         // Use a language
         this._translateService.use('en');
 
+        this.store.dispatch(new cart.LoadCart);
+
         // Set the private defaults
         this._unsubscribeAll = new Subject();
     }
@@ -77,8 +94,7 @@ export class AppComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Subscribe to config changes
         this._boxConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -90,11 +106,11 @@ export class AppComponent implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
+        this.snackSub.unsubscribe();
         this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
+        this._unsubscribeAll.complete();        
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -106,8 +122,7 @@ export class AppComponent implements OnInit, OnDestroy
      *
      * @param key
      */
-    toggleSidebarOpen(key): void
-    {
+    toggleSidebarOpen(key): void {
         this._boxSidebarService.getSidebar(key).toggleOpen();
     }
 }

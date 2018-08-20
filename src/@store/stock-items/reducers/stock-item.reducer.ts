@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { StockItem } from '@store/models/stock-item.model';
+import { StockItem } from '@box/models';
 import { StockItemActionsUnion, StockItemActionTypes } from '../actions/stock-item.actions';
 
 export interface State extends EntityState<StockItem> {
@@ -7,7 +7,7 @@ export interface State extends EntityState<StockItem> {
 }
 
 export const adapter: EntityAdapter<StockItem> = createEntityAdapter<StockItem>({
-    selectId: (stockItem: any) => stockItem._id,
+    selectId: (stockItem: any) => stockItem.id,
     sortComparer: false,
 });
 

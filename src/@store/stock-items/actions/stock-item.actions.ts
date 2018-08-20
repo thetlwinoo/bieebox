@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { StockItem } from '@store/models/stock-item.model';
+import { StockItem } from '@box/models';
 
 export enum StockItemActionTypes {
     Search = '[StockItem] Search',

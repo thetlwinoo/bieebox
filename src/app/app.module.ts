@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatSnackBarModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
@@ -29,7 +29,7 @@ import {
     RouterStateSerializer,
 } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
+import { SnackBarService } from '@box/services/snackbar.service';
 import { reducers, metaReducers } from './reducers';
 
 const appRoutes: Routes = [
@@ -72,7 +72,7 @@ const appRoutes: Routes = [
         // Material
         MatButtonModule,
         MatIconModule,
-
+        MatSnackBarModule,
         // Box modules
         BoxModule.forRoot(boxConfig),
         BoxSharedModule,
@@ -85,6 +85,9 @@ const appRoutes: Routes = [
     ],
     bootstrap   : [
         AppComponent
+    ],
+    providers:[
+        SnackBarService
     ]
 })
 export class AppModule

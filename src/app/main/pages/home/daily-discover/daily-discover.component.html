@@ -12,7 +12,7 @@
             <div class="content">
                 <div class="cards">
                     <div class="card" *ngFor="let item of stockItems | slice:0:18">
-                        <a [routerLink]="['/pages/shop',item._id]" routerLinkActive="active">
+                        <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
                             <div #productcard class="card-preview">
                                 <product-card [stockItem]="item"></product-card>                                
                             </div>

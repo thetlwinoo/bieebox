@@ -19,7 +19,7 @@
             <div class="best-selling-bundle" *ngFor="let _bundle of bundles;let i = index">
               <div class="best-selling-pro-wrapper mb-20" *ngFor="let _stockItem of _bundle;let i = index">
                 <div class="product-img">
-                  <a [routerLink]="['/pages/shop',_stockItem._id]" routerLinkActive="active">
+                  <a [routerLink]="['/pages/shop',_stockItem.id]" routerLinkActive="active">
                     <img alt="" src="{{_stockItem.gravatar}}">
                   </a>
                   <span>-10%</span>
@@ -27,7 +27,7 @@
                 <div class="product-content best-pro-content">
                   <span>Joy Stick, Accessories</span>
                   <h4>
-                    <a [routerLink]="['/pages/shop',_stockItem._id]" routerLinkActive="active">Phantom Remote Control Ver 2018</a>
+                    <a [routerLink]="['/pages/shop',_stockItem.id]" routerLinkActive="active">Phantom Remote Control Ver 2018</a>
                   </h4>
                   <div class="product-price-wrapper">
                     <span>$260.00</span>

@@ -7,7 +7,7 @@ import { catchError, filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { StockItemsService } from '../services/stock-item.service';
 import * as StockItemActions from '../actions/stock-item.actions';
 import * as fromStockItems from '../reducers';
-import { StockItem } from '@store/models/stock-item.model'
+import { StockItem } from '@box/models';
 
 @Injectable()
 export class StockItemExistsGuard implements CanActivate {

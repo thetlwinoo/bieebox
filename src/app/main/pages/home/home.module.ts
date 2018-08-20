@@ -5,7 +5,6 @@ import { BoxSharedModule } from '@box/shared.module';
 import { BrandModule } from '@box/components/brand/brand.module';
 import { BoxCountdownModule } from '@box/components/countdown/countdown.module';
 import { MatGridListModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/material';
-
 import { StockItemsModule } from '@store/stock-items/stock-items.module';
 import { HomeComponent } from './home.component';
 import { OwlModule } from 'ngx-owl-carousel';
@@ -21,6 +20,7 @@ import { DailyDiscoverComponent } from './daily-discover/daily-discover.componen
 import { PopularProductsComponent } from './popular-products/popular-products.component';
 import { FlashDealsComponent } from './flash-deals/flash-deals.component';
 import { BrandZoneComponent } from './brand-zone/brand-zone.component';
+// import { ToastyModule } from "ng2-toasty";
 
 const routes = [
   {
@@ -60,7 +60,8 @@ const routes = [
     MatIconModule,
     MatButtonModule,
     SlickCarouselModule,
-    BoxSharedModule
+    BoxSharedModule,
+    // ToastyModule.forRoot(),
   ],
   exports: [
     HomeComponent
