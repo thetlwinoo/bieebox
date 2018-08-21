@@ -36,6 +36,7 @@ export class HeaderService implements Resolve<any> {
       this.http.get('api/default_keywords')
         .subscribe((response: any) => {
           this.defaultKeywords = response;
+          console.log('header',response)
           resolve(response);
         }, reject);
     });

@@ -8,6 +8,7 @@ import { BoxPipesModule } from '@box/pipes/pipes.module';
 // import { StorageService, LocalStorageService } from "@box/services/storage.service";
 import { CheckoutModule } from '@store/checkout/checkout.module';
 
+import { ShoppingCartModule } from 'ng-shopping-cart';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { CheckoutModule } from '@store/checkout/checkout.module';
         MatButtonModule,
         MatListModule,
         MatTooltipModule,
-        BoxPipesModule,        
+        BoxPipesModule,
+        ShoppingCartModule.forChild()        
     ],
     exports: [
         ProductCardComponent,

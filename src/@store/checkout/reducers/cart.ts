@@ -49,11 +49,11 @@ export function reducer(
         grossTotal: action.payload.grossTotal,
         itemsTotal: action.payload.itemsTotal,
         cartItems: action.payload.items.map((item) => {
-          const product = item.product;
+          const product = item.exclusiveItem;
           return {
             ...item,
             product,
-            totalCost: product.recommendedRetailPrice * item.quantity
+            totalCost: product.retailPrice * item.quantity
           };
         }),
         cartItemCount: action.payload.items.map((x) => x.quantity).reduce((p, n) => p + n, 0),

@@ -32,6 +32,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SnackBarService } from '@box/services/snackbar.service';
 import { reducers, metaReducers } from './reducers';
 
+import { ShoppingCartModule } from 'ng-shopping-cart';
+
 const appRoutes: Routes = [
     {
         path: 'pages',
@@ -47,11 +49,15 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes),        
+        InMemoryWebApiModule.forRoot(FakeDbService, {
+            delay: 0,
+            passThruUnknownUrl: true
+        }),  
+        RouterModule.forRoot(appRoutes),
         StoreModule.forRoot(reducers, { metaReducers }),
         StoreRouterConnectingModule.forRoot({
             stateKey: 'router',
@@ -61,11 +67,7 @@ const appRoutes: Routes = [
             logOnly: environment.production,
         }),
         EffectsModule.forRoot([]),
-        TranslateModule.forRoot(),
-        InMemoryWebApiModule.forRoot(FakeDbService, {
-            delay: 0,
-            passThruUnknownUrl: true
-        }),
+        TranslateModule.forRoot(),              
         // Material moment date module
         MatMomentDateModule,
 
@@ -81,15 +83,21 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        SampleModule
+        SampleModule,
+        ShoppingCartModule.forRoot({
+            serviceType: 'localStorage',
+            serviceOptions: {
+                storageKey: 'BieeBoxCart',
+                clearOnError: true
+            }
+        }),
     ],
-    bootstrap   : [
+    bootstrap: [
         AppComponent
     ],
-    providers:[
+    providers: [
         SnackBarService
     ]
 })
-export class AppModule
-{
+export class AppModule {
 }

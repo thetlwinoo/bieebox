@@ -9,7 +9,7 @@ import { HeaderComponent } from 'app/layout/components/header/header.component';
 import { SearchComponent } from './search/search.component';
 
 import { KeywordsModule } from '@store/keywords/keywords.module';
-import { CheckoutModule } from '@store/checkout/checkout.module';
+// import { CheckoutModule } from '@store/checkout/checkout.module';
 import { HeaderService } from './header.service';
 // import { CartService } from '@box/services/cart.service';
 
@@ -31,7 +31,7 @@ import { HeaderService } from './header.service';
         MatProgressSpinnerModule,
         BoxSharedModule,
         KeywordsModule,
-        CheckoutModule.forRoot()
+        // CheckoutModule.forRoot()        
     ],
     exports: [
         HeaderComponent

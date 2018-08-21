@@ -3,7 +3,7 @@ import { StorageService } from "./storage.service";
 import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
 import { DeliveryService } from "./delivery.service";
-import { StockItem, CartItem, ICartItemWithProduct, ShoppingCart, DeliveryOption } from '@box/models';
+import { StockItem, CartItem,  ICartItemWithProduct, ExclusiveCartItem, ShoppingCart, DeliveryOption } from '@box/models';
 import { environment } from 'environments/environment';
 
 const CART_KEY = "cart";
@@ -19,7 +19,7 @@ export class ShoppingCartService {
 
     public constructor(
         private storageService: StorageService,
-        private deliveryOptionsService: DeliveryService
+        private deliveryOptionsService: DeliveryService,
     ) {
         this.storage = this.storageService.get();
         // this.deliveryOptionsService.getDeliveryOptions({ $limit: 10 }).then(deliveryOptions => this.deliveryOptions = deliveryOptions);
@@ -38,15 +38,14 @@ export class ShoppingCartService {
         return this.subscriptionObservable;
     }
 
-    public addItem(product: StockItem, quantity: number, flat: boolean = false): Observable<StockItem> {
-        console.log('cart product',product)
+    public addItem(exclusiveItem: ExclusiveCartItem, quantity: number, flat: boolean = false): Observable<ExclusiveCartItem> {
         const cart = this.retrieve();
-        let item = cart.items.find((p) => p.productId === product.id);
+        let item = cart.items.find((p) => p.productId === exclusiveItem.id);
 
         if (item === undefined) {
             item = new CartItem();
-            item.productId = product.id;
-            item.product = product;
+            item.productId = exclusiveItem.id;
+            item.exclusiveItem = exclusiveItem;            
             cart.items.push(item);
         }
 
@@ -55,14 +54,14 @@ export class ShoppingCartService {
 
         cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
         if (cart.items.length === 0) {
-            cart.deliveryOptionId = undefined;
+            cart.deliveryOptionId = undefined;            
         }
 
         this.calculateCart(cart);
         this.save(cart);
         this.dispatch(cart);
 
-        return Observable.of(product);
+        return Observable.of(exclusiveItem);
     }
 
     public empty(): Observable<boolean> {
@@ -88,7 +87,7 @@ export class ShoppingCartService {
 
     private calculateCart(cart: ShoppingCart): void {
         cart.itemsTotal = cart.items
-            .map((item) => item.quantity * (item.product ? item.product.recommendedRetailPrice : 0))
+            .map((item) => item.quantity * (item.exclusiveItem ? item.exclusiveItem.retailPrice : 0))
             .reduce((previous, current) => previous + current, 0);
         cart.deliveryTotal = cart.deliveryOptionId ? this.deliveryOptions.find((x) => x.id === cart.deliveryOptionId).price : 0;
         cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
@@ -107,7 +106,13 @@ export class ShoppingCartService {
     }
 
     private save(cart: ShoppingCart): void {
-        this.storage.setItem(CART_KEY, JSON.stringify(cart));
+        try{
+            this.storage.setItem(CART_KEY, JSON.stringify(cart));
+        }
+        catch(err){
+            alert("cart exceeded the quota");
+            this.empty();
+        }
     }
 
     private dispatch(cart: ShoppingCart): void {
@@ -119,6 +124,5 @@ export class ShoppingCartService {
                     // we want all subscribers to get the update even if one errors.
                 }
             });
-    }
-
+    }   
 }

@@ -53,12 +53,23 @@ export class CartEffects {
         );
 
     @Effect()
+    removeCartItem$: Observable<Action> = this.actions$
+        .ofType<checkout.RemoveCartItem>(checkout.REMOVE_CART_ITEM)
+        .map((action: checkout.RemoveCartItem) => action.payload)
+        .switchMap(cartitem =>
+            this.shoppingCartService
+                .addItem(cartitem.exclusiveItem, -cartitem.quantity)
+                .map(() => new checkout.RemoveCartItemSuccess(cartitem))
+                .catch(error => of(new checkout.ErrorHandler(error)))
+        );
+
+    @Effect()
     constanttocart$: Observable<Action> = this.actions$
         .ofType<checkout.ConstantToCart>(checkout.CONSTANT_TO_CART)
         .map((action: checkout.ConstantToCart) => action.payload)
         .switchMap(productToCart =>
             this.shoppingCartService
-                .addItem(productToCart.product, +productToCart.quantity, true)
+                .addItem(productToCart.exclusiveItem, +productToCart.quantity, true)
                 .map((product) => new checkout.ConstantToCartSuccess(product))
                 .catch(error => of(new checkout.ErrorHandler(error)))
         );

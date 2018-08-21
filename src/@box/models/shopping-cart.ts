@@ -14,5 +14,6 @@ export class ShoppingCart {
     this.grossTotal = src.grossTotal;
     this.deliveryTotal = src.deliveryTotal;
     this.itemsTotal = src.itemsTotal;
+    this.cartString = src.cartString;
   }
 }

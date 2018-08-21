@@ -39,9 +39,9 @@ export class HomeService implements Resolve<any> {
           $limit: 20,
           $skip: 0
         }),
-        this.getCategories({ $limit: 15 }),
-        this.getBannerCategories({ $limit: 15 }),
-        this.getBrands({ $limit: 15 })
+        // this.getCategories({ $limit: 15 }),
+        // this.getBannerCategories({ $limit: 15 }),
+        // this.getBrands({ $limit: 15 })
       ]).then(
         () => {
           resolve();

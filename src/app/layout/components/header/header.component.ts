@@ -10,10 +10,13 @@ import * as fromKeywords from '@store/keywords/reducers';
 
 import * as fromRoot from '../../../reducers';
 import * as fromCheckout from '@store/checkout/reducers';
+import * as CartActions from '@store/checkout/actions/cart';
 import * as cart from '@store/checkout/actions/cart';
 import { StockItem, ShoppingCart, ICartItemWithProduct } from '@box/models';
 
 import { HeaderService } from './header.service';
+
+import { AddToCartPosition, AddToCartType, CartService, CartItem, BaseCartItem, LocaleFormat } from 'ng-shopping-cart';
 
 @Component({
     selector: 'header',
@@ -22,7 +25,7 @@ import { HeaderService } from './header.service';
     styleUrls: ['./header.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class HeaderComponent implements OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
     currentUrl: any;
     defaultKeywords: any;
 
@@ -36,11 +39,22 @@ export class HeaderComponent implements OnDestroy {
 
     private _unsubscribeAll: Subject<any>;
 
+    format: LocaleFormat;
+    empty = true;
+    items: CartItem[];
+    taxRate = 0;
+    tax = 0;
+    shipping = 0;
+    cost = 0;
+    totalCount = 0;
+    private _serviceSubscription: any;
+
     constructor(
         // private keywordStore: Store<fromKeywords.State>,
-        private store: Store<fromRoot.State>,
+        private store: Store<fromKeywords.State>,
         private _headerService: HeaderService,
-        private _router: Router
+        private _router: Router,
+        private cartService: CartService<any>
     ) {
 
         this.searchQuery$ = store.pipe(
@@ -52,8 +66,8 @@ export class HeaderComponent implements OnDestroy {
         this.loading$ = store.pipe(select(fromKeywords.getSearchLoading));
         this.error$ = store.pipe(select(fromKeywords.getSearchError));
 
-        this.cart$ = store.pipe(select(fromCheckout.getCart));
-        this.itemCount$ = store.pipe(select(fromCheckout.getCartItemCount));
+        // this.cart$ = store.pipe(select(fromCheckout.getCart));
+        // this.itemCount$ = store.pipe(select(fromCheckout.getCartItemCount));
 
         this._unsubscribeAll = new Subject();
 
@@ -67,10 +81,23 @@ export class HeaderComponent implements OnDestroy {
         this._headerService.getDefaultKeywords({ $limit: 20 }).then(keywords => this.defaultKeywords = keywords);
     }
 
+    ngOnInit() {
+        this.update();
+        this._serviceSubscription = this.cartService.onChange.subscribe(() => {
+            this.update();
+        });
+    }
+
     search(query: string) {
         this.store.dispatch(new KeywordActions.Search(query));
     }
 
+    removeCartItem(event, cartItem) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.store.dispatch(new CartActions.RemoveCartItem(cartItem));
+        return false;
+    }
     onSummit(event) {
         let navigationExtras: NavigationExtras = {
             queryParams: { 'search': event },
@@ -81,7 +108,41 @@ export class HeaderComponent implements OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this._serviceSubscription.unsubscribe();
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
+    }
+
+    increase(item: CartItem) {
+        item.setQuantity(item.getQuantity() + 1);
+        this.cartService.addItem(item);
+    }
+
+    decrease(item: CartItem) {
+        if (item.getQuantity() > 1) {
+            item.setQuantity(item.getQuantity() - 1);
+            this.cartService.addItem(item);
+        } else {
+            this.cartService.removeItem(item.getId());
+        }
+    }
+
+    remove(event,item: CartItem){
+        event.preventDefault();
+        event.stopPropagation();
+        this.cartService.removeItem(item.getId());
+        return false;
+    }
+
+    update() {
+        this.empty = this.cartService.isEmpty();
+        this.items = this.cartService.getItems();
+        this.taxRate = this.cartService.getTaxRate() / 100;
+        this.tax = this.cartService.getTax();
+        this.shipping = this.cartService.getShipping();
+        this.cost = this.cartService.totalCost();
+        this.format = <LocaleFormat>this.cartService.getLocaleFormat(true);
+        this.totalCount = this.cartService.itemCount();
+        console.log('Cart Serbice',this.items, this.totalCount)
     }
 }
