@@ -9,9 +9,7 @@ import { HeaderComponent } from 'app/layout/components/header/header.component';
 import { SearchComponent } from './search/search.component';
 
 import { KeywordsModule } from '@store/keywords/keywords.module';
-// import { CheckoutModule } from '@store/checkout/checkout.module';
 import { HeaderService } from './header.service';
-// import { CartService } from '@box/services/cart.service';
 
 @NgModule({
     declarations: [
@@ -30,15 +28,13 @@ import { HeaderService } from './header.service';
         MatBadgeModule,
         MatProgressSpinnerModule,
         BoxSharedModule,
-        KeywordsModule,
-        // CheckoutModule.forRoot()        
+        KeywordsModule      
     ],
     exports: [
         HeaderComponent
     ],
     providers: [
-        HeaderService,
-        // CartService
+        HeaderService
     ]
 })
 export class HeaderModule {

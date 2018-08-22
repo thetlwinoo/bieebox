@@ -1,0 +1,37 @@
+@import 'src/@box/scss/partials/variable';
+
+:host{
+    .product-thumbnail{
+        >a{
+            >img{
+                max-width: 86px;
+            }
+        }
+    }
+
+    .cart-increase-button {
+        background-color: $cart-view-button-bg;
+        color: $cart-view-button-text;
+        vertical-align: middle;
+        padding: 2px 6px;
+        border-radius: $cart-view-button-radius;
+        border: $cart-view-button-border;
+      }
+    
+      .cart-list-quantity-content {
+        vertical-align: middle;
+      }
+    
+      .cart-decrease-button {
+        background-color: $cart-view-button-bg;
+        color: $cart-view-button-text;
+        vertical-align: middle;
+        padding: 2px 8px;
+        border-radius: $cart-view-button-radius;
+        border: $cart-view-button-border;
+      }
+
+      .pro-dec-cart > *{
+          margin: 0 5px;
+      }
+}

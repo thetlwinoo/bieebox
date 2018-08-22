@@ -12,7 +12,6 @@ export class ProductDetailComponent implements OnInit {
   @Input() product: any;
   @Input() relatedItems: any;
   @Input() images: any;
-  @Input() selectedId: String;
   carousel: any;
   selectedGalleryImage: any;
 
@@ -32,11 +31,13 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('YYYYYYY', this.selectedId)
   }
 
-  onSelectGalleryImage(event) {
-    console.log(event)
-    this.selectedGalleryImage = event;
+  onSelectGalleryImage(event,image) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log(image)
+    this.selectedGalleryImage = image;
+    return false;    
   }
 }

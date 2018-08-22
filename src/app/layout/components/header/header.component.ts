@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Router, NavigationEnd, ActivatedRouteSnapshot, CanActivate, NavigationExtras } from '@angular/router';
@@ -7,23 +7,18 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import * as KeywordActions from '@store/keywords/actions/keyword.actions';
 import * as fromKeywords from '@store/keywords/reducers';
-
-import * as fromRoot from '../../../reducers';
-import * as fromCheckout from '@store/checkout/reducers';
-import * as CartActions from '@store/checkout/actions/cart';
-import * as cart from '@store/checkout/actions/cart';
-import { StockItem, ShoppingCart, ICartItemWithProduct } from '@box/models';
-
+import { boxAnimations } from '@box/animations';
 import { HeaderService } from './header.service';
 
-import { AddToCartPosition, AddToCartType, CartService, CartItem, BaseCartItem, LocaleFormat } from 'ng-shopping-cart';
+import { AddToCartPosition, AddToCartType, CartService, CartItem, BaseCartItem, LocaleFormat, parseLocaleFormat } from 'ng-shopping-cart';
 
 @Component({
     selector: 'header',
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    // changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    animations   : boxAnimations
+    // encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent implements OnInit, OnDestroy {
     currentUrl: any;
@@ -33,9 +28,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     keywords$: Observable<String[]>;
     loading$: Observable<boolean>;
     error$: Observable<string>;
-
-    cart$: Observable<ShoppingCart>;
-    itemCount$: Observable<number>;
 
     private _unsubscribeAll: Subject<any>;
 
@@ -66,9 +58,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.loading$ = store.pipe(select(fromKeywords.getSearchLoading));
         this.error$ = store.pipe(select(fromKeywords.getSearchError));
 
-        // this.cart$ = store.pipe(select(fromCheckout.getCart));
-        // this.itemCount$ = store.pipe(select(fromCheckout.getCartItemCount));
-
         this._unsubscribeAll = new Subject();
 
         this._router.events.subscribe(event => {
@@ -79,25 +68,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
         });
 
         this._headerService.getDefaultKeywords({ $limit: 20 }).then(keywords => this.defaultKeywords = keywords);
-    }
 
-    ngOnInit() {
         this.update();
         this._serviceSubscription = this.cartService.onChange.subscribe(() => {
             this.update();
         });
     }
 
+    ngOnInit() {
+        
+    }
+
     search(query: string) {
         this.store.dispatch(new KeywordActions.Search(query));
     }
 
-    removeCartItem(event, cartItem) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.store.dispatch(new CartActions.RemoveCartItem(cartItem));
-        return false;
-    }
     onSummit(event) {
         let navigationExtras: NavigationExtras = {
             queryParams: { 'search': event },
@@ -127,7 +112,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
     }
 
-    remove(event,item: CartItem){
+    remove(event,item: CartItem){       
         event.preventDefault();
         event.stopPropagation();
         this.cartService.removeItem(item.getId());
@@ -143,6 +128,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.cost = this.cartService.totalCost();
         this.format = <LocaleFormat>this.cartService.getLocaleFormat(true);
         this.totalCount = this.cartService.itemCount();
-        console.log('Cart Serbice',this.items, this.totalCount)
     }
+    
+    onCart(event){        
+        event.preventDefault();
+        event.stopPropagation();       
+        return false;
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['localeFormat']) {
+          this.format = <LocaleFormat>this.cartService.getLocaleFormat(true);
+        }
+      }
 }

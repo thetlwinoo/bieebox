@@ -86,7 +86,11 @@ export class StockItemsService implements Resolve<any> {
     return (<any>this.feathers
       .service('warehouse/stock-items'))
       .watch()
-      .get(id);
+      .get(id)
+      .map(d=>{
+        const _stockItem: StockItem = new StockItem(d);
+        return _stockItem;
+      });
   }
 
   deleteStockItem$(id) {

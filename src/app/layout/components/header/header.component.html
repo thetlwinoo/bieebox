@@ -11,19 +11,19 @@
                 <div class="cart-drawer-container">
                     <div class="cart-drawer flex v-center">
                         <div class="drop">
-                            <a href="#" class="cart-button" mat-icon-button matBadge="{{totalCount}}" matBadgePosition="after" matBadgeColor="warn">
+                            <a href routerLink="/pages/cart" routerLinkActive="active" class="cart-button" mat-icon-button matBadge="{{totalCount}}" matBadgePosition="after" matBadgeColor="warn">
                                 <!-- <mat-icon class="fas">shopping_cart</mat-icon> -->
                                 <i class="material-icons fas">
                                     shopping_cart
                                 </i>
                             </a>
-                            <div class="pPanel" *ngIf="items?.length>0">
+                            <div class="pPanel" *ngIf="items?.length>0 && (currentUrl !== '/pages/cart')">
                                 <div class="inner cart-container" boxPerfectScrollbar>
                                     <div class="widget_shopping_cart_content">
                                         <ul class="cart_list product_list_widget ">
-                                            <li *ngFor="let item of items">
+                                            <li *ngFor="let item of items;let i=index">
                                                 <a href class="remove" title="Remove this item" (click)="remove($event,item)">×</a>
-                                                <a href="#" class="product-title">
+                                                <a href class="product-title" (click)="onCart($event)">
                                                     <img src="{{ item.image }}" alt="" *ngIf="item.image else noimage">
                                                     <ng-template #noimage>
                                                         <img src="assets/devita/img/no_photo.jpg" alt="no image preview">
@@ -42,8 +42,8 @@
                                             <span class="amount">{{cost | currency:'USD'}}</span>
                                         </p>
                                         <p class="buttons">
-                                            <a href="cart.html" class="button wc-forward">View Cart</a>
-                                            <a href="checkout.html" class="button checkout wc-forward">Checkout</a>
+                                            <a href [routerLink]="['/pages/cart']" routerLinkActive="active" class="button wc-forward">View Cart</a>
+                                            <a href [routerLink]="['/pages/checkout']" routerLinkActive="active" class="button checkout wc-forward">Checkout</a>
                                         </p>
                                     </div>
                                 </div>

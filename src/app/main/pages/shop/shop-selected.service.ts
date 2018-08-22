@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from 'environments/environment';
 import { Feathers } from '@store/services/feathers.service';
+import { StockItem } from '@box/models';
 
 @Injectable()
 export class ShopSelectedService implements Resolve<any> {
@@ -63,6 +64,13 @@ export class ShopSelectedService implements Resolve<any> {
       .find({
         query: query
       })
-      .map(d => d.data);
+      .map(d => {
+        const _list: StockItem[] = [];
+        d.data.forEach(element => {
+          const _stockItem = new StockItem(element);
+          _list.push(_stockItem);
+        });
+        return _list;
+      });
   }
 }

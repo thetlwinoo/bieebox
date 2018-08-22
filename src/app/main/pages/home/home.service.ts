@@ -15,9 +15,9 @@ import { StockItem } from '@box/models';
 export class HomeService implements Resolve<any> {
 
   stockItems: StockItem[];
-  categories: any[];
-  bannerCategories: any[];
-  brands: any[];
+  // categories: any[];
+  // bannerCategories: any[];
+  // brands: any[];
   onStockItemsChanged: BehaviorSubject<any> = new BehaviorSubject({});
 
   constructor(
@@ -67,35 +67,35 @@ export class HomeService implements Resolve<any> {
     });
   }
 
-  getCategories(query): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.http.get('api/categories')
-        .subscribe((response: any) => {
-          this.categories = response;
-          resolve(response);
-        }, reject);
-    });
-  }
+  // getCategories(query): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this.http.get('api/categories')
+  //       .subscribe((response: any) => {
+  //         this.categories = response;
+  //         resolve(response);
+  //       }, reject);
+  //   });
+  // }
 
-  getBannerCategories(query): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.http.get('api/banner_categories')
-        .subscribe((response: any) => {
-          this.bannerCategories = response;
-          resolve(response);
-        }, reject);
-    });
-  }
+  // getBannerCategories(query): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this.http.get('api/banner_categories')
+  //       .subscribe((response: any) => {
+  //         this.bannerCategories = response;
+  //         resolve(response);
+  //       }, reject);
+  //   });
+  // }
 
-  getBrands(query): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.http.get('api/brands')
-        .subscribe((response: any) => {
-          this.brands = response;
-          resolve(response);
-        }, reject);
-    });
-  }
+  // getBrands(query): Promise<any> {
+  //   return new Promise((resolve, reject) => {
+  //     this.http.get('api/brands')
+  //       .subscribe((response: any) => {
+  //         this.brands = response;
+  //         resolve(response);
+  //       }, reject);
+  //   });
+  // }
 
   //feathers API
   stockItems$(query): Observable<any[]> {

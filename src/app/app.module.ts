@@ -31,6 +31,7 @@ import {
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SnackBarService } from '@box/services/snackbar.service';
 import { reducers, metaReducers } from './reducers';
+import { BoxInMemoryService } from '@box/services/in-memory.service';
 
 import { ShoppingCartModule } from 'ng-shopping-cart';
 
@@ -52,11 +53,7 @@ const appRoutes: Routes = [
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule,
-        InMemoryWebApiModule.forRoot(FakeDbService, {
-            delay: 0,
-            passThruUnknownUrl: true
-        }),  
+        HttpClientModule,          
         RouterModule.forRoot(appRoutes),
         StoreModule.forRoot(reducers, { metaReducers }),
         StoreRouterConnectingModule.forRoot({
@@ -67,7 +64,18 @@ const appRoutes: Routes = [
             logOnly: environment.production,
         }),
         EffectsModule.forRoot([]),
-        TranslateModule.forRoot(),              
+        TranslateModule.forRoot(),
+        InMemoryWebApiModule.forRoot(FakeDbService, {
+            delay: 0,
+            passThruUnknownUrl: true
+        }),    
+        ShoppingCartModule.forRoot({
+            serviceType: 'localStorage',
+            serviceOptions: {
+                storageKey: 'BieeBoxCart',
+                clearOnError: true
+            }
+        }),           
         // Material moment date module
         MatMomentDateModule,
 
@@ -83,20 +91,14 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        SampleModule,
-        ShoppingCartModule.forRoot({
-            serviceType: 'localStorage',
-            serviceOptions: {
-                storageKey: 'BieeBoxCart',
-                clearOnError: true
-            }
-        }),
+        SampleModule,        
     ],
     bootstrap: [
         AppComponent
     ],
     providers: [
-        SnackBarService
+        SnackBarService,
+        BoxInMemoryService
     ]
 })
 export class AppModule {

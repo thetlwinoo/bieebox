@@ -8,11 +8,12 @@ import { take } from 'rxjs/operators';
 import * as StockItemActions from '@store/stock-items/actions/stock-item.actions';
 import { StockItem } from '@box/models';
 import * as fromStockItems from '@store/stock-items/reducers';
-
+import { boxAnimations } from '@box/animations';
 import { HomeService } from './home.service';
 
 import { SnackBarService } from '@box/services/snackbar.service';
 // import { ToastOptions, ToastyService, ToastyConfig } from "ng2-toasty";
+import { BoxInMemoryService } from '@box/services/in-memory.service';
 
 export interface Tile {
   color: string;
@@ -24,7 +25,8 @@ export interface Tile {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations   : boxAnimations  
 })
 export class HomeComponent implements OnInit {
   searchQuery$: Observable<string>;
@@ -53,7 +55,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private store: Store<fromStockItems.State>,
     private _homeService: HomeService,
-    private snack: SnackBarService
+    private snack: SnackBarService,
+    private _inMemoryService: BoxInMemoryService
     // private toastyService: ToastyService,
   ) {
     this.carousel = carousel;
@@ -70,9 +73,9 @@ export class HomeComponent implements OnInit {
     //   $limit: 10
     // });
     this.stockItems = this._homeService.stockItems;
-    this.categories = this._homeService.categories;
-    this.bannerCategories = this._homeService.bannerCategories;
-    this.brands = this._homeService.brands;
+    this.categories = this._inMemoryService.categories;
+    this.bannerCategories = this._inMemoryService.bannerCategories;
+    this.brands = this._inMemoryService.brands;
   }
 
   ngOnInit() {

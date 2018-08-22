@@ -1,5 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component,Inject, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Platform } from '@angular/cdk/platform';
+import { DOCUMENT } from '@angular/common';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -14,12 +16,12 @@ import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationTurkish } from 'app/navigation/i18n/tr';
 
 import * as fromRoot from './reducers';
-import * as cart from '@store/checkout/actions/cart';
 import { Store } from '@ngrx/store';
 
 import { SnackBarService } from '@box/services/snackbar.service';
 import { Subscription } from 'rxjs/Subscription';
 import { MatSnackBar } from '@angular/material';
+import { BoxInMemoryService } from '@box/services/in-memory.service';
 
 @Component({
     selector: 'app',
@@ -44,6 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
      * @param {TranslateService} _translateService
      */
     constructor(
+        @Inject(DOCUMENT) private document: any,
         private _boxConfigService: BoxConfigService,
         private _boxNavigationService: BoxNavigationService,
         private _boxSidebarService: BoxSidebarService,
@@ -53,6 +56,8 @@ export class AppComponent implements OnInit, OnDestroy {
         public store: Store<fromRoot.State>,
         private snack: SnackBarService,
         private snackBar: MatSnackBar,
+        private _platform: Platform,
+        private _inMemoryService: BoxInMemoryService,
     ) {
         this.snackSub = this.snack.getMessage().subscribe(message => {
             this.snackBar.open(message.text, "close", {
@@ -81,10 +86,15 @@ export class AppComponent implements OnInit, OnDestroy {
         // Use a language
         this._translateService.use('en');
 
-        this.store.dispatch(new cart.LoadCart);
+        if ( this._platform.ANDROID || this._platform.IOS )
+        {
+            this.document.body.className += ' is-mobile';
+        }
+
+        this._inMemoryService.loadAll();
 
         // Set the private defaults
-        this._unsubscribeAll = new Subject();
+        this._unsubscribeAll = new Subject();        
     }
 
     // -----------------------------------------------------------------------------------------------------

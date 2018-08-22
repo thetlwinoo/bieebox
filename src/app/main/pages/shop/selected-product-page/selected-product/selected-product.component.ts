@@ -15,7 +15,6 @@ import { PhotoService } from '@store/services/photo.service';
 })
 export class SelectedProductComponent {
   product$: Observable<StockItem>;
-  selectedId: any;
   images$: Observable<any>;
   constructor(
     private store: Store<fromStockItem.State>,
@@ -23,7 +22,6 @@ export class SelectedProductComponent {
 ) {
     this.product$ = store.pipe(select(fromStockItem.getSelectedStockItem)) as Observable<StockItem>;
     
-    // this.selectedId = StockItemActions.Select;
     store.pipe(select(fromStockItem.getSelectedId)).subscribe(id=> {
       this.images$ = this.photoService.images$(id);
     })

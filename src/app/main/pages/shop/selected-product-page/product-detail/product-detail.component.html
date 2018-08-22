@@ -10,7 +10,7 @@
                     </div>
                     <ngx-slick-carousel id="gallery" class="mt-20 product-dec-slider" #slickModal="slick-carousel" [config]="carousel.gallery.options"
                         *ngIf="images?.length>0">
-                        <a ngxSlickItem (click)="onSelectGalleryImage(image)" *ngFor="let image of images;let i = index">
+                        <a href ngxSlickItem (click)="onSelectGalleryImage($event,image)" *ngFor="let image of images;let i = index">
                             <img src="{{image.url}}" alt="">
                         </a>
                     </ngx-slick-carousel>
