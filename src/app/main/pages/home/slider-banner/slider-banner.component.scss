@@ -2,6 +2,14 @@
 @import "src/@box/scss/box";
 
 :host {
+    .slider-area{
+        padding: 10px 0;
+
+        @include media-breakpoint-down("xs") {
+            padding: 0;
+        }
+    }
+
     .owl-carouse img {
         width: 100%;
     }
@@ -58,8 +66,8 @@
             flex-wrap: wrap;
             justify-content: flex-start;
             align-items: flex-start;
-
-            .card {
+            
+            .collection-slider .card {
                 display: flex;
                 align-items: flex-start;
 

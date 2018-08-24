@@ -6,7 +6,7 @@ import { BoxDemoModule } from '@box/components/demo/demo.module';
 import { BoxSidebarModule } from '@box/components/sidebar/sidebar.module';
 import { MatIconModule, MatDividerModule, MatListModule, MatExpansionModule, MatFormFieldModule, MatDatepickerModule, MatButtonModule, MatTooltipModule } from '@angular/material';
 import { BoxSharedModule } from '@box/shared.module';
-import { BrandModule } from '@box/components/brand/brand.module';
+// import { BrandModule } from '@box/components/brand/brand.module';
 
 const routes = [
   {
@@ -25,7 +25,7 @@ const routes = [
     BoxSharedModule,
     BoxDemoModule,
     BoxSidebarModule,
-    BrandModule,
+    // BrandModule,
     MatIconModule,
     MatDividerModule, 
     MatListModule,

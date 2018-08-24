@@ -1,0 +1,57 @@
+<form class="new-address-form" [formGroup]="form">
+    <h4>Add a new address</h4>
+
+    <table class="full-width" cellspacing="0">
+        <!-- <tr>
+            <td>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Name" formControlName="name">
+                </mat-form-field>
+            </td>
+        </tr> -->
+        <tr>
+            <td>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Phone Number">
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Address Line1" formControlName="addressLine1"></textarea>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Address Line2"  formControlName="addressLine2"></textarea>
+        </mat-form-field>
+    </p>
+
+    <table class="full-width" cellspacing="0">
+        <tr>
+            <td>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="City" formControlName="city">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="State" formControlName="stateProvince">
+                </mat-form-field>
+            </td>
+            <!-- <td>
+                <mat-form-field class="full-width">
+                    <input matInput #postalCode maxlength="5" placeholder="Postal Code" value="94043">
+                    <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                </mat-form-field>
+            </td> -->
+        </tr>
+    </table>
+    <p>
+        <mat-checkbox>Set as default address</mat-checkbox>
+    </p>
+    <div class="button-row" fxLayout="row" fxLayoutAlign="end center">
+        <button mat-flat-button color="primary" (click)="this.dialogRef.close()">Cancel</button>
+        <button mat-flat-button color="warn" (click)="dialogRef.close(form.value)">Summit</button>
+    </div>
+</form>

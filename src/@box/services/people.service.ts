@@ -9,7 +9,7 @@ import { BoxUtils } from '@box/utils';
 
 @Injectable()
 export class PeopleService implements Resolve<any> {
-  onPeopleDataChanged: BehaviorSubject<any> = new BehaviorSubject([]);
+  onPeopleChanged: BehaviorSubject<any> = new BehaviorSubject([]);
 
   people: any;
 
@@ -28,7 +28,7 @@ export class PeopleService implements Resolve<any> {
         this.getPeople()
       ]).then(
         ([files]) => {
-          this.onPeopleDataChanged.subscribe(res=> console.log(res))
+          this.onPeopleChanged.subscribe(res=> console.log(res))
           resolve();
         },
         reject
@@ -41,7 +41,7 @@ export class PeopleService implements Resolve<any> {
       this.peoples$()
         .subscribe((response: any) => {
           this.people = response;
-          this.onPeopleDataChanged.next(this.people);
+          this.onPeopleChanged.next(this.people);
           resolve(this.people);
         }, reject);
     }

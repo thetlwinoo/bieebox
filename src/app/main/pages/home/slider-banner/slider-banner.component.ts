@@ -16,11 +16,11 @@ export class SliderBannerComponent implements OnInit {
   ngOnInit() {
   }
 
-  mouseEnter(event){
-    this.selectedCategory = event;
-  }
+  // mouseEnter(event){
+  //   this.selectedCategory = event;
+  // }
 
-  mouseLeave(event){
-    this.selectedCategory = {};
-  }
+  // mouseLeave(event){
+  //   this.selectedCategory = {};
+  // }
 }

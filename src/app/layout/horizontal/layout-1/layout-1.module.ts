@@ -6,7 +6,7 @@ import { BoxSharedModule } from '@box/shared.module';
 
 import { ContentModule } from 'app/layout/components/content/content.module';
 import { HeaderModule } from 'app/layout/components/header/header.module';
-// import { BrandModule } from 'app/layout/components/brand/brand.module';
+import { BrandModule } from 'app/layout/components/brand/brand.module';
 import { ShopServicesModule } from 'app/layout/components/shop-services/shop-services.module';
 import { FooterModule } from 'app/layout/components/footer/footer.module';
 import { NewsletterModule } from 'app/layout/components/newsletter/newsletter.module';
@@ -34,7 +34,7 @@ import { McBreadcrumbsModule } from 'ngx-breadcrumbs';
         
         ContentModule,
         HeaderModule,
-        // BrandModule,
+        BrandModule,
         ShopServicesModule,
         FooterModule,
         NewsletterModule,        

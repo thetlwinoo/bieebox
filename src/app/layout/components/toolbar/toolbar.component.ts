@@ -9,6 +9,7 @@ import { BoxConfigService } from '@box/services/config.service';
 import { BoxSidebarService } from '@box/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
+import { AuthService } from '@box/services/auth.service';
 
 @Component({
     selector   : 'toolbar',
@@ -42,7 +43,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
         private _boxConfigService: BoxConfigService,
         private _boxSidebarService: BoxSidebarService,
         private _router: Router,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        private _auth: AuthService
     )
     {
         // Set the defaults
@@ -131,6 +133,10 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, {'id': this._translateService.currentLang});
+    }
+
+    logOut() {
+        this._auth.logOut();
     }
 
     /**

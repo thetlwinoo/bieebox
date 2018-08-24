@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { carousel } from '@box/carousel';
 
 @Component({
     selector: 'brand',
@@ -6,10 +7,11 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./brand.component.scss']
 })
 export class BrandComponent {
-    @Input() carousel: any;
+    carousel: any;    
     /**
      * Constructor
      */
     constructor() {
+        this.carousel = carousel;
     }
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { BoxSharedModule } from '@box/shared.module';
-import { BrandModule } from '@box/components/brand/brand.module';
+// import { BrandModule } from '@box/components/brand/brand.module';
 import { BoxCountdownModule } from '@box/components/countdown/countdown.module';
 import { MatGridListModule, MatTabsModule, MatListModule, MatProgressSpinnerModule, MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/material';
 import { StockItemsModule } from '@store/stock-items/stock-items.module';
@@ -48,7 +48,7 @@ const routes = [
   imports: [
     RouterModule.forChild(routes),
     OwlModule,
-    BrandModule,
+    // BrandModule,
     ProductCardModule,
     StockItemsModule,
     BoxCountdownModule,

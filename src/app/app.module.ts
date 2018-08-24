@@ -29,16 +29,20 @@ import {
     RouterStateSerializer,
 } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { SnackBarService } from '@box/services/snackbar.service';
-import { reducers, metaReducers } from './reducers';
-import { BoxInMemoryService } from '@box/services/in-memory.service';
 
+import { reducers, metaReducers } from './reducers';
+
+import { AuthGuard } from './guards/auth.guard';
 import { ShoppingCartModule } from 'ng-shopping-cart';
 
 const appRoutes: Routes = [
     {
         path: 'pages',
         loadChildren: './main/pages/pages.module#PagesModule'
+    },
+    {
+        path: 'auth',
+        loadChildren: './main/authentication/authentication.module#AuthenticationModule'
     },
     {
         path: '**',
@@ -53,7 +57,7 @@ const appRoutes: Routes = [
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        HttpClientModule,          
+        HttpClientModule,
         RouterModule.forRoot(appRoutes),
         StoreModule.forRoot(reducers, { metaReducers }),
         StoreRouterConnectingModule.forRoot({
@@ -68,14 +72,14 @@ const appRoutes: Routes = [
         InMemoryWebApiModule.forRoot(FakeDbService, {
             delay: 0,
             passThruUnknownUrl: true
-        }),    
+        }),
         ShoppingCartModule.forRoot({
             serviceType: 'localStorage',
             serviceOptions: {
                 storageKey: 'BieeBoxCart',
                 clearOnError: true
             }
-        }),           
+        }),
         // Material moment date module
         MatMomentDateModule,
 
@@ -91,14 +95,13 @@ const appRoutes: Routes = [
 
         // App modules
         LayoutModule,
-        SampleModule,        
+        SampleModule,
     ],
     bootstrap: [
         AppComponent
     ],
-    providers: [
-        SnackBarService,
-        BoxInMemoryService
+    providers: [        
+        AuthGuard
     ]
 })
 export class AppModule {

@@ -1,9 +1,108 @@
-@import 'src/@box/scss/partials/variable';
+@import "src/@box/scss/partials/variable";
+@import "src/@box/scss/box";
 
-:host{
-    .product-thumbnail{
-        >a{
-            >img{
+:host {
+    .viwer-area {
+        position: relative;
+        z-index: 2;
+
+        .viwer-title {
+            align-content: center;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 2;
+
+            .viwer-title-spacer {
+                flex: 1 1 auto;
+
+                &.title {
+                    text-transform: uppercase;
+                    font-weight: 500;
+                }
+            }
+
+            a {
+                color: #f44336;
+                font-weight: 400;
+
+                i {
+                    color: #f44336;
+                    margin-left: 2px;
+                }
+            }
+        }
+
+        .viwer-body {
+            .content {
+                position: relative;
+                z-index: 4;
+
+                .cards {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    padding: 20px;
+                    background: #fff;
+
+                    .card {
+                        display: flex;
+                        align-items: flex-start;
+                        background-color: transparent;
+                        border: none;
+
+                        .card-source {
+                            display: none;
+                        }
+
+                        > a {
+                            .card-preview {
+                                display: flex;
+                                min-width: 130px;
+
+                                @include media-breakpoint-down("xs") {
+                                    min-width: 125px;
+                                }
+
+
+                                .box-card {
+                                    box-shadow: none;
+                                    min-width: 130px !important;
+                                    max-width: 130px !important;
+
+                                    @include media-breakpoint-down("xs") {
+                                        min-width: 125px !important;
+                                        max-width: 125px !important;
+                                    }
+
+
+                                    &.cag {
+                                        // img {
+                                        //     padding: 35px 35px 15px 35px;
+                                        // }
+
+                                        .title {
+                                            text-align: center;
+                                            font-size: 0.85em;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .product-thumbnail {
+        > a {
+            > img {
                 max-width: 86px;
             }
         }
@@ -16,22 +115,22 @@
         padding: 2px 6px;
         border-radius: $cart-view-button-radius;
         border: $cart-view-button-border;
-      }
-    
-      .cart-list-quantity-content {
+    }
+
+    .cart-list-quantity-content {
         vertical-align: middle;
-      }
-    
-      .cart-decrease-button {
+    }
+
+    .cart-decrease-button {
         background-color: $cart-view-button-bg;
         color: $cart-view-button-text;
         vertical-align: middle;
         padding: 2px 8px;
         border-radius: $cart-view-button-radius;
         border: $cart-view-button-border;
-      }
+    }
 
-      .pro-dec-cart > *{
-          margin: 0 5px;
-      }
+    .pro-dec-cart > * {
+        margin: 0 5px;
+    }
 }

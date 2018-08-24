@@ -36,7 +36,7 @@ export const boxConfig: BoxConfig = {
         },
         brand: {
             background: 'mat-box-dark-900-bg',
-            hidden: true,
+            hidden: false,
             position: 'below'
         },
         shop: {

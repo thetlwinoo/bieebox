@@ -8,8 +8,8 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { ImageZoomModule } from 'angular2-image-zoom';
 import { ShopService } from './shop.service';
 import { ShopSelectedService } from './shop-selected.service';
-import { PhotoService } from '@store/services/photo.service';
-import { BrandModule } from '@box/components/brand/brand.module';
+import { PhotoService } from '@box/services/photo.service';
+// import { BrandModule } from '@box/components/brand/brand.module';
 import { BoxSidebarModule } from '@box/components/sidebar/sidebar.module';
 import { BoxDemoModule } from '@box/components/demo/demo.module';
 import { StockItemsModule } from '@store/stock-items/stock-items.module';
@@ -60,7 +60,7 @@ const routes = [
     OwlModule,
     SlickCarouselModule,
     BoxSidebarModule,
-    BrandModule,
+    // BrandModule,
     BoxDemoModule,
     MatListModule,
     MatIconModule,

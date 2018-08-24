@@ -98,6 +98,26 @@ export const carousel = {
             }
         ]
     },
+    collection: {
+        options: {
+            item: 9,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 3,
+                    loop: true
+                },
+                768: {
+                    items: 3,
+                    loop: true
+                },
+                1000: {
+                    items: 9,
+                    loop: false
+                }
+            }
+        }
+    },
     category: {
         options: {
             loop: true,

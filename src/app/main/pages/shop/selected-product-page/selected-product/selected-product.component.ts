@@ -5,7 +5,7 @@ import { StockItem } from '@box/models';
 import * as fromStockItem from '@store/stock-items/reducers';
 import * as StockItemActions from '@store/stock-items/actions/stock-item.actions';
 
-import { PhotoService } from '@store/services/photo.service';
+import { PhotoService } from '@box/services/photo.service';
 
 @Component({
   selector: 'selected-product',

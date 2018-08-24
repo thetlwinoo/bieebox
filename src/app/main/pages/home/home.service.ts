@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from 'environments/environment';
-import { Feathers } from '@store/services/feathers.service';
+import { Feathers } from '@box/services/feathers.service';
 import { StockItem } from '@box/models';
 
 @Injectable()

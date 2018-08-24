@@ -1,7 +1,7 @@
 <div class="page-layout blank">
     <div class="cart-main-area pt-20 pb-65">
         <div class="container">
-            <h3 class="page-title">Your cart items</h3>
+            <!-- <h3 class="page-title">Your cart items</h3> -->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <form action="#">
@@ -28,7 +28,7 @@
                                             </a>
                                         </td>
                                         <td class="product-name">
-                                            <a href [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">{{item.name}}</a>   
+                                            <a href [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">{{item.name}}</a>
                                         </td>
                                         <td class="product-price-cart">
                                             <span class="amount">{{item.price | currency:'USD' }}</span>
@@ -162,5 +162,39 @@
             </div>
         </div>
     </div>
-    <brand [carousel]="carousel"></brand>
+    <div class="viwer-area">
+        <div class="container">
+            <div class="viwer-title">
+                <div class="viwer-title-spacer title">
+                    recently viewed
+                </div>
+                <!-- <button mat-icon-button color="warn" (click)="onPrevClick($event);">
+                    <mat-icon aria-label="nav left">arrow_left</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="onNextClick($event);">
+                    <mat-icon aria-label="nav right">arrow_right</mat-icon>
+                </button> -->
+            </div>
+            <div class="viwer-body">
+                <div class="content">
+                    <div class="cards">
+                        <div class="card" *ngFor="let item of items | slice:0:2">
+                            <a routerLink="/pages/shop" routerLinkActive="active">
+                                <div #boxcag class="card-preview">
+                                    <div class="box-card cag">
+                                        <img src="{{item.image}}">
+                                        <!-- <div class="title p-2 line-height-1.75">
+                                            {{item.name}}
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <brand [carousel]="carousel"></brand> -->
 </div>

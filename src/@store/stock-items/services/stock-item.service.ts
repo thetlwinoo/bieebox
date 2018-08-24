@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from 'environments/environment';
-import { Feathers } from '@store/services/feathers.service';
+import { Feathers } from '@box/services/feathers.service';
 import * as _ from 'lodash';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/of';

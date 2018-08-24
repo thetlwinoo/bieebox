@@ -7,7 +7,7 @@ import 'rxjs/add/observable/of';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from 'environments/environment';
-import { Feathers } from '@store/services/feathers.service';
+import { Feathers } from '@box/services/feathers.service';
 
 @Injectable()
 export class ShopService implements Resolve<any> {

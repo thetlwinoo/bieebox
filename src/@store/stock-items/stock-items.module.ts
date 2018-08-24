@@ -8,7 +8,7 @@ import { reducers } from './reducers';
 import { StockItemsService } from './services/stock-item.service';
 import { StockItemExistsGuard } from './guards/stock-item-exists.guard';
 
-import { Feathers } from '@store/services/feathers.service';
+import { Feathers } from '@box/services/feathers.service';
 
 @NgModule({
   imports: [

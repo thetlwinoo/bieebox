@@ -41,9 +41,9 @@
                 </div>
                 <content></content>
 
-                <!-- <ng-container *ngIf="boxConfig.layout.brand.position === 'below'">
+                <ng-container *ngIf="boxConfig.layout.brand.position === 'below'">
                     <ng-container *ngTemplateOutlet="brand"></ng-container>
-                </ng-container> -->
+                </ng-container>
 
                 <ng-container *ngIf="boxConfig.layout.shop.position === 'below'">
                     <ng-container *ngTemplateOutlet="shop"></ng-container>
@@ -106,9 +106,9 @@
 </ng-template>
 <!-- / LEFT NAVBAR -->
 
-<!-- <ng-template #brand>
+<ng-template #brand>
     <brand *ngIf="!boxConfig.layout.brand.hidden" [ngClass]="[boxConfig.layout.brand.position]"></brand>
-</ng-template> -->
+</ng-template>
 
 <ng-template #shop>
     <shop-services *ngIf="!boxConfig.layout.shop.hidden" [ngClass]="boxConfig.layout.shop.position"></shop-services>
