@@ -9,10 +9,13 @@ export enum AddressActionTypes {
     CreateSuccess = '[Address] Create Success',
     Update = '[Address] Update',
     UpdateSuccess = '[Address] Update Success',
+    UpdateMany = '[Address] Update Many',
+    UpdateManySuccess = '[Address] Update Many Success',
     Remove = '[Address] Remove',
     RemoveSuccess = '[Address] Remove Success',
     SetDefault = '[Address] Set Default',
     SetDefaultSuccess = '[Address] Set Default Success',
+    AddressError = '[Address] Error Handler',
 }
 
 export class Load implements Action {
@@ -58,6 +61,18 @@ export class UpdateSuccess implements Action {
     constructor(public payload: any) { }
 }
 
+export class UpdateMany implements Action {
+    readonly type = AddressActionTypes.UpdateMany;
+
+    constructor(public payload: Address) { }
+}
+
+export class UpdateManySuccess implements Action {
+    readonly type = AddressActionTypes.UpdateManySuccess;
+
+    constructor(public payload: { updates: { id: string, changes: Address }[] }) { }
+}
+
 export class Remove implements Action {
     readonly type = AddressActionTypes.Remove;
 
@@ -70,16 +85,10 @@ export class RemoveSuccess implements Action {
     constructor(public payload: any) { }
 }
 
-export class SetDefault implements Action {
-    readonly type = AddressActionTypes.SetDefault;
+export class AddressError implements Action {
+    readonly type = AddressActionTypes.AddressError;
 
-    constructor(public payload: Address) { }
-}
-
-export class SetDefaultSuccess implements Action {
-    readonly type = AddressActionTypes.SetDefaultSuccess;
-
-    constructor(public payload: { updates: { id: string, changes: Address }[] }) { }
+    constructor(public payload: any) { }
 }
 
 export type AddressActionsUnion =
@@ -90,7 +99,8 @@ export type AddressActionsUnion =
     | CreateSuccess
     | Update
     | UpdateSuccess
+    | UpdateMany
+    | UpdateManySuccess
     | Remove
     | RemoveSuccess
-    | SetDefault
-    | SetDefaultSuccess;
+    | AddressError;

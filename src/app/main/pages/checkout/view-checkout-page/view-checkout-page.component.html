@@ -1,5 +1,212 @@
-<div class="checkout-area pb-45 pt-65">
-    <div class="container">
-      <div *ngFor="let item of addresses">{{item.addressLine1}}</div>
+<div class="checkout-area pb-25">
+  <div class="container">
+    <div class="box-wrapper mb-25">
+      <div class="box-wrapper-section">
+        <div class="horizontal-wrapper wrapper-border">
+          <div class="horizontal-spacer">
+            <h4>
+              <i class="ion-ios-location"></i>Delivery Address</h4>
+          </div>
+          <a mat-button (click)="isChanged = !isChanged" *ngIf="!isChanged;else control">Change</a>
+
+          <ng-template #control>
+            <a mat-button (click)="opendialog.emit($event);">
+              <i class="material-icons">add_location</i>Add Address</a>
+            <a mat-button (click)="manageAddress($event);">Manage Address</a>
+          </ng-template>
+        </div>
+
+        <div class="default-address-wrapper" *ngIf="!isChanged;else change">
+          <div *ngFor="let address of addresses | default" class="default-address"> {{address | addressMinify}}
+            <span>Default</span>
+          </div>
+        </div>
+        <ng-template #change>
+          <p *ngFor="let address of addresses">
+            <mat-radio-button class="address-radio-button" [value]="address" [checked]="address.default" (change)="onChangeDefault($event)">
+              <span>{{address | addressMinify}}</span>
+            </mat-radio-button>
+          </p>
+
+          <div class="button-row" fxLayout="row" fxLayoutAlign="start center">
+            <button mat-flat-button color="primary" (click)="isChanged = !isChanged">Cancel</button>
+            <button mat-flat-button color="warn" (click)="onSaveDefault(defaultAddress);">Save</button>
+          </div>
+        </ng-template>
+
+      </div>
     </div>
+    <div class="box-wrapper mb-25">
+      <div class="box-wrapper-section">
+        <form action="#">
+          <div class="table-content table-responsive">
+            <table class="cart-table">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Product Name</th>
+                  <th>Until Price</th>
+                  <th>Qty</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of items;let i=index">
+                  <td class="product-thumbnail">
+                    <a href [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
+                      <img src="{{ item.image }}" alt="" *ngIf="item.image else noimage">
+                      <ng-template #noimage>
+                        <img src="assets/devita/img/no_photo.jpg" alt="no image preview">
+                      </ng-template>
+                    </a>
+                  </td>
+                  <td class="product-name">
+                    <a href [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">{{item.name}}</a>
+                  </td>
+                  <td class="product-price-cart">
+                    <span class="amount">{{item.price | currency:'USD' }}</span>
+                  </td>
+                  <td class="product-quantity">
+                    <div class="pro-dec-cart">
+                      <span class="cart-list-quantity-content">{{item.getQuantity()}}</span>
+                    </div>
+                  </td>
+                  <td class="product-subtotal">{{(item.price * item.quantity) | currency:'USD' }}</td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <p class="leave-message">
+                      <mat-form-field appearance="outline">
+                        <mat-label>(Optinal) Leave a message to seller</mat-label>
+                        <input matInput placeholder="Placeholder">
+                        <mat-icon matSuffix>message</mat-icon>
+                        <mat-hint>Message</mat-hint>
+                      </mat-form-field>
+                    </p>
+                  </td>
+                  <td colspan="3">
+                    <div class="shipping-option" fxLayout="row" fxLayoutAlign="end start">
+                      <span>Shipping :</span>
+                      <span class="pl-20 pr-50">{{shipping | currency:'USD'}}</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="5">
+                    <div class="table-footer" fxLayout="row" fxLayoutAlign="end center">
+                      <span>Order Total (1 Item) :</span>
+                      <span class="pl-20 pr-50">{{cost | currency:'USD'}}</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+    <div class="box-wrapper">
+      <div class="box-wrapper-section">
+        <div class="horizontal-wrapper wrapper-border">
+          <div class="horizontal-spacer">
+            <h4>
+              <i class="ion-card"></i>Payment Method</h4>
+          </div>
+
+        </div>
+        <div class="payment-button">
+          <button mat-stroked-button>Credit / Debit Card</button>
+          <button mat-stroked-button>Bank Transfer</button>
+        </div>
+        <div class="row">
+          <div class="col-md-9 col-xs-9">
+            <div class="payment" fxLayout="row" fxLayoutAlign="end center">
+              <span>Shipping :</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-3">
+            <div class="payment pr-110" fxLayout="row" fxLayoutAlign="end center">
+              <span>{{shipping | currency:'USD'}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9 col-xs-9">
+            <div class="payment" fxLayout="row" fxLayoutAlign="end center">
+              <span>Tax :</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-3">
+            <div class="payment pr-110" fxLayout="row" fxLayoutAlign="end center">
+              <span>{{tax | currency:'USD'}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9 col-xs-9">
+            <div class="payment" fxLayout="row" fxLayoutAlign="end center">
+              <span>Total Payment :</span>
+            </div>
+          </div>
+          <div class="col-md-3 col-xs-3">
+            <div class="payment pr-110 total-cost" fxLayout="row" fxLayoutAlign="end center">
+              <span>{{cost | currency:'USD'}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <div class="payment pr-110 total-cost" fxLayout="row" fxLayoutAlign="end center">
+                  <button mat-flat-button color="warn" class="place-order">Place Order</button>
+              </div>
+          </div>
+        </div>
+        <!-- <div class="table-content table-responsive">
+          <table class="payment-table">
+            <tbody>
+              <tr>
+                <td colspan="4">
+                    <span>Shipping :</span>
+                </td>
+                <td colspan="1">
+                  <div class="payment pr-100" fxLayout="row" fxLayoutAlign="end center">
+                    <p>
+                      <span>Shipping :</span>
+                      <span>{{shipping | currency:'USD'}}</span>
+                    </p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                  <td>
+                    <div class="payment pr-100" fxLayout="row" fxLayoutAlign="end center">
+                      <p>
+                        <span>Tax :</span>
+                        <span>{{tax | currency:'USD'}}</span>
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                      <div class="payment pr-100" fxLayout="row" fxLayoutAlign="end center">
+                        <p>
+                          <span>Total Payment :</span>
+                          <span class="total-cost">{{cost | currency:'USD'}}</span>
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+            </tbody>
+
+          </table>
+
+        </div> -->
+
+      </div>
+    </div>
+  </div>
 </div>

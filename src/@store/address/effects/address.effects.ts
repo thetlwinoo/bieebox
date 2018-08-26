@@ -1,7 +1,9 @@
-import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
+import { Inject, Injectable, InjectionToken, Optional, ErrorHandler } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { asyncScheduler, empty, Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { Address } from '@box/models';
 import {
     catchError,
     debounceTime,
@@ -9,6 +11,8 @@ import {
     skip,
     switchMap,
     takeUntil,
+    exhaustMap,
+    tap
 } from 'rxjs/operators';
 
 import { AddressService } from '../services/address.service';
@@ -19,13 +23,15 @@ import {
     LoadComplete,
     Create,
     CreateSuccess,
-    Update,
+    Update,    
     UpdateSuccess,
+    UpdateMany,
+    UpdateManySuccess,
     Remove,
     RemoveSuccess,
-    SetDefault,
-    SetDefaultSuccess
+    AddressError
 } from '../actions/address';
+
 
 @Injectable()
 export class AddressEffects {
@@ -34,9 +40,10 @@ export class AddressEffects {
         ofType<Load>(AddressActionTypes.Load),
         map(action => action.payload),
         switchMap(query => {
+            // console.log(res)
             return this.addressService.addresses$(this.getNewQuery(query)).pipe(
                 map((data: any) => new LoadComplete(data)),
-                catchError(err => of(err))
+                catchError(err => of(new AddressError(err)))
             );
         })
     );
@@ -47,8 +54,8 @@ export class AddressEffects {
         map(action => action.payload),
         switchMap(query => {
             return this.addressService.addAddress$(query).pipe(
-                map((data: any) => new CreateSuccess(data)),
-                catchError(err => of(err))
+                map((data: any) => new CreateSuccess(new Address(data))),
+                catchError(err => of(new AddressError(err)))
             );
         })
     );
@@ -59,8 +66,20 @@ export class AddressEffects {
         map(action => action.payload),
         switchMap(query => {
             return this.addressService.saveAddress$(query.id, query).pipe(
-                map((data: any) => new UpdateSuccess(data)),
-                catchError(err => of(err))
+                map((data: any) => new UpdateSuccess(new Address(data))),
+                catchError(err => of(new AddressError(err)))
+            );
+        })
+    );
+
+    @Effect()
+    updateMany$: Observable<Action> = this.actions$.pipe(
+        ofType<Update>(AddressActionTypes.UpdateMany),
+        map(action => action.payload),
+        switchMap(query => {
+            return this.addressService.saveMany$(query.id, query).pipe(
+                map((res: any) => new UpdateManySuccess({ updates: res.data })),
+                catchError(err => of(new AddressError(err)))
             );
         })
     );
@@ -72,33 +91,25 @@ export class AddressEffects {
         switchMap(query => {
             return this.addressService.deleteAddress$(query).pipe(
                 map((data: any) => new RemoveSuccess(data)),
-                catchError(err => of(err))
+                catchError(err => of(new AddressError(err)))
             );
         })
     );
 
-    @Effect()
-    setDefault$: Observable<Action> = this.actions$.pipe(
-        ofType<SetDefault>(AddressActionTypes.SetDefault),
-        map(action => action.payload),
-        switchMap(query => {
-            return this.addressService.addresses$(query).pipe(
-                map((data: any) => new SetDefaultSuccess(data)),
-                catchError(err => of(err))
-            );
-        })
+    @Effect({ dispatch: false })
+    errorHandler$ = this.actions$.pipe(
+        ofType(AddressActionTypes.AddressError),
+        tap(() => this.router.navigate(['/pages/home']))
     );
 
-    getNewQuery(query) {        
-        return this.auth.getCurrentAccount().then(user => {      
-            this.addressService.onUserChanged.next(user);     
-            const newQuery = Object.assign({ person: user.id },query);
-             return newQuery;
-        });
+    getNewQuery(query) {
+        const newQuery = Object.assign({ person: this.auth.getCurrentUserId() }, query);
+        return newQuery;
     }
     constructor(
         private actions$: Actions,
         private addressService: AddressService,
         private auth: AuthService,
+        private router: Router
     ) { }
 }

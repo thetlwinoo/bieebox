@@ -1,8 +1,12 @@
 export class Credential {
-    email: string;
+    id: string;
+    name: string;
+    email: string;    
 
     constructor(credential?) {
         credential = credential || {};
-        this.email = credential.email || '';
+        this.id = credential.id || '';
+        this.name = credential.name || '';
+        this.email = credential.email || '';        
     }
 }

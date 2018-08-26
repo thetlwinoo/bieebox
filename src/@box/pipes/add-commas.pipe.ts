@@ -1,15 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'bcAddCommas' })
+@Pipe({ name: 'addCommas' })
 export class AddCommasPipe implements PipeTransform {
   transform(data: null | string[]) {
     if (!data) {
-      return 'Author Unknown';
+      return 'Guest';
     }
 
     switch (data.length) {
       case 0:
-        return 'Author Unknown';
+        return 'Guest';
       case 1:
         return data[0];
       case 2:

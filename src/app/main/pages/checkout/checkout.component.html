@@ -1,4 +1,4 @@
 <div class="page-layout blank">
     <view-checkout-page [addresses]="addresses$ | async" [loading]="$loading | async" [error]="$error | async" [selected]="selected$ | async"
-        (create)="onAddressCreate($event)" (remove)="onAddressRemove($event)" (update)="onAddressUpdate($event)" (setdefault)="onSetDefault($event)"></view-checkout-page>
+        (create)="onAddressCreate($event)" (remove)="onAddressRemove($event)" (update)="onAddressUpdate($event)" (updateMany)="onAddressUpdateMany($event)" (opendialog)="openNewAddressDialog($event)"></view-checkout-page>
 </div>

@@ -9,6 +9,7 @@ import { AuthService } from '@box/services/auth.service';
 import { Feathers } from '@box/services/feathers.service';
 import { SnackBarService } from '@box/services/snackbar.service';
 import { Observable } from 'rxjs/Observable';
+import { Credential } from '@box/models';
 
 @Component({
   selector: 'app-login',
@@ -45,6 +46,9 @@ export class LoginComponent implements OnInit {
           hidden: true
         },
         sidepanel: {
+          hidden: true
+        },
+        brand: {
           hidden: true
         },
         shop: {
@@ -104,8 +108,16 @@ export class LoginComponent implements OnInit {
       password
     })
       .then((res) => {
-        this.auth.save({email: email});
-        this._Router.navigate(['/pages/checkout']);
+        this.auth.getCurrentAccount(email).then(user => {
+          const credential = new Credential({
+            id: user.id,
+            name: user.fullName,
+            email: user.emailAddress
+          });
+          this.auth.save(credential);
+
+          this._Router.navigate(['/pages/checkout']);
+        });        
       })
       .catch(err => {
         this.sendMessage('Wrong credentials!')

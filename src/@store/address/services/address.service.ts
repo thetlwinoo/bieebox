@@ -33,15 +33,14 @@ export class AddressService {
 
     getAddresses(query): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.auth.getCurrentAccount().then(user => {
-                Object.assign(query, { person: user.id });
-                this.addresses$(query)
-                    .subscribe((response: any) => {
-                        this.addresses = response;
-                        this.onAddressesChanged.next(this.addresses);
-                        resolve(response);
-                    }, reject);
-            });
+            Object.assign(query, { person: this.auth.getCurrentUserId() });
+            this.addresses$(query)
+                .subscribe((response: any) => {
+                    this.addresses = response;
+                    console.log(this.addresses)
+                    this.onAddressesChanged.next(this.addresses);
+                    resolve(response);
+                }, reject);
         });
     }
 
@@ -65,6 +64,7 @@ export class AddressService {
     }
 
     addAddress$(data: any): Observable<any> {
+        console.log('Data', data)
         if (data === '') {
             return;
         }
@@ -82,7 +82,18 @@ export class AddressService {
 
         return Observable.fromPromise(this.feathers
             .service('general/addresses')
-            .update(id, data));
+            .patch(id, data));
+    }
+
+    saveMany$(id: string, data: any): Observable<any[]> {
+        console.log('SaveMany', data)
+        if (data === '') {
+            return;
+        }
+
+        return Observable.fromPromise(this.feathers
+            .service('addresses/set-default')
+            .patch(id, data));
     }
 
     deleteAddress$(id) {

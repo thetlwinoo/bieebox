@@ -52,15 +52,17 @@ export class CheckoutService implements Resolve<any> {
 
     getAddresses(query): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.auth.getCurrentAccount().then(user => {
-                const newQuery = Object.assign({ person: user.id }, query);
+            // this.auth.getCurrentAccount().then(user => {
+                
+            // });
+            console.log(this.auth.currentUser)
+            const newQuery = Object.assign({ person: this.auth.currentUser.id }, query);
                 this.addresses$(newQuery)
                     .subscribe((response: any) => {
                         this.addresses = response;
                         this.onAddressesChanged.next(this.addresses);
                         resolve(response);
                     }, reject);
-            });
         });
     }
 

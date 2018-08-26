@@ -20,7 +20,7 @@ export class NewAddressDialogComponent implements OnInit {
     if (this.address) {
       this.form = new FormGroup({
         id: new FormControl(this.address.id),
-        people: new FormControl(this.address.people),
+        person: new FormControl(this.address.person),
         addressType: new FormControl(this.address.addressType),
         addressLine1: new FormControl(this.address.addressLine1),
         addressLine2: new FormControl(this.address.addressLine2),
@@ -29,6 +29,7 @@ export class NewAddressDialogComponent implements OnInit {
         country: new FormControl(this.address.country),
         geoLocation: new FormControl(this.address.geoLocation),
         postalCode: new FormControl(this.address.postalCode),
+        default: new FormControl(this.address.default),
         lastEditedBy: new FormControl(this.address.lastEditedBy),
         validFrom: new FormControl(this.address.validFrom),
         validTo: new FormControl(this.address.validTo)
@@ -38,7 +39,7 @@ export class NewAddressDialogComponent implements OnInit {
 
       this.form = new FormGroup({
         id: new FormControl(''),
-        people: new FormControl(''),
+        person: new FormControl(''),
         addressType: new FormControl(''),
         addressLine1: new FormControl(''),
         addressLine2: new FormControl(''),
@@ -46,6 +47,7 @@ export class NewAddressDialogComponent implements OnInit {
         stateProvince: new FormControl(''),
         country: new FormControl(''),
         geoLocation: new FormControl(''),
+        default: new FormControl(false),
         lastEditedBy: new FormControl(''),
         validFrom: new FormControl(this.address.validFrom),
         validTo: new FormControl(this.address.validTo)

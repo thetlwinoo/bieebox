@@ -1,3 +1,116 @@
 :host{
+    .box-wrapper{
+        box-shadow: 0 0.1rem 0.1rem 0 rgba(0,0,0,.09);
+        border-radius: .3rem;
+        overflow: hidden;
+        background: #fff;
+
+        .box-wrapper-section{
+            padding: 1.2rem 2.4rem 2.4rem;
+
+            .horizontal-wrapper{
+                margin-bottom: 20px;                
+              &.wrapper-border{
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+              }  
+            }
+
+            .row{
+                line-height: 3;
+            }
+        }
+    }
+
+    h4{
+        font-weight: 400 !important;
+
+        i{
+            margin-right: 5px;
+        }
+    }
+
+    .default-address-wrapper{
+        align-items: center;
+        display: flex;
+        .default-address{
+            letter-spacing: 2px;
+            span{
+                margin-left: 20px;
+                color:  #929292;
+                font-weight: 500; 
+            }
+        }
+    }
+
+    .address-radio-button{
+        span{
+            letter-spacing: 2px;
+        }
+    }
+
+    .button-row{
+        padding-top: 20px;
+    }
+
+    .product-thumbnail {
+        > a {
+            > img {
+                max-width: 86px;
+            }
+        }
+    }
+
+    table{
+        &.cart-table{
+            thead{
+                border-bottom: 1px solid #ebebeb;
+            }
+
+            tr:last-child{
+                td{
+                    span:first-child{
+                        font-size: 1.4rem;
+                        color: #929292;
+                        letter-spacing: 2px;
+                    }
+                    span:last-child{
+                        font-size: 2rem;
+                        color: #ff5722;
+                    }
+                }            
+            }
+        }
+    }
+
+    .leave-message{
+        .mat-form-field{
+            width: 100%;
+            padding-right: 50px;
+        }
+    }
+
+    .payment-button button,.button-row a {
+        margin-left: 8px;
+    }
     
+    .payment{
+        span{
+            font-size: 2rem;
+            color: #929292;
+            letter-spacing: 2px;
+        }
+
+        &.total-cost{
+            span{
+                color: #ff5722;
+            }            
+        }
+    }
+
+    .place-order{
+        width: 250px;
+        font-size: 2rem;
+        line-height: 3;
+        margin-top: 30px;
+    }
 }

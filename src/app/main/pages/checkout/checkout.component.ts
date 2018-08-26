@@ -11,6 +11,7 @@ import { select, Store } from '@ngrx/store';
 import * as AddressActions from '@store/address/actions/address';
 import * as fromAddress from '@store/address/reducers';
 import { AddressService } from '@store/address/services/address.service';
+import { AuthService } from '@box/services/auth.service';
 
 @Component({
   selector: 'app-checkout',
@@ -30,6 +31,7 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private _boxSidebarService: BoxSidebarService,
     private addressService: AddressService,
+    private auth: AuthService,
     private dialog: MatDialog,
     private store: Store<fromAddress.State>,
     private router: Router
@@ -65,18 +67,18 @@ export class CheckoutComponent implements OnInit {
     this.store.dispatch(new AddressActions.Remove(event));
   }
 
-  onAddressUpdate(event) {
+  onAddressUpdate(event) {    
     this.store.dispatch(new AddressActions.Update(event));
   }
 
-  onSetDefault(event) {
-    this.store.dispatch(new AddressActions.SetDefault(event));
+  onAddressUpdateMany(event) {    
+    this.store.dispatch(new AddressActions.UpdateMany(event));
   }
 
   toggleSidebar(name): void {
     this._boxSidebarService.getSidebar(name).toggleOpen();
   }
-  openNewAddressDialog() {
+  openNewAddressDialog(event?) {
     let dialogRef: MatDialogRef<NewAddressDialogComponent>;
     dialogRef = this.dialog.open(NewAddressDialogComponent);
     // dialogRef.componentInstance.address = this.selected;
@@ -87,16 +89,17 @@ export class CheckoutComponent implements OnInit {
     if (event) {
       this.address = {
         id: event.id,
-        people: this.user.id,
-        addressType: event.addressType,
+        person: this.auth.getCurrentUserId(),
+        // addressType: event.addressType,
         addressLine1: event.addressLine1,
         addressLine2: event.addressLine2,
-        city: event.city,
-        stateProvince: event.stateProvince,
-        country: event.country,
+        // city: event.city,
+        // stateProvince: event.stateProvince,
+        // country: event.country,
         geoLocation: event.geoLocation,
         postalCode: event.postalCode,
-        lastEditedBy: event.lastEditedBy,
+        // lastEditedBy: event.lastEditedBy,
+        default: event.default,
         validFrom: event.validFrom,
         validTo: event.validTo
       };

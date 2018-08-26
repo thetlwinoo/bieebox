@@ -7,6 +7,8 @@ import { FilterPipe } from './filter.pipe';
 import { CamelCaseToDashPipe } from './camelCaseToDash.pipe';
 import { EllipsisPipe } from './ellipsis.pipe';
 import { AddCommasPipe } from './add-commas.pipe';
+import { AddressMinifyPipe } from './address.pipe';
+import { DefaultAddressPipe } from './default-address.pipe';
 
 @NgModule({
     declarations: [
@@ -16,7 +18,9 @@ import { AddCommasPipe } from './add-commas.pipe';
         FilterPipe,
         CamelCaseToDashPipe,
         EllipsisPipe,
-        AddCommasPipe
+        AddCommasPipe,
+        AddressMinifyPipe,
+        DefaultAddressPipe
     ],
     imports     : [],
     exports     : [
@@ -26,7 +30,9 @@ import { AddCommasPipe } from './add-commas.pipe';
         FilterPipe,
         CamelCaseToDashPipe,
         EllipsisPipe,
-        AddCommasPipe
+        AddCommasPipe,
+        AddressMinifyPipe,
+        DefaultAddressPipe
     ]
 })
 export class BoxPipesModule

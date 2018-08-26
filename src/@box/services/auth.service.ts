@@ -48,10 +48,16 @@ export class AuthService {
     return credential;
   }
 
-  public getCurrentAccount(): Promise<any> {
+  public getCurrentUserId(){
     const credential = this.retrieve();
+    console.log('credential',credential)
+    return credential.id;
+  }
+  
+  public getCurrentAccount(email): Promise<any> {
+    // const credential = this.retrieve();
     return new Promise((resolve, reject) => {
-      this.peoples$(credential.email)
+      this.peoples$(email)
         .subscribe((response: any) => {
           this.currentUser = new People(response);
           this.onCurrentUserChanged.next(this.currentUser);
