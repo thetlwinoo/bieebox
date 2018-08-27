@@ -94,3 +94,9 @@ mat-chip {
 .mat-form-field-infix{
     width: auto !important;
 }
+
+.mat-checkbox {
+    label{
+        margin: 0;
+    }
+}

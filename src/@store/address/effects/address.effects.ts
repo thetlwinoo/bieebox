@@ -41,7 +41,7 @@ export class AddressEffects {
         map(action => action.payload),
         switchMap(query => {
             // console.log(res)
-            return this.addressService.addresses$(this.getNewQuery(query)).pipe(
+            return this.addressService.addresses$(query).pipe(
                 map((data: any) => new LoadComplete(data)),
                 catchError(err => of(new AddressError(err)))
             );
@@ -102,10 +102,10 @@ export class AddressEffects {
         tap(() => this.router.navigate(['/pages/home']))
     );
 
-    getNewQuery(query) {
-        const newQuery = Object.assign({ person: this.auth.getCurrentUserId() }, query);
-        return newQuery;
-    }
+    // getNewQuery(query) {
+    //     const newQuery = Object.assign({ person: this.auth.getCurrentUserId() }, query);
+    //     return newQuery;
+    // }
     constructor(
         private actions$: Actions,
         private addressService: AddressService,

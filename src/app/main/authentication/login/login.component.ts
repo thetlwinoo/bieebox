@@ -30,33 +30,33 @@ export class LoginComponent implements OnInit {
   ) {
     this._boxConfigService.config = {
       layout: {
-        notification: {
-          hidden: true
-        },
-        header: {
-          hidden: true
-        },
+        // notification: {
+        //   hidden: true
+        // },
+        // header: {
+        //   hidden: true
+        // },
         navbar: {
           hidden: true
         },
-        toolbar: {
-          hidden: true
-        },
-        footer: {
-          hidden: true
-        },
-        sidepanel: {
-          hidden: true
-        },
-        brand: {
-          hidden: true
-        },
-        shop: {
-          hidden: true
-        },
-        newsletter: {
-          hidden: true
-        }
+        // toolbar: {
+        //   hidden: true
+        // },
+        // footer: {
+        //   hidden: true
+        // },
+        // sidepanel: {
+        //   hidden: true
+        // },
+        // brand: {
+        //   hidden: true
+        // },
+        // shop: {
+        //   hidden: true
+        // },
+        // newsletter: {
+        //   hidden: true
+        // }
       }
     };
 
@@ -108,16 +108,16 @@ export class LoginComponent implements OnInit {
       password
     })
       .then((res) => {
-        this.auth.getCurrentAccount(email).then(user => {
-          const credential = new Credential({
-            id: user.id,
-            name: user.fullName,
-            email: user.emailAddress
-          });
-          this.auth.save(credential);
-
-          this._Router.navigate(['/pages/checkout']);
-        });        
+        // this.auth.getCurrentAccount(email).then(user => {
+        //   const credential = new Credential({
+        //     id: user.id,
+        //     name: user.fullName,
+        //     email: user.emailAddress
+        //   });
+        //   this.auth.save(credential);          
+        // });   
+        this.auth.peoples$(email).subscribe(res=> console.log(res))
+        this._Router.navigate(['/pages/checkout']);     
       })
       .catch(err => {
         this.sendMessage('Wrong credentials!')

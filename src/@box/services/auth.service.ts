@@ -28,43 +28,43 @@ export class AuthService {
     return this.feathers.authenticate(credentials);
   }
 
-  public logIn(credentials?): Observable<any> {
-    return Observable.fromPromise(
-      this.authenticate(credentials)
-    );
-  }
+  // public logIn(credentials?): Observable<any> {
+  //   return Observable.fromPromise(
+  //     this.authenticate(credentials)
+  //   );
+  // }
 
-  public save(credential: Credential): void {
-    this.storage.setItem(CART_KEY, JSON.stringify(credential));
-  }
+  // public save(credential: Credential): void {
+  //   this.storage.setItem(CART_KEY, JSON.stringify(credential));
+  // }
 
-  public retrieve(): Credential {
-    let credential: Credential;
-    const cart = this.storage.getItem(CART_KEY);
-    if (cart) {
-      credential = new Credential(JSON.parse(cart));
-    }
+  // public retrieve(): Credential {
+  //   let credential: Credential;
+  //   const cart = this.storage.getItem(CART_KEY);
+  //   if (cart) {
+  //     credential = new Credential(JSON.parse(cart));
+  //   }
 
-    return credential;
-  }
+  //   return credential;
+  // }
 
-  public getCurrentUserId(){
-    const credential = this.retrieve();
-    console.log('credential',credential)
-    return credential.id;
-  }
-  
-  public getCurrentAccount(email): Promise<any> {
-    // const credential = this.retrieve();
-    return new Promise((resolve, reject) => {
-      this.peoples$(email)
-        .subscribe((response: any) => {
-          this.currentUser = new People(response);
-          this.onCurrentUserChanged.next(this.currentUser);
-          resolve(this.currentUser);
-        }, reject);
-    });
-  }
+  // public getCurrentUserId() {
+  //   const credential = this.retrieve();
+  //   console.log('credential', credential)
+  //   return credential.id;
+  // }
+
+  // public getCurrentAccount(email): Promise<any> {
+  //   // const credential = this.retrieve();
+  //   return new Promise((resolve, reject) => {
+  //     this.peoples$(email)
+  //       .subscribe((response: any) => {
+  //         this.currentUser = new People(response);
+  //         this.onCurrentUserChanged.next(this.currentUser);
+  //         resolve(this.currentUser);
+  //       }, reject);
+  //   });
+  // }
 
   peoples$(email): Observable<any> {
     return (<any>this.feathers

@@ -33,7 +33,7 @@ export class AddressService {
 
     getAddresses(query): Promise<any> {
         return new Promise((resolve, reject) => {
-            Object.assign(query, { person: this.auth.getCurrentUserId() });
+            // Object.assign(query, { person: this.auth.getCurrentUserId() });
             this.addresses$(query)
                 .subscribe((response: any) => {
                     this.addresses = response;

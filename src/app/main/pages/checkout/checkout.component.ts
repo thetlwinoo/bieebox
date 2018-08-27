@@ -10,7 +10,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import * as AddressActions from '@store/address/actions/address';
 import * as fromAddress from '@store/address/reducers';
-import { AddressService } from '@store/address/services/address.service';
+// import { AddressService } from '@store/address/services/address.service';
 import { AuthService } from '@box/services/auth.service';
 
 @Component({
@@ -21,7 +21,7 @@ import { AuthService } from '@box/services/auth.service';
 })
 export class CheckoutComponent implements OnInit {
   address: any;
-  user: any;
+  // user: any;
   carousel: any;
   addresses$: Observable<Address[]>;
   loading$: Observable<boolean>;
@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private _boxSidebarService: BoxSidebarService,
-    private addressService: AddressService,
+    // private addressService: AddressService,
     private auth: AuthService,
     private dialog: MatDialog,
     private store: Store<fromAddress.State>,
@@ -53,7 +53,7 @@ export class CheckoutComponent implements OnInit {
       }
     });
 
-    this.addressService.onUserChanged.subscribe(user => this.user = user);
+    // this.addressService.onUserChanged.subscribe(user => this.user = user);
   }
 
   ngOnInit() {
@@ -78,6 +78,7 @@ export class CheckoutComponent implements OnInit {
   toggleSidebar(name): void {
     this._boxSidebarService.getSidebar(name).toggleOpen();
   }
+
   openNewAddressDialog(event?) {
     let dialogRef: MatDialogRef<NewAddressDialogComponent>;
     dialogRef = this.dialog.open(NewAddressDialogComponent);
@@ -89,7 +90,7 @@ export class CheckoutComponent implements OnInit {
     if (event) {
       this.address = {
         id: event.id,
-        person: this.auth.getCurrentUserId(),
+        // person: this.auth.getCurrentUserId(),
         // addressType: event.addressType,
         addressLine1: event.addressLine1,
         addressLine2: event.addressLine2,

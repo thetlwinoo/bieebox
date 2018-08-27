@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CheckoutComponent } from './checkout.component';
 import { BoxDemoModule } from '@box/components/demo/demo.module';
 import { BoxSidebarModule } from '@box/components/sidebar/sidebar.module';
-import { MatIconModule,MatCheckboxModule, MatDividerModule, MatListModule, MatExpansionModule, MatFormFieldModule, MatDatepickerModule, MatButtonModule, MatDialogModule, MatInputModule, MatRadioModule } from '@angular/material';
+import { MatIconModule, MatCheckboxModule, MatDividerModule, MatListModule, MatExpansionModule, MatFormFieldModule, MatDatepickerModule, MatButtonModule, MatDialogModule, MatInputModule, MatRadioModule } from '@angular/material';
 import { BoxSharedModule } from '@box/shared.module';
 // import { BrandModule } from '@box/components/brand/brand.module';
 import { CheckoutService } from './checkout.service';
