@@ -1,4 +1,5 @@
 import { AddressActionTypes, AddressActionsUnion } from '../actions/address';
+import { Address } from '@box/models';
 
 export interface State {
   ids: string[];
@@ -52,6 +53,7 @@ export function reducer(state = initialState, action: AddressActionsUnion): Stat
         error: action.payload,
       };
     }
+    
 
     default: {
       return state;

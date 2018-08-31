@@ -37,7 +37,6 @@ export class AddressService {
             this.addresses$(query)
                 .subscribe((response: any) => {
                     this.addresses = response;
-                    console.log(this.addresses)
                     this.onAddressesChanged.next(this.addresses);
                     resolve(response);
                 }, reject);
@@ -45,8 +44,7 @@ export class AddressService {
     }
 
     //feathers API
-    addresses$(query): Observable<any[]> {
-        console.log('ad store', query)
+    addresses$(query): Observable<any[]> {        
         return (<any>this.feathers
             .service('general/addresses'))
             .watch()
@@ -54,17 +52,16 @@ export class AddressService {
                 query: query
             })
             .map(d => {
-                const _list: Address[] = [];
-                d.data.forEach(element => {
-                    const address = new Address(element);
-                    _list.push(address);
+                const addressList: Address[] = [];                
+                d.data.map(item => {
+                    const address = new Address(item);
+                    addressList.push(address);
                 });
-                return _list;
+                return addressList;
             });
     }
 
     addAddress$(data: any): Observable<any> {
-        console.log('Data', data)
         if (data === '') {
             return;
         }
@@ -85,16 +82,16 @@ export class AddressService {
             .patch(id, data));
     }
 
-    saveMany$(id: string, data: any): Observable<any[]> {
-        console.log('SaveMany', data)
-        if (data === '') {
-            return;
-        }
+    // saveMany$(id: string, data: any): Observable<any[]> {
+    //     console.log('SaveMany', data)
+    //     if (data === '') {
+    //         return;
+    //     }
 
-        return Observable.fromPromise(this.feathers
-            .service('addresses/set-default')
-            .patch(id, data));
-    }
+    //     return Observable.fromPromise(this.feathers
+    //         .service('addresses/set-default')
+    //         .patch(id, data));
+    // }
 
     deleteAddress$(id) {
         if (id === '') {

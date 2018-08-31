@@ -74,13 +74,6 @@ export class CheckoutService implements Resolve<any> {
             .find({
                 query: query
             })
-            .map(d => {
-                const _list: Address[] = [];
-                d.data.forEach(element => {
-                    const address = new Address(element);
-                    _list.push(address);
-                });
-                return _list;
-            });
+            .map(d => d.data);
     }
 }

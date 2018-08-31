@@ -17,6 +17,7 @@ export class NewAddressDialogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('AAAddress,',this.address)
     if (this.address) {
       this.form = new FormGroup({
         id: new FormControl(this.address.id),
@@ -36,7 +37,7 @@ export class NewAddressDialogComponent implements OnInit {
       });
     } else {
       this.address = new Address();
-
+      
       this.form = new FormGroup({
         id: new FormControl(''),
         person: new FormControl(''),

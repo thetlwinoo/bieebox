@@ -7,7 +7,7 @@ import { KeywordEffects } from './effects/keyword.effects';
 import { reducers } from './reducers';
 import { KeywordsService } from './services/keywords.service';
 
-import { Feathers } from '@box/services/feathers.service';
+// import { Feathers } from '@box/services/feathers.service';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { Feathers } from '@box/services/feathers.service';
   ],
   declarations: [],
   providers: [
-    Feathers,
+    // Feathers,
     KeywordsService    
   ]
 })

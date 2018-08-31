@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AddressMinifyPipe implements PipeTransform {
     transform(data: null | any) {
         if (!data) {
-            return 'Guest';
+            return data;
         }
 
         const name = data.person.fullName;

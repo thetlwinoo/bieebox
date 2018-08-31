@@ -9,6 +9,7 @@ import { BoxSidebarService } from '@box/components/sidebar/sidebar.service';
 import { BoxSplashScreenService } from '@box/services/splash-screen.service';
 import { BoxTranslationLoaderService } from '@box/services/translation-loader.service';
 import { AuthService } from '@box/services/auth.service';
+import { Feathers } from '@box/services/feathers.service';
 import { PeopleService } from '@box/services/people.service';
 import { BoxInMemoryService } from '@box/services/in-memory.service';
 import { SnackBarService } from '@box/services/snackbar.service';
@@ -27,6 +28,7 @@ import { StorageService, LocalStorageService } from '@box/services/storage.servi
         BoxSplashScreenService,
         BoxTranslationLoaderService,
         AuthService,
+        Feathers,
         PeopleService,
         SnackBarService,
         BoxInMemoryService,

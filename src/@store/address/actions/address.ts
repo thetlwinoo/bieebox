@@ -9,8 +9,8 @@ export enum AddressActionTypes {
     CreateSuccess = '[Address] Create Success',
     Update = '[Address] Update',
     UpdateSuccess = '[Address] Update Success',
-    UpdateMany = '[Address] Update Many',
-    UpdateManySuccess = '[Address] Update Many Success',
+    // UpdateMany = '[Address] Update Many',
+    // UpdateManySuccess = '[Address] Update Many Success',
     Remove = '[Address] Remove',
     RemoveSuccess = '[Address] Remove Success',
     SetDefault = '[Address] Set Default',
@@ -27,7 +27,7 @@ export class Load implements Action {
 export class LoadComplete implements Action {
     readonly type = AddressActionTypes.LoadComplete;
 
-    constructor(public payload: any) { }
+    constructor(public payload: Address[]) { }
 }
 
 export class LoadError implements Action {
@@ -35,7 +35,6 @@ export class LoadError implements Action {
 
     constructor(public payload: string) { }
 }
-
 
 export class Create implements Action {
     readonly type = AddressActionTypes.Create;
@@ -61,17 +60,17 @@ export class UpdateSuccess implements Action {
     constructor(public payload: any) { }
 }
 
-export class UpdateMany implements Action {
-    readonly type = AddressActionTypes.UpdateMany;
+// export class UpdateMany implements Action {
+//     readonly type = AddressActionTypes.UpdateMany;
 
-    constructor(public payload: Address) { }
-}
+//     constructor(public payload: Address) { }
+// }
 
-export class UpdateManySuccess implements Action {
-    readonly type = AddressActionTypes.UpdateManySuccess;
+// export class UpdateManySuccess implements Action {
+//     readonly type = AddressActionTypes.UpdateManySuccess;
 
-    constructor(public payload: { updates: { id: string, changes: Address }[] }) { }
-}
+//     constructor(public payload: any) { }
+// }
 
 export class Remove implements Action {
     readonly type = AddressActionTypes.Remove;
@@ -99,8 +98,8 @@ export type AddressActionsUnion =
     | CreateSuccess
     | Update
     | UpdateSuccess
-    | UpdateMany
-    | UpdateManySuccess
+    // | UpdateMany
+    // | UpdateManySuccess
     | Remove
     | RemoveSuccess
     | AddressError;

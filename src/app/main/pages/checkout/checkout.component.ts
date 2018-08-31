@@ -11,6 +11,7 @@ import { select, Store } from '@ngrx/store';
 import * as AddressActions from '@store/address/actions/address';
 import * as fromAddress from '@store/address/reducers';
 // import { AddressService } from '@store/address/services/address.service';
+// import { CheckoutService } from './checkout.service'
 import { AuthService } from '@box/services/auth.service';
 
 @Component({
@@ -26,7 +27,9 @@ export class CheckoutComponent implements OnInit {
   addresses$: Observable<Address[]>;
   loading$: Observable<boolean>;
   error$: Observable<string>;
+  createSuccess$: Observable<any>;
   selected$: Observable<Address>;
+  addresses: Address[];
 
   constructor(
     private _boxSidebarService: BoxSidebarService,
@@ -34,29 +37,27 @@ export class CheckoutComponent implements OnInit {
     private auth: AuthService,
     private dialog: MatDialog,
     private store: Store<fromAddress.State>,
-    private router: Router
+    private router: Router,
+    // private checkoutService: CheckoutService
   ) {
-    this.carousel = carousel;
-    store.dispatch(new AddressActions.Load({ $limit: 10 }));
+    this.carousel = carousel;    
 
     this.addresses$ = store.pipe(select(fromAddress.getLoadResults));
     this.loading$ = store.pipe(select(fromAddress.getAddressLoading));
     this.error$ = store.pipe(select(fromAddress.getAddressError));
 
-    this.loading$.subscribe(load => {
-      if (!load) {
-        this.addresses$.subscribe(addresses => {
-          if (addresses.length <= 0) {
-            this.openNewAddressDialog();
-          }
-        })
-      }
-    });
-
-    // this.addressService.onUserChanged.subscribe(user => this.user = user);
+    this.addresses$.subscribe(addresses => console.log(addresses));
+    // this.loading$.subscribe(loading => {
+    //   if (!loading) {
+    //     if (this.addresses.length <= 0) {
+    //       this.openNewAddressDialog();
+    //     }
+    //   }
+    // });
   }
 
   ngOnInit() {
+    this.store.dispatch(new AddressActions.Load({ $limit: 10 }));
   }
 
   onAddressCreate(event) {
@@ -67,13 +68,13 @@ export class CheckoutComponent implements OnInit {
     this.store.dispatch(new AddressActions.Remove(event));
   }
 
-  onAddressUpdate(event) {    
+  onAddressUpdate(event) {
     this.store.dispatch(new AddressActions.Update(event));
   }
 
-  onAddressUpdateMany(event) {    
-    this.store.dispatch(new AddressActions.UpdateMany(event));
-  }
+  // onAddressUpdateMany(event) {
+  //   this.store.dispatch(new AddressActions.UpdateMany(event));
+  // }
 
   toggleSidebar(name): void {
     this._boxSidebarService.getSidebar(name).toggleOpen();
@@ -108,7 +109,10 @@ export class CheckoutComponent implements OnInit {
       this.onAddressCreate(this.address);
     }
     else {
-      this.router.navigate(['/pages/home']);
+      if (this.addresses.length <= 0) {
+        this.router.navigate(['/pages/home']);
+      }
+
     }
   }
 }

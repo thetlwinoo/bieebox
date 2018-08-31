@@ -7,7 +7,7 @@ import { AddressEffects } from './effects/address.effects';
 import { reducers } from './reducers';
 import { AddressService } from './services/address.service';
 
-import { Feathers } from '@box/services/feathers.service';
+// import { Feathers } from '@box/services/feathers.service';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { Feathers } from '@box/services/feathers.service';
   ],
   declarations: [],
   providers: [
-    Feathers,
+    // Feathers,
     AddressService    
   ]
 })

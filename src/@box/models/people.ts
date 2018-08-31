@@ -1,4 +1,5 @@
 import { BoxUtils } from '@box/utils';
+import { classify } from '../../../modules/entity/schematics-core/utility/strings';
 
 export class People {
     id: string;

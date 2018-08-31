@@ -12,7 +12,8 @@ import {
     switchMap,
     takeUntil,
     exhaustMap,
-    tap
+    tap,
+    mergeMap
 } from 'rxjs/operators';
 
 import { AddressService } from '../services/address.service';
@@ -23,10 +24,10 @@ import {
     LoadComplete,
     Create,
     CreateSuccess,
-    Update,    
+    Update,
     UpdateSuccess,
-    UpdateMany,
-    UpdateManySuccess,
+    // UpdateMany,
+    // UpdateManySuccess,
     Remove,
     RemoveSuccess,
     AddressError
@@ -42,7 +43,7 @@ export class AddressEffects {
         switchMap(query => {
             // console.log(res)
             return this.addressService.addresses$(query).pipe(
-                map((data: any) => new LoadComplete(data)),
+                map((data: Address[]) => new LoadComplete(data)),
                 catchError(err => of(new AddressError(err)))
             );
         })
@@ -52,9 +53,10 @@ export class AddressEffects {
     create$: Observable<Action> = this.actions$.pipe(
         ofType<Create>(AddressActionTypes.Create),
         map(action => action.payload),
-        switchMap(query => {
+        mergeMap(query => {
             return this.addressService.addAddress$(query).pipe(
-                map((data: any) => new CreateSuccess(new Address(data))),
+                // map((data: any) => new CreateSuccess(new Address(data))),
+                map((response: any) => new CreateSuccess(response)),
                 catchError(err => of(new AddressError(err)))
             );
         })
@@ -64,25 +66,25 @@ export class AddressEffects {
     update$: Observable<Action> = this.actions$.pipe(
         ofType<Update>(AddressActionTypes.Update),
         map(action => action.payload),
-        switchMap(query => {
+        mergeMap(query => {
             return this.addressService.saveAddress$(query.id, query).pipe(
-                map((data: any) => new UpdateSuccess(new Address(data))),
+                map((response: any) => new UpdateSuccess(response)),
                 catchError(err => of(new AddressError(err)))
             );
         })
     );
 
-    @Effect()
-    updateMany$: Observable<Action> = this.actions$.pipe(
-        ofType<Update>(AddressActionTypes.UpdateMany),
-        map(action => action.payload),
-        switchMap(query => {
-            return this.addressService.saveMany$(query.id, query).pipe(
-                map((res: any) => new UpdateManySuccess({ updates: res.data })),
-                catchError(err => of(new AddressError(err)))
-            );
-        })
-    );
+    // @Effect()
+    // updateMany$: Observable<Action> = this.actions$.pipe(
+    //     ofType<Update>(AddressActionTypes.UpdateMany),
+    //     map(action => action.payload),
+    //     switchMap(query => {
+    //         return this.addressService.saveMany$(query.id, query).pipe(
+    //             map((response: any) => new UpdateManySuccess(response)),
+    //             catchError(err => of(new AddressError(err)))
+    //         );
+    //     })
+    // );
 
     @Effect()
     remove$: Observable<Action> = this.actions$.pipe(
@@ -102,10 +104,11 @@ export class AddressEffects {
         tap(() => this.router.navigate(['/pages/home']))
     );
 
-    // getNewQuery(query) {
-    //     const newQuery = Object.assign({ person: this.auth.getCurrentUserId() }, query);
-    //     return newQuery;
-    // }
+    getNewQuery(query) {
+        const newQuery = Object.assign({ person: this.auth.getCurrentUserId() }, query);
+        return newQuery;
+    }
+    
     constructor(
         private actions$: Actions,
         private addressService: AddressService,

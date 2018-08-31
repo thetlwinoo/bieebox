@@ -1,8 +1,9 @@
 import { BoxUtils } from '@box/utils';
+import { People } from './people';
 
 export class Address {
     id: string;
-    person: string;
+    person: People;
     addressType: string;
     addressLine1: string;
     addressLine2: string;
@@ -12,14 +13,14 @@ export class Address {
     geoLocation: string;
     postalCode: string;
     default: boolean;
-    lastEditedBy: string;
+    lastEditedBy: People;
     validFrom: Date;
     validTo: Date;
 
     constructor(address?) {
         address = address || {};
         this.id = address.id || address._id || BoxUtils.generateGUID();
-        this.person = address.person || '';
+        this.person = address.person || {};
         this.addressType = address.addressType || '';
         this.addressLine1 = address.addressLine1 || '';
         this.addressLine2 = address.addressLine2 || '';
@@ -29,7 +30,7 @@ export class Address {
         this.geoLocation = address.geoLocation || '';
         this.postalCode = address.postalCode || '';
         this.default = address.default || false;
-        this.lastEditedBy = address.lastEditedBy || '';
+        this.lastEditedBy = address.lastEditedBy || {};
         this.validFrom = address.validFrom || new Date('2018-01-01 00:00:00.0000000');
         this.validTo = address.validTo || new Date('9999-12-31 23:59:59.9999999');
     }

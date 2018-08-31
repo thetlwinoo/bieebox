@@ -7,9 +7,9 @@ export class DataService {
 
   constructor(private feathers: Feathers) { }
 
-  people$(email): Promise<any> {    
+  people$(email): Promise<any> {
     return (<any>this.feathers
-      .service('general/people'))
+      .service('general/addresses'))
       .watch()
       .find({
         query: {

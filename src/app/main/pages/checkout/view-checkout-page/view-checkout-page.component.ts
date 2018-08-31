@@ -11,13 +11,14 @@ export class ViewCheckoutPageComponent implements OnInit {
   @Output() create = new EventEmitter<any>();
   @Output() remove = new EventEmitter<any>();
   @Output() update = new EventEmitter<any>();
-  @Output() updateMany = new EventEmitter<any>();
+  // @Output() updateMany = new EventEmitter<any>();
   @Output() opendialog = new EventEmitter<any>();
 
   @Input() addresses: any;
   @Input() loading: any;
   @Input() error: any;
   @Input() selected: any;
+  @Input() createSuccess: any;
 
   defaultAddress: any;
 
@@ -40,10 +41,15 @@ export class ViewCheckoutPageComponent implements OnInit {
     this._serviceSubscription = this.cartService.onChange.subscribe(() => {
       this.updateCart();
     });
+
+    // console.log(this.createSuccess)
   }
 
   ngOnInit() {
-
+    
+    if(this.createSuccess){
+      this.isChanged = false;
+    }
   }
 
   updateCart() {
@@ -60,7 +66,8 @@ export class ViewCheckoutPageComponent implements OnInit {
   }
 
   onChangeDefault(event) {
-    this.defaultAddress = new Address(event.value);
+    // this.defaultAddress = new Address(event.value);
+    this.defaultAddress = event.value;
   }
 
   onSaveDefault(event) {
@@ -71,7 +78,7 @@ export class ViewCheckoutPageComponent implements OnInit {
       default: true,
     };
     console.log(updateAddress)
-    this.updateMany.emit(updateAddress);
+    this.update.emit(updateAddress);
     this.isChanged = !this.isChanged;
   }
 }
