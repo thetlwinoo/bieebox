@@ -25,8 +25,6 @@ export function reducer(
 ): State {
     switch (action.type) {
         case AddressActionTypes.LoadComplete: {
-            console.log('Load Complted', action.payload);
-
             const index = action.payload.findIndex(item => item.default === true);
             return {
                 ...adapter.addMany(action.payload, {
@@ -38,19 +36,12 @@ export function reducer(
         }
 
         case AddressActionTypes.CreateSuccess: {
-            // const index = action.payload.default ? action.payload.index : state.data.findIndex(item => item.default === true);
-            console.log('crate success', state.data, state.selected)
-
             const updates: any[] = [];
             state.data.map(address => {
                 const data = new Address(address);
                 const update = { id: data.id, changes: data };
                 updates.push(update);
             });
-
-            // adapter.updateMany(updates, {
-            //     ...state
-            // });
 
             return {
                 ...adapter.updateMany(updates, {
@@ -65,8 +56,6 @@ export function reducer(
         }
 
         case AddressActionTypes.UpdateSuccess: {
-            console.log('update success', state.data, state.selected)
-
             const updates: any[] = [];
             state.data.map(address => {
                 const data = new Address(address);

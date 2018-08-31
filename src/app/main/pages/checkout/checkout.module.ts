@@ -21,9 +21,9 @@ const routes = [
     data: {
       breadcrumbs: 'Home / Checkout'
     },
-    // resolve: {
-    //   data: CheckoutService
-    // }    
+    resolve: {
+      data: CheckoutService
+    }
   }
 ];
 
@@ -48,7 +48,11 @@ const routes = [
     MatCheckboxModule,
     MatRadioModule
   ],
-  declarations: [CheckoutComponent, NewAddressDialogComponent, ViewCheckoutPageComponent],
+  declarations: [
+    CheckoutComponent,
+    NewAddressDialogComponent,
+    ViewCheckoutPageComponent
+  ],
   providers: [
     CheckoutService
   ],

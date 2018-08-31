@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { BoxSidebarService } from '@box/components/sidebar/sidebar.service';
 import { boxAnimations } from '@box/animations';
 import { carousel } from '@box/carousel';
@@ -11,8 +11,10 @@ import { select, Store } from '@ngrx/store';
 import * as AddressActions from '@store/address/actions/address';
 import * as fromAddress from '@store/address/reducers';
 // import { AddressService } from '@store/address/services/address.service';
-// import { CheckoutService } from './checkout.service'
+import { CheckoutService } from './checkout.service'
 import { AuthService } from '@box/services/auth.service';
+import * as _ from 'lodash';
+import { AddToCartPosition, AddToCartType, CartService, CartItem, BaseCartItem, LocaleFormat } from 'ng-shopping-cart';
 
 @Component({
   selector: 'app-checkout',
@@ -20,7 +22,7 @@ import { AuthService } from '@box/services/auth.service';
   styleUrls: ['./checkout.component.scss'],
   animations: boxAnimations
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   address: any;
   // user: any;
   carousel: any;
@@ -30,6 +32,7 @@ export class CheckoutComponent implements OnInit {
   createSuccess$: Observable<any>;
   selected$: Observable<Address>;
   addresses: Address[];
+  private serviceSubscription: any;
 
   constructor(
     private _boxSidebarService: BoxSidebarService,
@@ -38,29 +41,45 @@ export class CheckoutComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store<fromAddress.State>,
     private router: Router,
-    // private checkoutService: CheckoutService
+    private checkoutService: CheckoutService,
+    private cartService: CartService<any>
   ) {
-    this.carousel = carousel;    
+    this.carousel = carousel;
 
+    this.store.dispatch(new AddressActions.Load({ $limit: 10 }));
     this.addresses$ = store.pipe(select(fromAddress.getLoadResults));
     this.loading$ = store.pipe(select(fromAddress.getAddressLoading));
     this.error$ = store.pipe(select(fromAddress.getAddressError));
 
-    this.addresses$.subscribe(addresses => console.log(addresses));
-    // this.loading$.subscribe(loading => {
-    //   if (!loading) {
-    //     if (this.addresses.length <= 0) {
-    //       this.openNewAddressDialog();
-    //     }
-    //   }
+    // this.serviceSubscription = this.addresses$.subscribe(addresses => {
+    //   console.log(addresses)
     // });
+    this.serviceSubscription = this.checkoutService.onAddressesChanged.subscribe(addresses => {
+      if (addresses.length <= 0) {
+        this.openNewAddressDialog();
+      }
+    })
+
   }
 
   ngOnInit() {
-    this.store.dispatch(new AddressActions.Load({ $limit: 10 }));
+
   }
 
-  onAddressCreate(event) {
+  ngOnDestroy() {
+    if (this.serviceSubscription) {
+      this.serviceSubscription.unsubscribe();
+    }
+  }
+
+  onOrderCreate(event) {
+    this.checkoutService.createOrder(event).then(response => {
+     this.cartService.clear();
+      this.router.navigate(['pages/checkout-completed']);
+    });
+  }
+
+  onAddressCreate(event) {    
     this.store.dispatch(new AddressActions.Create(event));
   }
 
@@ -71,10 +90,6 @@ export class CheckoutComponent implements OnInit {
   onAddressUpdate(event) {
     this.store.dispatch(new AddressActions.Update(event));
   }
-
-  // onAddressUpdateMany(event) {
-  //   this.store.dispatch(new AddressActions.UpdateMany(event));
-  // }
 
   toggleSidebar(name): void {
     this._boxSidebarService.getSidebar(name).toggleOpen();
@@ -91,7 +106,8 @@ export class CheckoutComponent implements OnInit {
     if (event) {
       this.address = {
         id: event.id,
-        // person: this.auth.getCurrentUserId(),
+        contactName: event.contactName,
+        phoneNumber: event.phoneNumber,
         // addressType: event.addressType,
         addressLine1: event.addressLine1,
         addressLine2: event.addressLine2,
@@ -105,7 +121,6 @@ export class CheckoutComponent implements OnInit {
         validFrom: event.validFrom,
         validTo: event.validTo
       };
-      // console.log(event, this.user)
       this.onAddressCreate(this.address);
     }
     else {

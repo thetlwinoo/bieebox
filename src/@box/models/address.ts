@@ -4,6 +4,8 @@ import { People } from './people';
 export class Address {
     id: string;
     person: People;
+    contactName: string;
+    phoneNumber: string;
     addressType: string;
     addressLine1: string;
     addressLine2: string;
@@ -21,6 +23,8 @@ export class Address {
         address = address || {};
         this.id = address.id || address._id || BoxUtils.generateGUID();
         this.person = address.person || {};
+        this.contactName = address.contactName || '';
+        this.phoneNumber = address.phoneNumber || '';
         this.addressType = address.addressType || '';
         this.addressLine1 = address.addressLine1 || '';
         this.addressLine2 = address.addressLine2 || '';
@@ -36,7 +40,7 @@ export class Address {
     }
 }
 
-export class AddressUpdate {
-    id: string;
-    changes: Address;
-}
+// export class AddressUpdate {
+//     id: string;
+//     changes: Address;
+// }

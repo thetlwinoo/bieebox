@@ -1,0 +1,50 @@
+:host {
+    .box-wrapper {
+        box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.09);
+        border-radius: .3rem;
+        overflow: hidden;
+        background: #fff;
+
+        .box-wrapper-section {
+            padding: 1.2rem 2.4rem 2.4rem;
+
+            .horizontal-wrapper {
+                margin-bottom: 20px;
+
+                &.wrapper-border {
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                }
+            }
+
+            .row {
+                line-height: 3;
+            }
+        }
+    }
+
+    h2 {
+        // font-weight: 400 !important;
+
+        i {
+            margin-right: 5px;
+        }
+    }
+
+    p {
+        font-weight: 400 !important;
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .mat-nav-list {
+        color: #039be5 !important;
+    }
+
+    .separator {
+        height: 10px;
+        width: 1px;
+        background: rgba(0, 0, 0, 0.12);
+        display: inline-block;
+        margin: 0 15px;
+    }
+}

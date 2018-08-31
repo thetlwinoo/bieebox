@@ -26,8 +26,6 @@ import {
     CreateSuccess,
     Update,
     UpdateSuccess,
-    // UpdateMany,
-    // UpdateManySuccess,
     Remove,
     RemoveSuccess,
     AddressError
@@ -41,7 +39,6 @@ export class AddressEffects {
         ofType<Load>(AddressActionTypes.Load),
         map(action => action.payload),
         switchMap(query => {
-            // console.log(res)
             return this.addressService.addresses$(query).pipe(
                 map((data: Address[]) => new LoadComplete(data)),
                 catchError(err => of(new AddressError(err)))
@@ -55,7 +52,6 @@ export class AddressEffects {
         map(action => action.payload),
         mergeMap(query => {
             return this.addressService.addAddress$(query).pipe(
-                // map((data: any) => new CreateSuccess(new Address(data))),
                 map((response: any) => new CreateSuccess(response)),
                 catchError(err => of(new AddressError(err)))
             );
@@ -73,18 +69,6 @@ export class AddressEffects {
             );
         })
     );
-
-    // @Effect()
-    // updateMany$: Observable<Action> = this.actions$.pipe(
-    //     ofType<Update>(AddressActionTypes.UpdateMany),
-    //     map(action => action.payload),
-    //     switchMap(query => {
-    //         return this.addressService.saveMany$(query.id, query).pipe(
-    //             map((response: any) => new UpdateManySuccess(response)),
-    //             catchError(err => of(new AddressError(err)))
-    //         );
-    //     })
-    // );
 
     @Effect()
     remove$: Observable<Action> = this.actions$.pipe(

@@ -1,0 +1,33 @@
+<div class="page-layout blank">
+    <div class="checkout-complted-area pt-25 pb-25">
+        <div class="container">
+            <div class="box-wrapper mb-25">
+                <div class="box-wrapper-section">
+                    <div class="horizontal-wrapper">
+                        <div class="horizontal-spacer">
+                            <h2><i class="ion-happy-outline"></i>Thank You!</h2>
+                        </div>
+                    </div>
+                    <p>
+                        Your payment will be verified within 24 hours.
+                    </p>
+                    <p>
+                        Once it is verified, the seller will prepare your order for shipment.
+                    </p>
+                    <p>
+                        Otherwise, you will receive a notice in <a [routerLink]="['/pages/home']" routerLinkActive="active">My Orders</a> or by email.
+                    </p>
+                </div>
+            </div>
+
+            <mat-nav-list>
+                <a href [routerLink]="['/pages/home']" routerLinkActive="active">Home</a>
+                <mat-divider class="separator"></mat-divider>
+                <a href [routerLink]="['/pages/home']" routerLinkActive="active">Go to order list</a>
+                <mat-divider class="separator"></mat-divider>
+                <a href [routerLink]="['/pages/shop']" routerLinkActive="active">Continue Shopping</a>
+            </mat-nav-list>
+        </div>
+    </div>
+    <related-products [stockItems]="stockItems" [carousel]="carousel"></related-products>
+</div>

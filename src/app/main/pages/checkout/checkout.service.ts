@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
-
+import { of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from 'environments/environment';
@@ -16,9 +16,6 @@ import { AuthService } from '@box/services/auth.service';
 export class CheckoutService implements Resolve<any> {
 
     addresses: Address[];
-    // categories: any[];
-    // bannerCategories: any[];
-    // brands: any[];
     onAddressesChanged: BehaviorSubject<any> = new BehaviorSubject({});
 
     constructor(
@@ -38,8 +35,7 @@ export class CheckoutService implements Resolve<any> {
         return new Promise((resolve, reject) => {
             Promise.all([
                 this.getAddresses({
-                    $limit: 20,
-                    $skip: 0
+                    $limit: 10
                 }),
             ]).then(
                 () => {
@@ -52,17 +48,62 @@ export class CheckoutService implements Resolve<any> {
 
     getAddresses(query): Promise<any> {
         return new Promise((resolve, reject) => {
-            // this.auth.getCurrentAccount().then(user => {
-                
-            // });
-            console.log(this.auth.currentUser)
-            const newQuery = Object.assign({ person: this.auth.currentUser.id }, query);
-                this.addresses$(newQuery)
-                    .subscribe((response: any) => {
-                        this.addresses = response;
-                        this.onAddressesChanged.next(this.addresses);
-                        resolve(response);
-                    }, reject);
+            const newQuery = Object.assign(query, { person: this.auth.getCurrentUserId() });
+            this.addresses$(newQuery)
+                .subscribe((response: any) => {
+                    console.log('load add', response)
+                    const items: Address[] = [];
+                    response.map(item => {
+                        const address = new Address(item);
+                        items.push(address);
+                    });
+
+                    this.addresses = items;
+
+                    this.onAddressesChanged.next(this.addresses);
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    addAddress(address) {
+        return new Promise((resolve, reject) => {
+            this.addAddress$(address)
+                .subscribe((response: any) => {
+                    console.log('response', response)
+                    this.getAddresses({
+                        $limit: 10
+                    }).then(addresses => {
+                        resolve(addresses);
+                    });
+                }, reject);
+        });
+    }
+
+    saveAddress(address) {
+        return new Promise((resolve, reject) => {
+            this.saveAddress$(address.id, address)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    removeAddress(id) {
+        return new Promise((resolve, reject) => {
+            this.removeAddress$(id)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
+        });
+    }
+
+    createOrder(data): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.createOrder$(data)
+                .subscribe((response: any) => {
+                    resolve(response);
+                }, reject);
         });
     }
 
@@ -75,5 +116,51 @@ export class CheckoutService implements Resolve<any> {
                 query: query
             })
             .map(d => d.data);
+    }
+
+    addAddress$(data: any): Observable<any> {
+        console.log(data)
+        if (data === '') {
+            return;
+        }
+
+        return Observable.fromPromise(
+            this.feathers
+                .service('general/addresses')
+                .create(data));
+    }
+
+    saveAddress$(id: string, data: any): Observable<any> {
+        if (data === '') {
+            return;
+        }
+
+        return Observable.fromPromise(this.feathers
+            .service('general/addresses')
+            .patch(id, data));
+    }
+
+    removeAddress$(id) {
+        if (id === '') {
+            return;
+        }
+
+        return Observable.fromPromise(this.feathers
+            .service('general/addresses')
+            .remove(id));
+
+        // return of(true);
+    }
+
+    createOrder$(data: any): Observable<any> {
+        console.log('ccc',data)
+        if (data === '') {
+            return;
+        }
+
+        return Observable.fromPromise(
+            this.feathers
+                .service('sales/orders')
+                .create(data));
     }
 }

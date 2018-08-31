@@ -1,17 +1,18 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { Address } from '@box/models';
 import { AddToCartPosition, AddToCartType, CartService, CartItem, BaseCartItem, LocaleFormat } from 'ng-shopping-cart';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'view-checkout-page',
   templateUrl: './view-checkout-page.component.html',
   styleUrls: ['./view-checkout-page.component.scss']
 })
-export class ViewCheckoutPageComponent implements OnInit {
+export class ViewCheckoutPageComponent implements OnInit, OnDestroy {
   @Output() create = new EventEmitter<any>();
   @Output() remove = new EventEmitter<any>();
   @Output() update = new EventEmitter<any>();
-  // @Output() updateMany = new EventEmitter<any>();
+  @Output() createOrder = new EventEmitter<any>();
   @Output() opendialog = new EventEmitter<any>();
 
   @Input() addresses: any;
@@ -32,23 +33,27 @@ export class ViewCheckoutPageComponent implements OnInit {
   shipping = 0;
   cost = 0;
   totalCount = 0;
-  private _serviceSubscription: any;
+  private serviceSubscription: Subscription;
 
   constructor(
     private cartService: CartService<any>,
   ) {
     this.updateCart();
-    this._serviceSubscription = this.cartService.onChange.subscribe(() => {
+    this.serviceSubscription = this.cartService.onChange.subscribe(() => {
       this.updateCart();
     });
-
-    // console.log(this.createSuccess)
   }
 
   ngOnInit() {
-    
-    if(this.createSuccess){
+
+    if (this.createSuccess) {
       this.isChanged = false;
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.serviceSubscription) {
+      this.serviceSubscription.unsubscribe();
     }
   }
 
@@ -61,24 +66,33 @@ export class ViewCheckoutPageComponent implements OnInit {
     this.cost = this.cartService.totalCost();
     this.format = <LocaleFormat>this.cartService.getLocaleFormat(true);
     this.totalCount = this.cartService.itemCount();
-
-    console.log(this.items)
   }
 
   onChangeDefault(event) {
-    // this.defaultAddress = new Address(event.value);
     this.defaultAddress = event.value;
   }
 
   onSaveDefault(event) {
-    console.log(event)
     const updateAddress = {
       id: event.id,
       person: event.person._id,
       default: true,
     };
-    console.log(updateAddress)
     this.update.emit(updateAddress);
     this.isChanged = !this.isChanged;
+  }
+
+  onCreateOrder(event) {
+    this.createOrder.emit({
+      cart: {
+        taxRate: this.taxRate,
+        tax: this.tax,
+        shipping: this.shipping,
+        cost: this.cost,
+        format: this.format,
+        itemCount: this.totalCount,
+        items: this.items
+      }
+    })
   }
 }
