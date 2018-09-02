@@ -48,16 +48,17 @@ export class CheckoutService implements Resolve<any> {
 
     getAddresses(query): Promise<any> {
         return new Promise((resolve, reject) => {
-            const newQuery = Object.assign(query, { person: this.auth.getCurrentUserId() });
+            const newQuery = Object.assign(query, { person: this.auth.getCurrentUserId() });  
+            console.log('new qu',newQuery)          
             this.addresses$(newQuery)
                 .subscribe((response: any) => {
                     console.log('load add', response)
                     const items: Address[] = [];
-                    response.map(item => {
-                        const address = new Address(item);
+                    response.map(item => {                        
+                        const address = new Address(item);                        
                         items.push(address);
                     });
-
+console.log('aaa',items)
                     this.addresses = items;
 
                     this.onAddressesChanged.next(this.addresses);

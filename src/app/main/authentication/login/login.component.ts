@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         this.auth.getCurrentAccount(email).then(user => {
           const credential = new Credential({
-            id: user.id,
+            id: user.id || user._id,
             name: user.fullName,
             email: user.emailAddress
           });

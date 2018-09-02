@@ -6,6 +6,7 @@ import { CheckoutModule } from 'app/main/pages/checkout/checkout.module';
 import { CheckoutCompletedModule } from 'app/main/pages/checkout-completed/checkout-completed.module';
 import { CartModule } from 'app/main/pages/cart/cart.module';
 import { WishlistModule } from 'app/main/pages/wishlist/wishlist.module';
+import { ManageOrdersModule } from 'app/main/pages/manage-orders/manage-orders.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { WishlistModule } from 'app/main/pages/wishlist/wishlist.module';
     CheckoutModule,
     CheckoutCompletedModule,
     CartModule,
-    WishlistModule
+    WishlistModule,
+    ManageOrdersModule
   ],
   declarations: []
 })

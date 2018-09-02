@@ -1,0 +1,13 @@
+:host{
+    .box-card{
+        min-width: 0 !important;
+        box-shadow: none;
+        > img{
+            padding-top: 20px;
+        }
+    }
+
+    .qr-title{
+        text-align: center !important;
+    }
+}

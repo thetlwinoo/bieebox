@@ -1,0 +1,56 @@
+<!-- <div class="box-wrapper mat-white-bg" *ngFor="let order of orders | slice:0:10  ;let i=index">
+  <div class="box-wrapper-section">
+    <div class="horizontal-wrapper wrapper-border">
+      <div class="horizontal-spacer">
+        <span class="mat-body-2">Order </span>
+        <a href>#{{order._id}}</a>
+      </div>
+      <span class="font-size-12 font-weight-500 primary-200-fg">Placed on {{order.orderDate | date:'medium'}} </span>
+    </div>
+    <div class="order-row" fxLayout="row" fxLayoutAlign="start center" *ngFor="let item of order.cart.items;let i=index">
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex>
+        <a href [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
+          <img src="{{ item.image }}" alt="" *ngIf="item.image else noimage">
+          <ng-template #noimage>
+            <img src="assets/devita/img/no_photo.jpg" alt="no image preview">
+          </ng-template>
+        </a>
+        <span>{{item.name}}</span>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+        <span>Qty : {{item.quantity}}</span>
+        <span class="text-boxed">Delivered</span>
+      </div>
+    </div>  
+  </div>
+</div> -->
+
+<mat-accordion>
+  <mat-expansion-panel [expanded]="i === 0" *ngFor="let order of orders | slice:0:10;let i=index">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span class="mat-body-2">Order </span>
+        <a href>#{{order._id}}</a>
+      </mat-panel-title>
+      <mat-panel-description fxHide fxShow.gt-md>
+        <span>Placed on {{order.orderDate | date:'medium'}} </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="order-row" fxLayout="row" fxLayoutAlign="start center" *ngFor="let item of order.cart.items;let i=index">
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex>
+        <a href [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
+          <img src="{{ item.image }}" alt="" *ngIf="item.image else noimage">
+          <ng-template #noimage>
+            <img src="assets/devita/img/no_photo.jpg" alt="no image preview">
+          </ng-template>
+        </a>
+        <span>{{item.name}}</span>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+        <span>Qty : {{item.quantity}}</span>
+        <span class="text-boxed">Delivered</span>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -481,11 +481,11 @@ $carded-header-height-without-toolbar-sm: $carded-header-height-sm - $carded-too
                 min-width: 0;
                 // @include mat-elevation(7);
 
-                > .header {
-                    height: $header-height;
-                    min-height: $header-height;
-                    max-height: $header-height;
-                }
+                // > .header {
+                //     height: $header-height;
+                //     min-height: $header-height;
+                //     max-height: $header-height;
+                // }
 
                 > .content {
                     flex: 1 0 auto;
