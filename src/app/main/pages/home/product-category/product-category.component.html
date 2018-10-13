@@ -14,8 +14,7 @@
         <div class="viwer-body">
             <div class="content">
                 <div class="cards">
-                    <owl-carousel #owlProductCategory class="product-category-slider" [options]="carousel.category.options" [items]="images"
-                        [carouselClasses]="['owl-theme']">
+                    <owl-carousel #owlProductCategory class="product-category-slider" [options]="carousel.category.options" [carouselClasses]="['owl-theme']">
                         <div class="card" *ngFor="let bundle of bundles">
                             <div class="bundle-list" *ngFor="let category of bundle">
                                 <a routerLink="/pages/shop" routerLinkActive="active">

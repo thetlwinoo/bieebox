@@ -44,6 +44,8 @@ export class ViewProductsPageComponent implements OnInit {
   keysearch: Observable<string>;
   token: Observable<string>;
 
+  formatLabel: any;
+  
   constructor(
     private store: Store<fromStockItems.State>,
     private _boxSidebarService: BoxSidebarService,

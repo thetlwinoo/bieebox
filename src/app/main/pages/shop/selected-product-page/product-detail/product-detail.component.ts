@@ -10,7 +10,7 @@ import { PhotoService } from '@box/services/photo.service';
 })
 export class ProductDetailComponent implements OnInit {
   @Input() product: any;
-  @Input() relatedItems: any;
+  // @Input() relatedItems: any;
   @Input() images: any;
   carousel: any;
   selectedGalleryImage: any;

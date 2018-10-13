@@ -53,7 +53,7 @@
     <div class="container">
         <div class="main-banner">
             <div class="main-banner-slider">
-                <owl-carousel #owlElement class="owl-dot-style-2" [options]="carousel.banner2.options" [items]="images" [carouselClasses]="['owl-theme']">
+                <owl-carousel #owlElement class="owl-dot-style-2" [options]="carousel.banner2.options" [carouselClasses]="['owl-theme']">
                     <div class="main-slider" *ngFor="let banner of carousel.banner2.slides;let i = index">
                         <div class="item-banner">
                             <div class="banner-thumb">
@@ -83,7 +83,7 @@
 
         <div class="content">
             <div class="cards">
-                <owl-carousel #owlElement class="collection-slider" [options]="carousel.collection.options" [items]="images" [carouselClasses]="['owl-theme']">
+                <owl-carousel #owlElement class="collection-slider" [options]="carousel.collection.options" [carouselClasses]="['owl-theme']">
                     <div class="card" *ngFor="let category of bannerCategories">
                         <a routerLink="/pages/shop" routerLinkActive="active">
                             <div #boxcag class="card-preview">

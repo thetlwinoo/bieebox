@@ -4,7 +4,7 @@
   "license": "https://themeforest.net/licenses/terms/regular",
   "scripts": {
     "ng": "ng",
-    "postinstall": "ng build --aot -prod",
+    "postinstall": "ng build --aot --prod",
     "start": "node server.js",
     "start-hmr": "ng serve --configuration hmr -sm=false",
     "start-hmr-sourcemaps": "ng serve --hmr -e=hmr",
