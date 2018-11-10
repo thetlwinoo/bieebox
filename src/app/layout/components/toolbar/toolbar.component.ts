@@ -187,4 +187,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
         // Use the selected language for translations
         this._translateService.use(langId);
     }
+
+    goToCart():void{
+        this._router.navigate(['/pages/cart']);
+    }
 }

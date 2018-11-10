@@ -1,3 +1,5 @@
+@import "src/@box/scss/box";
+
 :host {
     .viwer-area {
         position: relative;
@@ -45,7 +47,11 @@
 
                         .card-preview {
                             display: flex;
-                            min-width: 185px;                            
+                            min-width: 185px;
+                            
+                            @include media-breakpoint-down("xs") {
+                                min-width: 177px !important;                                
+                            }
                         }
 
                         .card-source {

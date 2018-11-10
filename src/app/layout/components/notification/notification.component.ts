@@ -24,7 +24,7 @@ export class NotificationComponent implements OnInit, OnDestroy
     navigation: any;
     selectedLanguage: any;
     userStatusOptions: any[];
-
+    boxConfig: any;
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -105,6 +105,8 @@ export class NotificationComponent implements OnInit, OnDestroy
                 this.horizontalNavbar = settings.layout.navbar.position === 'top';
                 this.rightNavbar = settings.layout.navbar.position === 'right';
                 this.hiddenNavbar = settings.layout.navbar.hidden === true;
+
+                this.boxConfig = settings;
             });
 
         // Set the selected language from default languages
@@ -158,5 +160,10 @@ export class NotificationComponent implements OnInit, OnDestroy
 
         // Use the selected language for translations
         this._translateService.use(lang.id);
+    }
+
+    hideNotification() : void
+    {
+        this.boxConfig.layout.notification.hidden = true;
     }
 }

@@ -18,6 +18,12 @@ product-card:hover {
 product-card {
     max-width: 185px;
     min-width: 185px;
+
+    @include media-breakpoint-down("xs") {
+        min-width: 177px !important;   
+        max-width: 177px !important;                             
+    }
+
     background: white;
     border-radius: 2px;
 
