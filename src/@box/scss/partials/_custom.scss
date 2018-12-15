@@ -10925,3 +10925,15 @@ ul.breadcrumb:before, ul.breadcrumb:after {
     position: relative;
     z-index: 9;
 }
+
+ngu-tile{
+    .tile{
+        box-shadow: none !important;
+    }
+}
+
+.ngucarousel{
+    background: #FFFFFF !important;
+    margin: 5px 0px;
+    border-radius: 2px;
+}

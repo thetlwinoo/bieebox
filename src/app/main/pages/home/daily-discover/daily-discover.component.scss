@@ -50,13 +50,26 @@
                         background: transparent;
                         padding: 5px;
 
+                        flex: 0 0 16.66666667%;
+                        max-width: 16.66666667%;
+
+                        @include media-breakpoint-down("sm") {
+                            flex: 0 0 33.33333333%;
+                            max-width: 33.33333333%;                               
+                        }
+
+                        @include media-breakpoint-down("md") {
+                            flex: 0 0 33.33333333%;
+                            max-width: 33.33333333%;                               
+                        }
+
+                        @include media-breakpoint-down("xs") {
+                            flex: 0 0 50%;
+                            max-width: 50%;                               
+                        }
+
                         .card-preview {
                             display: flex;
-                            min-width: 185px;      
-                            
-                            @include media-breakpoint-down("xs") {
-                                min-width: 177px !important;                                
-                            }
                         }
 
                         .card-source {

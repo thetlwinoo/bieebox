@@ -20,6 +20,7 @@ import { DailyDiscoverComponent } from './daily-discover/daily-discover.componen
 import { PopularProductsComponent } from './popular-products/popular-products.component';
 import { FlashDealsComponent } from './flash-deals/flash-deals.component';
 import { BrandZoneComponent } from './brand-zone/brand-zone.component';
+import { CarouselModule } from '@box/components/carousel/carousel.module';
 // import { ToastyModule } from "ng2-toasty";
 
 const routes = [
@@ -61,6 +62,7 @@ const routes = [
     MatButtonModule,
     SlickCarouselModule,
     BoxSharedModule,
+    CarouselModule
     // ToastyModule.forRoot(),
   ],
   exports: [

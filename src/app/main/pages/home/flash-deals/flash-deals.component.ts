@@ -14,7 +14,7 @@ export class FlashDealsComponent implements OnInit, OnDestroy {
   @Input() carousel;
   @Input() searching = false;
   @Input() error = '';
-  @ViewChild('owlFlashDeals') owlElement: OwlCarousel;
+  // @ViewChild('owlFlashDeals') owlElement: OwlCarousel;
   @Input('eventDate')
   eventDate;
 
@@ -70,11 +70,11 @@ export class FlashDealsComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  onPrevClick(event) {
-    this.owlElement.trigger('prev.owl.carousel');
-  }
+  // onPrevClick(event) {
+  //   this.owlElement.trigger('prev.owl.carousel');
+  // }
 
-  onNextClick(event) {
-    this.owlElement.trigger('next.owl.carousel');
-  }
+  // onNextClick(event) {
+  //   this.owlElement.trigger('next.owl.carousel');
+  // }
 }

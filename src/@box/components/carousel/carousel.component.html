@@ -1,0 +1,35 @@
+<ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="products">
+    <ngu-tile *nguCarouselDef="let item; let i = index; let ani = animate">
+        <mat-card class="example-card">
+            <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
+                <img mat-card-image [src]="item.gravatar" alt="Product Photo">
+            </a>
+            <mat-card-content>
+                <div class="fs-card-text">
+                    <div class="fs-card-title">{{item.stockItemName}}</div>
+                    <div class="fs-card-price">
+                        <span class="currency">SGD</span>
+                        <span class="price">27.90</span>
+                    </div>
+                    <div class="fs-card-origin-price">
+                        <span class="fs-origin-price">
+                            <span class="currency">SGD</span>
+                            <span class="price">59.00</span>
+                        </span>
+                        <span class="fs-discount">
+                            -53%
+                        </span>
+                    </div>
+                    <div class="fs-card-sold">
+
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <!-- Action Buttons -->
+            </mat-card-actions>
+        </mat-card>
+    </ngu-tile>
+    <button #prev NguCarouselPrev class="leftRs" [style.opacity]="myCarousel.isFirst ? 0.5:1" [style.visibility]="'hidden'">&lt;</button>
+    <button #next NguCarouselNext class="rightRs" [style.opacity]="myCarousel.isLast ? 0.5:1" [style.visibility]="'hidden'">&gt;</button>
+</ngu-carousel>

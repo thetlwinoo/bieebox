@@ -4,17 +4,17 @@
       <div class="viwer-title-spacer title">
         top selling products
       </div>
-      <button mat-icon-button color="warn" (click)="onPrevClick($event);">
+      <button mat-icon-button color="warn" (click)="carousel.onPrevious($event);">
         <mat-icon aria-label="nav left">arrow_left</mat-icon>
       </button>
-      <button mat-icon-button color="warn" (click)="onNextClick($event);">
+      <button mat-icon-button color="warn" (click)="carousel.onNext($event);">
         <mat-icon aria-label="nav right">arrow_right</mat-icon>
       </button>
     </div>  
     <div class="viwer-body">
       <div class="content">
         <div class="cards">
-          <owl-carousel #owlTopSellingProducts class="top-selling-slider" [options]="carousel.popular.options" [carouselClasses]="['owl-theme']">
+          <!-- <owl-carousel #owlTopSellingProducts class="top-selling-slider" [options]="carousel.popular.options" [carouselClasses]="['owl-theme']">
             <div class="card" *ngFor="let item of stockItems | slice:0:10">
               <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
                 <div #productcard class="card-preview">
@@ -22,7 +22,8 @@
                 </div>
               </a>
             </div>
-          </owl-carousel>
+          </owl-carousel> -->
+          <carousel-slider #carousel [products]="stockItems | slice:0:10"></carousel-slider>
         </div>
       </div>
     </div>

@@ -11,18 +11,9 @@ export class PopularProductsComponent implements OnInit {
   @Input() carousel;
   @Input() searching = false;
   @Input() error = '';
-  @ViewChild('owlPopularProducts') owlElement: OwlCarousel;
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  onPrevClick(event) {
-    this.owlElement.trigger('prev.owl.carousel');
-  }
-
-  onNextClick(event) {
-    this.owlElement.trigger('next.owl.carousel');
   }
 }

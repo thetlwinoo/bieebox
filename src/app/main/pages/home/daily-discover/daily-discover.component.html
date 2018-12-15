@@ -18,8 +18,21 @@
                             </div>
                         </a>
                     </div>
-                </div>
+                </div>                
             </div>
         </div>
     </div>
 </div>
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">
+            <div class="card" *ngFor="let item of stockItems | slice:0:18">
+                <a [routerLink]="['/pages/shop',item.id]" routerLinkActive="active">
+                    <div #productcard class="card-preview">
+                        <product-card [stockItem]="item"></product-card>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div> -->
